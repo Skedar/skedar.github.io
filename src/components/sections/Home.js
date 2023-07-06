@@ -11,14 +11,13 @@ const Home = () => {
             </span>
             <span className="position-relative">
               <span className="animated-layer">Sou o</span>
-              
+              {/*<span className="intro animated-layer">
+                Front-end Developer with 7 years experience based in London
+  </span>*/}
             </span>
             <span>
               <span className="animated-layer">Luis</span>
             </span>
-            <span className="intro animated-layer">
-                Front-end Developer with 7 years experience based in London
-              </span>
           </h1>
         </div>
       </div>
