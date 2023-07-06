@@ -7,7 +7,7 @@ const Contact = () => {
         <h3>
           <span>
             <span className="animated-layer fade-in-left-animation fadeInUp wow">
-              Get in touch
+              Contato
             </span>
           </span>
         </h3>
