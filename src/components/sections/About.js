@@ -72,9 +72,9 @@ const About = () => {
               <li>
                 <span>
                   <span className="animated-layer fade-in-up-animation fadeInUp wow">
-                    <span>Site :</span>
-                    <span><a href="https://skedarcorp.com">
-                    https://skedarcorp.com
+                    <span>LinkedIn :</span>
+                    <span><a href="https://www.linkedin.com/in/skedarcorp/">
+                    Luis "Skedar" Rizzi
                 </a></span>
                   </span>
                 </span>
