@@ -21,7 +21,7 @@ const About = () => {
           <h2>
             <span>
               <span className="animated-layer fade-in-up-animation fadeInUp wow">
-                Luis <span className="animated-layer fade-in-up-animation fadeInUp wow"><span>"Skedar"</span> </span> 
+              <span>Luis</span> <span className="animated-layer fade-in-up-animation fadeInUp wow">"Skedar" </span> 
               </span>
             </span>
             <span>
