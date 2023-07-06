@@ -16,7 +16,7 @@ const Header = () => {
                 <span id="about-link">Sobre</span>
               </li>
               <li>
-                <span id="portfolio-link">Portfolio</span>
+                <span id="portfolio-link">Projetos</span>
               </li>
               <li>
                 <span id="contact-link">Contato</span>

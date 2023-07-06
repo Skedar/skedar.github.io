@@ -18,17 +18,12 @@ const About = () => {
         {/* IMAGE ENDS */}
         {/* INFO STARTS */}
         <div>
-          <h2>
-            <span>
+          <h2>Luis
               <span className="animated-layer fade-in-up-animation fadeInUp wow">
-              <span>Luis</span> <span className="animated-layer fade-in-up-animation fadeInUp wow">"Skedar" </span> 
-              </span>
-            </span>
-            <span>
+             Skedar</span>  
               <span className="animated-layer fade-in-up-animation fadeInUp wow">
                 Rizzi
               </span>
-            </span>
           </h2>
           <div className="infos">
             <ul>
