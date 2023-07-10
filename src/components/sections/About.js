@@ -74,7 +74,7 @@ const About = () => {
                   <span className="animated-layer fade-in-up-animation fadeInUp wow">
                     <span>Profissão :</span>
                     <span><a href="https://www.linkedin.com/in/skedarcorp/">
-                   Game Designer | QA
+                   Game Designer | QA | TI
                 </a></span>
                   </span>
                 </span>
