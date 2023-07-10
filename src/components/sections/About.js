@@ -18,10 +18,10 @@ const About = () => {
         {/* IMAGE ENDS */}
         {/* INFO STARTS */}
         <div>
-          <h2>Luis
-              <span className="animated-layer fade-in-up-animation fadeInUp wow">
+          <h2 className="animated-layer fade-in-up-animation fadeInUp wow">Luis
+           <span>
              Skedar</span>  
-              <span className="animated-layer fade-in-up-animation fadeInUp wow">
+              <span>
                 Rizzi
               </span>
           </h2>
@@ -72,9 +72,9 @@ const About = () => {
               <li>
                 <span>
                   <span className="animated-layer fade-in-up-animation fadeInUp wow">
-                    <span>LinkedIn :</span>
+                    <span>Profissão :</span>
                     <span><a href="https://www.linkedin.com/in/skedarcorp/">
-                    Luis "Skedar" Rizzi
+                   Game Designer | QA
                 </a></span>
                   </span>
                 </span>
@@ -82,7 +82,7 @@ const About = () => {
               <li>
                 <span>
                   <span className="animated-layer fade-in-up-animation fadeInUp wow">
-                    <span>Email :</span>
+                    <span>E-mail :</span>
                     <span><a href="mailto:contato@skedarcorp.com">contato@skedarcorp.com</a></span>
                   </span>
                 </span>
@@ -90,8 +90,10 @@ const About = () => {
               <li>
                 <span>
                   <span className="animated-layer fade-in-up-animation fadeInUp wow">
-                    <span>Discord :</span>
-                    <span>skedarcorp</span>
+                    <span>Site :</span>
+                    <span><a href="https://www.linkedin.com/in/skedarcorp/">
+                   skedarcorp.com
+                </a></span>
                   </span>
                 </span>
               </li>
@@ -109,7 +111,7 @@ const About = () => {
           <h3>
             <span>
               <span className="animated-layer fade-in-left-animation fadeInUp wow">
-                My Skills
+              Skills
               </span>
             </span>
           </h3>

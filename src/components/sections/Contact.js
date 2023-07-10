@@ -21,7 +21,7 @@ const Contact = () => {
           <div className="animated-layer fade-in-down-animation fadeInUp wow">
             <i className="fa-solid fa-globe" />
             <p>
-              <span className="small-text">Site</span>
+              <span className="small-text">Site Geral</span>
               <a href="https://skedarcorp.com">
                  Skedar Corporation
                 </a>
@@ -32,8 +32,10 @@ const Contact = () => {
           <div className="animated-layer fade-in-up-animation fadeInUp wow">
             <i className="fa fa-location-dot" />
             <p>
-              <span className="small-text">Local</span>
-              São Paulo, Brasil
+              <span className="small-text">Portfolio</span>
+              <a href="https://portfolio.skedarcorp.com">
+              portfolio.skedarcorp.com
+                </a>
             </p>
           </div>
           {/* CONTACT ITEM ENDS */}
