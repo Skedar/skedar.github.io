@@ -7,12 +7,10 @@ const Testimonials = () => {
           <div>
             <p>
               <span className="quote">
-                " I worked with Steven, he was very helpful and fast to respond
-                to my inquiry to help with Wordpress website issues and all
-                technical problems. "
+                " Eu que fiz. "
               </span>
-              <span className="person">Jasmin Aniston</span>
-              <span className="job">Director - Adobe</span>
+              <span className="person">Glaucia Andrade.</span>
+              <span className="job">Minha mãe</span>
             </p>
             <img src="assets/testimonials/testimonial-1.jpg" alt="" />
           </div>
@@ -23,12 +21,10 @@ const Testimonials = () => {
           <div>
             <p>
               <span className="quote">
-                " Steven is a great help managing a very out of date website.
-                Everything we ask him to do is done quickly and efficiently, we
-                would be lost without him. "
+                " Miau, miau miau au miaaaaaau miau miau miau au miaaaaaau miaumiau miau au miaaaaaau miau. Miau SZ"
               </span>
-              <span className="person">Mark Eliott</span>
-              <span className="job">Manager - Envato</span>
+              <span className="person">Lorcan</span>
+              <span className="job">Meu Gato</span>
             </p>
             <img src="assets/testimonials/testimonial-2.jpg" alt="" />
           </div>
