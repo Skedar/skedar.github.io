@@ -91,7 +91,7 @@ const About = () => {
                 <span>
                   <span className="animated-layer fade-in-up-animation fadeInUp wow">
                     <span>Site :</span>
-                    <span><a href="https://www.linkedin.com/in/skedarcorp/">
+                    <span><a href="https://skedarcorp.com">
                    skedarcorp.com
                 </a></span>
                   </span>
@@ -216,133 +216,14 @@ const About = () => {
             <li>
               <div className="animated-layer fade-in-down-animation fadeInUp wow">
                 <div className="experience">
-                  <h4>Técnico em Hardware</h4>
+                  <h4>Monitor de Informática</h4>
                   <p>
                     <i className="fa-regular fa-clock" />
-                    <span>2006 - 2009</span>
+                    <span>2023 - Atualmente</span>
                   </p>
                   <p>
                     <i className="fa-regular fa-building" />
-                    <span>Freelance</span>
-                  </p>
-                </div>
-              </div>
-            </li>
-            {/* TIMELINE ITEM ENDS */}
-            {/* TIMELINE ITEM STARTS */}
-            <li>
-              <div className="animated-layer fade-in-down-animation fadeInUp wow">
-                <div className="experience">
-                  <h4>Técnico em Hardware</h4>
-                  <p>
-                    <i className="fa-regular fa-clock" />
-                    <span>2009 - 2011</span>
-                  </p>
-                  <p>
-                    <i className="fa-regular fa-building" />
-                    <span>Fortran Computadores</span>
-                  </p>
-                </div>
-              </div>
-            </li>
-            {/* TIMELINE ITEM ENDS */}
-            {/* TIMELINE ITEM STARTS */}
-            <li>
-              <div className="animated-layer fade-in-down-animation fadeInUp wow">
-                <div className="experience">
-                  <h4>Técnico em Hardware</h4>
-                  <p>
-                    <i className="fa-regular fa-clock" />
-                    <span>2009 - 2011</span>
-                  </p>
-                  <p>
-                    <i className="fa-regular fa-building" />
-                    <span>Positivo Informática</span>
-                  </p>
-                </div>
-              </div>
-            </li>
-            {/* TIMELINE ITEM ENDS */}
-            {/* TIMELINE ITEM STARTS */}
-            <li>
-              <div className="animated-layer fade-in-up-animation fadeInUp wow">
-                <div className="education">
-                  <h4>Sup. em Gestor em TI</h4>
-                  <p>
-                    <i className="fa-regular fa-clock" />
-                    <span>2012</span>
-                  </p>
-                  <p>
-                    <i className="fa-solid fa-building-columns" />
-                    <span>Universidade Moura Lacerda</span>
-                  </p>
-                </div>
-              </div>
-            </li>
-            {/* TIMELINE ITEM ENDS */}
-            {/* TIMELINE ITEM STARTS */}
-            <li>
-              <div className="animated-layer fade-in-up-animation fadeInUp wow">
-                <div className="education">
-                  <h4>Sup. em Análise de Sistemas</h4>
-                  <p>
-                    <i className="fa-regular fa-clock" />
-                    <span>2013</span>
-                  </p>
-                  <p>
-                    <i className="fa-solid fa-building-columns" />
-                    <span>Universidade Moura Lacerda</span>
-                  </p>
-                </div>
-              </div>
-            </li>
-            {/* TIMELINE ITEM ENDS */}
-            {/* TIMELINE ITEM STARTS */}
-            <li>
-              <div className="animated-layer fade-in-up-animation fadeInUp wow">
-                <div className="experience">
-                  <h4>Técnico em Hardware</h4>
-                  <p>
-                    <i className="fa-regular fa-clock" />
-                    <span>2012 - 2013</span>
-                  </p>
-                  <p>
-                    <i className="fa-regular fa-building" />
-                    <span>Cajuela Informática</span>
-                  </p>
-                </div>
-              </div>
-            </li>
-            {/* TIMELINE ITEM ENDS */}
-            {/* TIMELINE ITEM STARTS */}
-            <li>
-              <div className="animated-layer fade-in-down-animation fadeInUp wow">
-                <div className="experience">
-                  <h4>Técnico em Hardware</h4>
-                  <p>
-                    <i className="fa-regular fa-clock" />
-                    <span>2012 - 2013</span>
-                  </p>
-                  <p>
-                    <i className="fa-regular fa-building" />
-                    <span>Ponto Com. Informática</span>
-                  </p>
-                </div>
-              </div>
-            </li>
-            {/* TIMELINE ITEM ENDS */}
-            {/* TIMELINE ITEM STARTS */}
-            <li>
-              <div className="animated-layer fade-in-down-animation fadeInUp wow">
-                <div className="experience">
-                  <h4>Gestor em TI</h4>
-                  <p>
-                    <i className="fa-regular fa-clock" />
-                    <span>2014 - 2015</span>
-                  </p>
-                  <p>
-                    <i className="fa-regular fa-building" />
-                    <span>Chiari Informática</span>
+                    <span>MSTech</span>
                   </p>
                 </div>
               </div>
@@ -352,82 +233,14 @@ const About = () => {
             <li>
               <div className="animated-layer fade-in-down-animation fadeInUp wow">
                 <div className="education">
-                  <h4>Sup. em Jogos Digitais</h4>
+                  <h4>MBA em Gestão da Qualidade</h4>
                   <p>
                     <i className="fa-regular fa-clock" />
-                    <span>2015</span>
+                    <span>2023</span>
                   </p>
                   <p>
                     <i className="fa-solid fa-building-columns" />
-                    <span>Universidade Barão de Maua</span>
-                  </p>
-                </div>
-              </div>
-            </li>
-            {/* TIMELINE ITEM ENDS */}
-            {/* TIMELINE ITEM STARTS */}
-            <li>
-              <div className="animated-layer fade-in-down-animation fadeInUp wow">
-                <div className="education">
-                  <h4>Pós-Graduação em Game Design</h4>
-                  <p>
-                    <i className="fa-regular fa-clock" />
-                    <span>2015</span>
-                  </p>
-                  <p>
-                    <i className="fa-solid fa-building-columns" />
-                    <span>Universidade Positivo</span>
-                  </p>
-                </div>
-              </div>
-            </li>
-            {/* TIMELINE ITEM ENDS */}
-            {/* TIMELINE ITEM STARTS */}
-            <li>
-              <div className="animated-layer fade-in-down-animation fadeInUp wow">
-                <div className="experience">
-                  <h4>Gestor em TI</h4>
-                  <p>
-                    <i className="fa-regular fa-clock" />
-                    <span>2015 - 2019</span>
-                  </p>
-                  <p>
-                    <i className="fa-regular fa-building" />
-                    <span>Senhora Casa Imóveis</span>
-                  </p>
-                </div>
-              </div>
-            </li>
-            {/* TIMELINE ITEM ENDS */}
-            {/* TIMELINE ITEM STARTS */}
-            <li>
-              <div className="animated-layer fade-in-down-animation fadeInUp wow">
-                <div className="experience">
-                  <h4>Game Designer</h4>
-                  <p>
-                    <i className="fa-regular fa-clock" />
-                    <span>2017 - Atualmente</span>
-                  </p>
-                  <p>
-                    <i className="fa-regular fa-building" />
-                    <span>Dead Pirate Studios</span>
-                  </p>
-                </div>
-              </div>
-            </li>
-            {/* TIMELINE ITEM ENDS */}
-            {/* TIMELINE ITEM STARTS */}
-            <li>
-              <div className="animated-layer fade-in-down-animation fadeInUp wow">
-                <div className="experience">
-                  <h4>Empreendedor</h4>
-                  <p>
-                    <i className="fa-regular fa-clock" />
-                    <span>2018 - Atualmente</span>
-                  </p>
-                  <p>
-                    <i className="fa-regular fa-building" />
-                    <span>Loja Necromantis</span>
+                    <span>Universidade Anhanguera</span>
                   </p>
                 </div>
               </div>
@@ -470,15 +283,32 @@ const About = () => {
             {/* TIMELINE ITEM STARTS */}
             <li>
               <div className="animated-layer fade-in-down-animation fadeInUp wow">
-                <div className="education">
-                  <h4>MBA em Gestão da Qualidade</h4>
+                <div className="experience">
+                  <h4>Empreendedor</h4>
                   <p>
                     <i className="fa-regular fa-clock" />
-                    <span>2023</span>
+                    <span>2018 - Atualmente</span>
                   </p>
                   <p>
-                    <i className="fa-solid fa-building-columns" />
-                    <span>Universidade Anhanguera</span>
+                    <i className="fa-regular fa-building" />
+                    <span>Loja Necromantis</span>
+                  </p>
+                </div>
+              </div>
+            </li>
+            {/* TIMELINE ITEM ENDS */}
+             {/* TIMELINE ITEM STARTS */}
+             <li>
+              <div className="animated-layer fade-in-down-animation fadeInUp wow">
+                <div className="experience">
+                  <h4>Game Designer</h4>
+                  <p>
+                    <i className="fa-regular fa-clock" />
+                    <span>2017 - Atualmente</span>
+                  </p>
+                  <p>
+                    <i className="fa-regular fa-building" />
+                    <span>Dead Pirate Studios</span>
                   </p>
                 </div>
               </div>
@@ -488,14 +318,150 @@ const About = () => {
             <li>
               <div className="animated-layer fade-in-down-animation fadeInUp wow">
                 <div className="experience">
-                  <h4>Monitor de Informática</h4>
+                  <h4>Gestor em TI</h4>
                   <p>
                     <i className="fa-regular fa-clock" />
-                    <span>2023 - Atualmente</span>
+                    <span>2015 - 2019</span>
                   </p>
                   <p>
                     <i className="fa-regular fa-building" />
-                    <span>MSTech</span>
+                    <span>Senhora Casa Imóveis</span>
+                  </p>
+                </div>
+              </div>
+            </li>
+            {/* TIMELINE ITEM ENDS */}
+             {/* TIMELINE ITEM STARTS */}
+             <li>
+              <div className="animated-layer fade-in-down-animation fadeInUp wow">
+                <div className="education">
+                  <h4>Pós-Graduação em Game Design</h4>
+                  <p>
+                    <i className="fa-regular fa-clock" />
+                    <span>2018</span>
+                  </p>
+                  <p>
+                    <i className="fa-solid fa-building-columns" />
+                    <span>Universidade Positivo</span>
+                  </p>
+                </div>
+              </div>
+            </li>
+            {/* TIMELINE ITEM ENDS */}
+            {/* TIMELINE ITEM STARTS */}
+            <li>
+              <div className="animated-layer fade-in-down-animation fadeInUp wow">
+                <div className="education">
+                  <h4>Jogos Digitais</h4>
+                  <p>
+                    <i className="fa-regular fa-clock" />
+                    <span>2017</span>
+                  </p>
+                  <p>
+                    <i className="fa-solid fa-building-columns" />
+                    <span>Universidade Barão de Maua</span>
+                  </p>
+                </div>
+              </div>
+            </li>
+            {/* TIMELINE ITEM ENDS */}
+             {/* TIMELINE ITEM STARTS */}
+             <li>
+              <div className="animated-layer fade-in-down-animation fadeInUp wow">
+                <div className="experience">
+                  <h4>Gestor em TI</h4>
+                  <p>
+                    <i className="fa-regular fa-clock" />
+                    <span>2014 - 2015</span>
+                  </p>
+                  <p>
+                    <i className="fa-regular fa-building" />
+                    <span>Chiari Informática</span>
+                  </p>
+                </div>
+              </div>
+            </li>
+            {/* TIMELINE ITEM ENDS */}
+            {/* TIMELINE ITEM STARTS */}
+            <li>
+              <div className="animated-layer fade-in-up-animation fadeInUp wow">
+                <div className="education">
+                  <h4>Análise de Sistemas</h4>
+                  <p>
+                    <i className="fa-regular fa-clock" />
+                    <span>2014</span>
+                  </p>
+                  <p>
+                    <i className="fa-solid fa-building-columns" />
+                    <span>Universidade Moura Lacerda</span>
+                  </p>
+                </div>
+              </div>
+            </li>
+            {/* TIMELINE ITEM ENDS */}
+            {/* TIMELINE ITEM STARTS */}
+            <li>
+              <div className="animated-layer fade-in-up-animation fadeInUp wow">
+                <div className="education">
+                  <h4>Gestor em TI</h4>
+                  <p>
+                    <i className="fa-regular fa-clock" />
+                    <span>2014</span>
+                  </p>
+                  <p>
+                    <i className="fa-solid fa-building-columns" />
+                    <span>Universidade Moura Lacerda</span>
+                  </p>
+                </div>
+              </div>
+            </li>
+            {/* TIMELINE ITEM ENDS */}
+            {/* TIMELINE ITEM STARTS */}
+            <li>
+              <div className="animated-layer fade-in-down-animation fadeInUp wow">
+                <div className="experience">
+                  <h4>Técnico em Hardware</h4>
+                  <p>
+                    <i className="fa-regular fa-clock" />
+                    <span>2009 - 2012</span>
+                  </p>
+                  <p>
+                    <i className="fa-regular fa-building" />
+                    <span>Positivo Informática</span>
+                  </p>
+                </div>
+              </div>
+            </li>
+            {/* TIMELINE ITEM ENDS */}
+            {/* TIMELINE ITEM STARTS */}
+            <li>
+              <div className="animated-layer fade-in-down-animation fadeInUp wow">
+                <div className="experience">
+                  <h4>Técnico em Hardware</h4>
+                  <p>
+                    <i className="fa-regular fa-clock" />
+                    <span>2008 - 2012</span>
+                  </p>
+                  <p>
+                    <i className="fa-regular fa-building" />
+                    <span>Fortran Computadores</span>
+                  </p>
+                </div>
+              </div>
+            </li>
+            {/* TIMELINE ITEM ENDS */}
+            {/* TIMELINE ITEM STARTS */}
+            <li>
+              <div className="animated-layer fade-in-down-animation fadeInUp wow">
+                <div className="experience">
+                  <h4>Técnico em Hardware</h4>
+                  <p>
+                    <i className="fa-regular fa-clock" />
+                    <span>2006 - 2009</span>
+                  </p>
+                  <p>
+                    <i className="fa-regular fa-building" />
+                    <span>Freelance</span>
                   </p>
                 </div>
               </div>
