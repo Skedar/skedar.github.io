@@ -22,7 +22,8 @@ const Header = () => {
                 <span id="contact-link">Contato</span>
               </li>
               <li>
-                <span id="blog-link">Blog</span>
+                 {/* MENU BLOG PAGINA= <span id="blog-link">Blog</span> */}
+                <span><a href="https://skedarcorp.com/blog">Blog</a></span>
               </li>
             </ul>
           </nav>

@@ -21,7 +21,7 @@ const Contact = () => {
           <div className="animated-layer fade-in-down-animation fadeInUp wow">
             <i className="fa-solid fa-globe" />
             <p>
-              <span className="small-text">Site Geral</span>
+              <span className="small-text">Site Principal</span>
               <a href="https://skedarcorp.com">
                  Skedar Corporation
                 </a>

@@ -56,7 +56,22 @@ const Facts = () => {
             <div>
               <h3>2</h3>
               <p>
-                Trabalhos<span>voluntários</span> em QA
+                Trabalhos<span>voluntários</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        {/* SINGE FACT ITEM ENDS */}
+         {/* SINGE FACT ITEM STARTS */}
+         <div
+          className="animated-layer fade-in-right-animation fadeInRight wow"
+          data-wow-offset={200}
+        >
+          <div>
+            <div>
+              <h3>934</h3>
+              <p>
+                Jogos na<span>STEAM</span>
               </p>
             </div>
           </div>

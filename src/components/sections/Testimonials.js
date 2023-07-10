@@ -12,7 +12,7 @@ const Testimonials = () => {
               <span className="person">Glaucia Andrade.</span>
               <span className="job">Minha mãe</span>
             </p>
-            <img src="assets/testimonials/testimonial-1.jpg" alt="" />
+            <img src="assets/testimonials/-1.jpg" alt="" />
           </div>
         </div>
         {/* TESTIMONIAL ITEM ENDS */}
@@ -23,7 +23,7 @@ const Testimonials = () => {
               <span className="quote">
                 " Miau, miau miau au miaaaaaau miau miau miau au miaaaaaau miaumiau miau au miaaaaaau miau. Miau SZ"
               </span>
-              <span className="person">Lorcan</span>
+              <span className="person">Lorcan.</span>
               <span className="job">Meu Gato</span>
             </p>
             <img src="assets/testimonials/testimonial-2.jpg" alt="" />

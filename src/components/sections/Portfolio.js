@@ -38,20 +38,20 @@ const Portfolio = () => {
           {/* ITEM MAIN CONTENT ENDS */}
           {/* ITEM DETAILS STARTS */}
           <div className="details">
-            <h4>Portal de Imóveis</h4>
+            <h4>Portal Educacional</h4>
             <div>
               <ul>
                 <li>
                   <span>
                     <i className="fa-regular fa-file-lines" /> Projeto :
                   </span>
-                  <span>Website</span>
+                  <span>Website e Jogos</span>
                 </li>
                 <li>
                   <span>
                     <i className="fa-regular fa-user" /> Cliente :
                   </span>
-                  <span>Senhora Casa Imóveis</span>
+                  <span>Turma do Saber</span>
                 </li>
                 <li>
                   <span>
@@ -63,13 +63,13 @@ const Portfolio = () => {
                   <span>
                     <i className="fa-solid fa-code-branch" /> Frameworks :
                   </span>
-                  <span>WordPress</span>
+                  <span>HTML5, CSS, JS, PHP, Construct, Unity</span>
                 </li>
               </ul>
             </div>
-            <a href="#" target="_blank" className="custom-btn">
+            <a href="https://turmadosaber.com.br" target="_blank" className="custom-btn">
               <span>
-                preview <i className="fa-solid fa-arrow-up-right-from-square" />
+                Visitar <i className="fa-solid fa-arrow-up-right-from-square" />
               </span>
             </a>
           </div>
@@ -91,32 +91,32 @@ const Portfolio = () => {
           {/* ITEM MAIN CONTENT ENDS */}
           {/* ITEM DETAILS STARTS */}
           <div className="details">
-            <h4>Youtube Project</h4>
+            <h4>No Talk Channel - Youtube </h4>
             <div>
               <ul>
                 <li>
                   <span>
-                    <i className="fa-regular fa-file-lines" /> Project :
+                    <i className="fa-regular fa-file-lines" /> Projeto :
                   </span>
-                  <span>Short Film</span>
+                  <span>Timelapse</span>
                 </li>
                 <li>
                   <span>
-                    <i className="fa-regular fa-user" /> Client :
+                    <i className="fa-regular fa-user" /> Cliente :
                   </span>
-                  <span>Videohive</span>
+                  <span>Skedar Corporation</span>
                 </li>
                 <li>
                   <span>
-                    <i className="fa-regular fa-hourglass" /> Duration :
+                    <i className="fa-regular fa-hourglass" /> Duração :
                   </span>
-                  <span>8 months</span>
+                  <span>8 meses</span>
                 </li>
                 <li>
                   <span>
                     <i className="fa-solid fa-code-branch" /> Frameworks :
                   </span>
-                  <span>After Effects</span>
+                  <span>After Effects, Davinci Resolve</span>
                 </li>
               </ul>
             </div>
@@ -157,21 +157,21 @@ const Portfolio = () => {
               <ul>
                 <li>
                   <span>
-                    <i className="fa-regular fa-file-lines" /> Project :
+                    <i className="fa-regular fa-file-lines" /> Projeto :
                   </span>
                   <span>Mobile App</span>
                 </li>
                 <li>
                   <span>
-                    <i className="fa-regular fa-user" /> Client :
+                    <i className="fa-regular fa-user" /> Cliente :
                   </span>
-                  <span>Codecanyon</span>
+                  <span>Dead Pirate Studios</span>
                 </li>
                 <li>
                   <span>
-                    <i className="fa-regular fa-hourglass" /> Duration :
+                    <i className="fa-regular fa-hourglass" /> Duração :
                   </span>
-                  <span>3 months</span>
+                  <span>3 meses</span>
                 </li>
                 <li>
                   <span>
@@ -214,19 +214,19 @@ const Portfolio = () => {
               <ul>
                 <li>
                   <span>
-                    <i className="fa-regular fa-file-lines" /> Project :
+                    <i className="fa-regular fa-file-lines" /> Projeto :
                   </span>
                   <span>Advertising</span>
                 </li>
                 <li>
                   <span>
-                    <i className="fa-regular fa-user" /> Client :
+                    <i className="fa-regular fa-user" /> Cliente :
                   </span>
                   <span>Envato</span>
                 </li>
                 <li>
                   <span>
-                    <i className="fa-regular fa-hourglass" /> Duration :
+                    <i className="fa-regular fa-hourglass" /> Duração :
                   </span>
                   <span>1 month</span>
                 </li>
