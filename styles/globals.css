@@ -15,21 +15,6 @@
   }
 }
 
-#switcher,
-#showSwitcher {
-  transition: 1s all;
-}
-#switcher.open,
-#showSwitcher.open {
-  margin-left: 0;
-}
-#showSwitcher.close {
-  margin-left: -500px;
-}
-#switcher ul li {
-  margin: 0 15px 15px 0;
-}
-
 .back-btn {
   z-index: 11111;
   margin-left: 0px;

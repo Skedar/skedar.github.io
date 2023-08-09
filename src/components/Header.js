@@ -21,10 +21,6 @@ const Header = () => {
               <li>
                 <span id="contact-link">Contato</span>
               </li>
-              <li>
-                 {/* MENU BLOG PAGINA= <span id="blog-link">Blog</span> */}
-                <span><a href="https://skedarcorp.com/blog">Blog</a></span>
-              </li>
             </ul>
           </nav>
         </div>
@@ -64,11 +60,6 @@ const Header = () => {
             <li>
               <a href="#contact">
                 <span>Contato</span>
-              </a>
-            </li>
-            <li>
-              <a href="#blog">
-                <span>Blog</span>
               </a>
             </li>
           </ul>
