@@ -133,25 +133,7 @@ const About = () => {
               <span>
                 <i className="devicon-unrealengine-original" />
               </span>
-              <h4>Unreal Engine</h4>
-            </div>
-            {/* SKILL ITEM ENDS */}
-          </div>
-          <div>
-            {/* SKILL ITEM STARTS */}
-            <div className="animated-layer fade-in-down-animation fadeInLeft wow">
-              <span>
-                <i className="devicon-unrealengine-original" />
-              </span>
-              <h4>Constructor</h4>
-            </div>
-            {/* SKILL ITEM ENDS */}
-            {/* SKILL ITEM STARTS */}
-            <div className="animated-layer fade-in-up-animation fadeInRight wow">
-              <span>
-                <i className="devicon-androidstudio-plain" />
-              </span>
-              <h4>Android Studio</h4>
+              <h4>Unreal</h4>
             </div>
             {/* SKILL ITEM ENDS */}
           </div>
@@ -165,11 +147,11 @@ const About = () => {
             </div>
             {/* SKILL ITEM ENDS */}
             {/* SKILL ITEM STARTS */}
-            <div className="animated-layer fade-in-up-animation fadeInRight wow">
+            <div className="animated-layer fade-in-down-animation fadeInLeft wow">
               <span>
-                <i className="devicon-docker-plain" />
+                <i className="devicon-blender-original" />
               </span>
-              <h4>Docker</h4>
+              <h4>Blender</h4>
             </div>
             {/* SKILL ITEM ENDS */}
           </div>
@@ -182,12 +164,66 @@ const About = () => {
               <h4>CSharp</h4>
             </div>
             {/* SKILL ITEM ENDS */}
+             {/* SKILL ITEM STARTS */}
+            <div className="animated-layer fade-in-up-animation fadeInRight wow">
+              <span>
+                <i className="devicon-android-plain" />
+              </span>
+              <h4>Android</h4>
+            </div>
+            {/* SKILL ITEM ENDS */}
+          </div>
+          <div>
             {/* SKILL ITEM STARTS */}
             <div className="animated-layer fade-in-up-animation fadeInRight wow">
               <span>
-                <i className="devicon-java-plain" />
+                <i className="devicon-docker-plain" />
               </span>
-              <h4>Java</h4>
+              <h4>Docker</h4>
+            </div>
+            {/* SKILL ITEM ENDS */}
+            {/* SKILL ITEM STARTS */}
+            <div className="animated-layer fade-in-up-animation fadeInRight wow">
+              <span>
+                <i className="devicon-git-plain" />
+              </span>
+              <h4>Git</h4>
+            </div>
+            {/* SKILL ITEM ENDS */}
+            </div>
+          <div>
+            {/* SKILL ITEM STARTS */}
+            <div className="animated-layer fade-in-up-animation fadeInRight wow">
+              <span>
+                <i className="devicon-cucumber-plain" />
+              </span>
+              <h4>Cucumber</h4>
+            </div>
+            {/* SKILL ITEM ENDS */}
+            {/* SKILL ITEM STARTS */}
+            <div className="animated-layer fade-in-up-animation fadeInRight wow">
+              <span>
+                <i className="devicon-selenium-original" />
+              </span>
+              <h4>Selenium</h4>
+            </div>
+            {/* SKILL ITEM ENDS */}
+            </div>
+          <div>
+            {/* SKILL ITEM STARTS */}
+            <div className="animated-layer fade-in-up-animation fadeInRight wow">
+              <span>
+                <i className="devicon-jira-plain" />
+              </span>
+              <h4>Jira</h4>
+            </div>
+            {/* SKILL ITEM ENDS */}
+            {/* SKILL ITEM STARTS */}
+            <div className="animated-layer fade-in-up-animation fadeInRight wow">
+              <span>
+                <i className="devicon-mongodb-plain" />
+              </span>
+              <h4>MongoDB</h4>
             </div>
             {/* SKILL ITEM ENDS */}
           </div>
@@ -202,7 +238,7 @@ const About = () => {
           <h3>
             <span>
               <span className="animated-layer fade-in-left-animation">
-                Timeline
+                Resume
               </span>
             </span>
           </h3>
@@ -240,7 +276,7 @@ const About = () => {
                   </p>
                   <p>
                     <i className="fa-solid fa-building-columns" />
-                    <span>Universidade Anhanguera</span>
+                    <span>Anhanguera</span>
                   </p>
                 </div>
               </div>
@@ -258,6 +294,23 @@ const About = () => {
                   <p>
                     <i className="fa-regular fa-building" />
                     <span>Turma do Saber</span>
+                  </p>
+                </div>
+              </div>
+            </li>
+            {/* TIMELINE ITEM ENDS */}
+             {/* TIMELINE ITEM STARTS */}
+             <li>
+              <div className="animated-layer fade-in-down-animation fadeInUp wow">
+                <div className="education">
+                  <h4>Formação QA</h4>
+                  <p>
+                    <i className="fa-regular fa-clock" />
+                    <span>2023</span>
+                  </p>
+                  <p>
+                    <i className="fa-regular fa-building" />
+                    <span>QA.Coders</span>
                   </p>
                 </div>
               </div>
@@ -359,7 +412,7 @@ const About = () => {
                   </p>
                   <p>
                     <i className="fa-solid fa-building-columns" />
-                    <span>Universidade Barão de Maua</span>
+                    <span>Barão de Maua</span>
                   </p>
                 </div>
               </div>
@@ -393,7 +446,7 @@ const About = () => {
                   </p>
                   <p>
                     <i className="fa-solid fa-building-columns" />
-                    <span>Universidade Moura Lacerda</span>
+                    <span>Moura Lacerda</span>
                   </p>
                 </div>
               </div>
@@ -410,7 +463,7 @@ const About = () => {
                   </p>
                   <p>
                     <i className="fa-solid fa-building-columns" />
-                    <span>Universidade Moura Lacerda</span>
+                    <span>Moura Lacerda</span>
                   </p>
                 </div>
               </div>

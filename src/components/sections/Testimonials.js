@@ -12,7 +12,7 @@ const Testimonials = () => {
               <span className="person">Glaucia Andrade.</span>
               <span className="job">Minha mãe</span>
             </p>
-            <img src="assets/testimonials/-1.jpg" alt="" />
+            <img src="assets/testimonials/testimonial-2.jpg" alt="" />
           </div>
         </div>
         {/* TESTIMONIAL ITEM ENDS */}
