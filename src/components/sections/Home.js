@@ -11,12 +11,12 @@ const Home = () => {
             </span>
             <span className="position-relative">
               <span className="animated-layer">Sou o</span>
-              {/*<span className="intro animated-layer">
-                Front-end Developer with 7 years experience based in London
-  </span>*/}
             </span>
             <span>
               <span className="animated-layer">Luis</span>
+              <span className="intro animated-layer">
+                Analista de Testes (QA) e game designer com vasta experiência em TI e no universo cyberpunk.
+            </span>
             </span>
           </h1>
         </div>

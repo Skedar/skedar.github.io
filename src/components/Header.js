@@ -25,10 +25,10 @@ const Header = () => {
           </nav>
         </div>
         {/* MENU ENDS */}
-        {/* FREELANCE STARTS 
+        {/* FREELANCE STARTS */}
         <div className="mail">
           <p>
-            Email :<span> <a href="mailto:contato@skedarcorp.com">contato@skedarcorp.com</a></span>
+            Email :<span> contato@skedarcorp.com</span>
           </p>
         </div>
         {/* FREELANCE ENDS */}

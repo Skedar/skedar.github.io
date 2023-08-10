@@ -1,43 +1,3 @@
-/*
-Template Name: Salimov - Horizontal Personal Portfolio
-Author: Codeefly
-Author URI: http://themeforest.net/user/Codeefly
-Description: Salimov - Horizontal Personal Portfolio
-Version: 1.0
-*/
-
-/*------------------------------------------------------------------
-[Table of contents]
-      	+ General
-		  - Miscellaneous
-		  - Preloader
-		  - Scroll Bar
-		  - Title Section
-		  - Buttons
-        - Header
-        + Sections
-          - Home
-		  + About
-		  	- Infos
-            - Skills
-            - Resume
-          - Facts
-          - Portfolio
-		  - Clients
-		  - Contact
-		  - Testimonials
-		  - Blog
-		  - Copyright
-		- Blog Page
-        - Responsive Design Styles
-  
--------------------------------------------------------------------*/
-
-/* [ GENERAL ] */
-/*================================================== */
-
-/*** Miscellaneous ***/
-
 html {
   height: 100%;
 }
@@ -256,21 +216,21 @@ ul {
   right: 0;
 }
 
-.scroll-progress > div {
+.scroll-progress>div {
   display: flex;
   justify-content: space-between;
   width: 100%;
   align-items: center;
 }
 
-.scroll-progress > div > div {
+.scroll-progress>div>div {
   height: 8px;
   width: 100%;
   background-color: rgba(255, 255, 255, 0.07);
   border-radius: 4px;
 }
 
-.mCSB_horizontal.mCSB_inside > .mCSB_container {
+.mCSB_horizontal.mCSB_inside>.mCSB_container {
   margin-bottom: 0;
 }
 
@@ -344,8 +304,8 @@ ul {
   letter-spacing: 2px;
 }
 
-.custom-title h3 > span,
-.custom-title h3 > span > span {
+.custom-title h3>span,
+.custom-title h3>span>span {
   display: block;
 }
 
@@ -541,7 +501,7 @@ header .mobile-menu {
   justify-content: center;
 }
 
-.home > div > div h1 {
+.home>div>div h1 {
   position: relative;
   z-index: 1;
   font-size: 150px;
@@ -550,18 +510,18 @@ header .mobile-menu {
   margin: 0;
 }
 
-.home > div > div h1 > span > span:not(.intro),
-.home > div > div h1 > span {
+.home>div>div h1>span>span:not(.intro),
+.home>div>div h1>span {
   display: block;
   overflow: hidden;
 }
 
-.home > div > div h1 > span {
+.home>div>div h1>span {
   padding: 0 200px;
   line-height: 160px;
 }
 
-.home > div > div h1 > span > span:not(.intro) {
+.home>div>div h1>span>span:not(.intro) {
   transform: translate(-50%, -50%);
   letter-spacing: 0.1em;
   -webkit-text-fill-color: transparent;
@@ -570,7 +530,7 @@ header .mobile-menu {
   text-shadow: 8px 8px #fff, 20px 20px #222;
 }
 
-.home > div > div .intro {
+.home>div>div .intro {
   position: absolute;
   height: 170px;
   width: 200px;
@@ -580,8 +540,8 @@ header .mobile-menu {
   justify-content: center;
   text-align: center;
   border-radius: 50%;
-  left: 620px;
-  top: 0px;
+  left: 680px;
+  top: 336px;
   color: #fff;
   font-size: 18px;
   flex-direction: column;
@@ -648,19 +608,19 @@ header .mobile-menu {
   position: relative;
 }
 
-.about .infos ul li > span,
-.about .infos ul li > span > span {
+.about .infos ul li>span,
+.about .infos ul li>span>span {
   overflow: hidden;
   display: block;
   white-space: nowrap;
   position: relative;
 }
 
-.about .infos ul li > span > span {
+.about .infos ul li>span>span {
   padding-left: 30px;
 }
 
-.about .infos ul li > span > span:before {
+.about .infos ul li>span>span:before {
   position: absolute;
   font-family: "FontAwesome";
   left: 0;
@@ -669,34 +629,34 @@ header .mobile-menu {
   content: "\f111";
 }
 
-.about .infos ul li > span > span span:first-child {
+.about .infos ul li>span>span span:first-child {
   color: rgba(255, 255, 255, 0.7);
   margin-right: 7px;
 }
 
-.about .infos ul li > span > span span:nth-child(2) {
+.about .infos ul li>span>span span:nth-child(2) {
   font-weight: 500;
 }
 
-.about .infos ul li > span > span span:nth-child(2) a {
+.about .infos ul li>span>span span:nth-child(2) a {
   /* iOS fixes*/
   text-decoration: none !important;
   color: #fff !important;
 }
 
-.about .infos ul li:first-child > span > span {
+.about .infos ul li:first-child>span>span {
   animation-delay: 0.1s;
 }
 
-.about .infos ul li:nth-child(2) > span > span {
+.about .infos ul li:nth-child(2)>span>span {
   animation-delay: 0.2s;
 }
 
-.about .infos ul li:nth-child(3) > span > span {
+.about .infos ul li:nth-child(3)>span>span {
   animation-delay: 0.3s;
 }
 
-.about .infos ul li:nth-child(4) > span > span {
+.about .infos ul li:nth-child(4)>span>span {
   animation-delay: 0.4s;
 }
 
@@ -717,26 +677,26 @@ header .mobile-menu {
   display: flex;
 }
 
-.about .skills > div > div {
+.about .skills>div>div {
   display: flex;
   flex-direction: column;
 }
 
-.about .skills > div > div:not(:first-child) {
+.about .skills>div>div:not(:first-child) {
   margin-left: 80px;
 }
 
-.about .skills > div > div > div {
+.about .skills>div>div>div {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.about .skills > div > div > div:first-child {
+.about .skills>div>div>div:first-child {
   margin-bottom: 60px;
 }
 
-.about .skills > div > div > div span {
+.about .skills>div>div>div span {
   width: 100px;
   height: 100px;
   display: block;
@@ -749,12 +709,12 @@ header .mobile-menu {
   transform: rotate(45deg);
 }
 
-.about .skills > div > div > div span i {
+.about .skills>div>div>div span i {
   font-size: 34px;
   transform: rotate(-45deg);
 }
 
-.about .skills > div > div > div h4 {
+.about .skills>div>div>div h4 {
   margin: 40px 0 0;
   font-size: 18px;
   font-weight: 500;
@@ -818,7 +778,7 @@ header .mobile-menu {
   border-radius: 3px;
 }
 
-.about .timeline ol li > div {
+.about .timeline ol li>div {
   position: absolute;
   left: 18px;
   width: 300px;
@@ -828,7 +788,7 @@ header .mobile-menu {
   border-radius: 20px;
 }
 
-.about .timeline ol li > div::before {
+.about .timeline ol li>div::before {
   content: "";
   position: absolute;
   top: 100%;
@@ -838,7 +798,7 @@ header .mobile-menu {
   border-style: solid;
 }
 
-.about .timeline ol li > div > div {
+.about .timeline ol li>div>div {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -846,7 +806,7 @@ header .mobile-menu {
   overflow: hidden;
 }
 
-.about .timeline ol li > div > div:before {
+.about .timeline ol li>div>div:before {
   font-family: "FontAwesome";
   position: absolute;
   font-size: 90px;
@@ -857,30 +817,30 @@ header .mobile-menu {
   line-height: 100%;
 }
 
-.about .timeline ol li > div > div.experience:before {
+.about .timeline ol li>div>div.experience:before {
   content: "\f0b1";
   right: -40px;
   top: 6px;
 }
 
-.about .timeline ol li > div > div.education:before {
+.about .timeline ol li>div>div.education:before {
   right: -40px;
   top: 6px;
   content: "\f19d";
 }
 
-.about .timeline ol li > div > div > h4 {
+.about .timeline ol li>div>div>h4 {
   font-size: 21px;
   margin-bottom: 20px;
   font-weight: 600;
   line-height: 20px;
 }
 
-.about .timeline ol li > div > div i {
+.about .timeline ol li>div>div i {
   margin-right: 10px;
 }
 
-.about .timeline ol li > div > div > p {
+.about .timeline ol li>div>div>p {
   margin: 0 0 8px;
   color: #eee;
   font-size: 18px;
@@ -888,26 +848,26 @@ header .mobile-menu {
   text-transform: capitalize;
 }
 
-.about .timeline ol li > div > div > p:last-child {
+.about .timeline ol li>div>div>p:last-child {
   margin: 0;
 }
 
-.about .timeline ol li:nth-child(odd) > div {
+.about .timeline ol li:nth-child(odd)>div {
   top: -40px;
   margin-top: calc(-100% - 16px);
 }
 
-.about .timeline ol li:nth-child(odd) > div::before {
+.about .timeline ol li:nth-child(odd)>div::before {
   top: 100%;
   border-width: 16px;
   border-color: #222 transparent transparent transparent;
 }
 
-.about .timeline ol li:nth-child(even) > div {
+.about .timeline ol li:nth-child(even)>div {
   top: calc(100% + 34px);
 }
 
-.about .timeline ol li:nth-child(even) > div::before {
+.about .timeline ol li:nth-child(even)>div::before {
   top: -32px;
   border-width: 16px;
   border-color: transparent transparent transparent #222;
@@ -942,7 +902,7 @@ header .mobile-menu {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-.facts > div {
+.facts>div {
   height: 100%;
   position: relative;
   display: flex;
@@ -951,7 +911,7 @@ header .mobile-menu {
   padding: 0 210px;
 }
 
-.facts > div > div > div {
+.facts>div>div>div {
   width: 200px;
   height: 200px;
   display: flex;
@@ -963,37 +923,37 @@ header .mobile-menu {
   transform: rotate(45deg);
 }
 
-.facts > div > div:not(:first-child) > div {
+.facts>div>div:not(:first-child)>div {
   margin-left: 30px;
 }
 
-.facts > div > div:nth-child(odd) > div {
+.facts>div>div:nth-child(odd)>div {
   margin-top: -200px;
 }
 
-.facts > div > div:nth-child(even) > div {
+.facts>div>div:nth-child(even)>div {
   margin-top: 200px;
 }
 
-.facts > div > div > div > div {
+.facts>div>div>div>div {
   transform: rotate(-45deg);
   backface-visibility: hidden;
 }
 
-.facts > div > div > div > div h3 {
+.facts>div>div>div>div h3 {
   font-size: 60px;
   font-weight: 700;
   margin-bottom: 7px;
 }
 
-.facts > div > div > div > div p {
+.facts>div>div>div>div p {
   margin: 0;
   text-transform: capitalize;
   font-size: 20px;
   font-weight: 500;
 }
 
-.facts > div > div > div > div p span {
+.facts>div>div>div>div p span {
   display: block;
 }
 
@@ -1027,9 +987,7 @@ header .mobile-menu {
   transition: 0.3s;
 }
 
-.portfolio
-  .single-item
-  .swiper-pagination-bullet.swiper-pagination-bullet-active {
+.portfolio .single-item .swiper-pagination-bullet.swiper-pagination-bullet-active {
   width: 35px;
   border-radius: 6px;
 }
@@ -1060,12 +1018,12 @@ header .mobile-menu {
   margin-top: 20px;
 }
 
-.portfolio .single-item .details ul li > span:first-child {
+.portfolio .single-item .details ul li>span:first-child {
   color: rgba(255, 255, 255, 0.7);
   margin-right: 7px;
 }
 
-.portfolio .single-item .details ul li > span:nth-child(2) {
+.portfolio .single-item .details ul li>span:nth-child(2) {
   font-weight: 500;
 }
 
@@ -1180,11 +1138,11 @@ header .mobile-menu {
   margin-top: 18px;
 }
 
-.contact .boxes > div:not(:first-child) {
+.contact .boxes>div:not(:first-child) {
   margin-left: 75px;
 }
 
-.contact .boxes > div > div {
+.contact .boxes>div>div {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -1197,11 +1155,11 @@ header .mobile-menu {
   background-color: #222;
 }
 
-.contact .boxes > div > div:not(:last-child) {
+.contact .boxes>div>div:not(:last-child) {
   margin-bottom: 70px;
 }
 
-.contact .boxes > div > div > i {
+.contact .boxes>div>div>i {
   text-align: center;
   border-radius: 50%;
   font-size: 25px;
@@ -1216,19 +1174,19 @@ header .mobile-menu {
   border: 3px solid #0b0b0b;
 }
 
-.contact .boxes > div > div p {
+.contact .boxes>div>div p {
   margin: 0;
   font-weight: 500;
   font-size: 20px;
 }
 
-.contact .boxes > div > div p a {
+.contact .boxes>div>div p a {
   /* iOS fixes*/
   text-decoration: none !important;
   color: #fff !important;
 }
 
-.contact .boxes > div > div span.small-text {
+.contact .boxes>div>div span.small-text {
   color: rgba(255, 255, 255, 0.7);
   display: block;
   text-transform: capitalize;
@@ -1313,7 +1271,7 @@ header .mobile-menu {
   user-select: none;
 }
 
-.clients .swiper-slide > div {
+.clients .swiper-slide>div {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1323,7 +1281,7 @@ header .mobile-menu {
   border-radius: 20px;
 }
 
-.clients .swiper-slide > div:first-child {
+.clients .swiper-slide>div:first-child {
   margin-bottom: 30px;
 }
 
@@ -1379,13 +1337,13 @@ header .mobile-menu {
   padding: 40px;
 }
 
-.testimonials .quote-container > div {
+.testimonials .quote-container>div {
   position: relative;
   width: 390px;
   min-height: 360px;
 }
 
-.testimonials .quote-container > div:before {
+.testimonials .quote-container>div:before {
   content: "”";
   position: absolute;
   font-size: 69px;
@@ -1395,7 +1353,7 @@ header .mobile-menu {
   font-size: 210px;
 }
 
-.testimonials .quote-container > div p {
+.testimonials .quote-container>div p {
   margin: 0;
   background: rgba(0, 0, 0, 0.6);
   padding: 40px;
@@ -1406,18 +1364,18 @@ header .mobile-menu {
   min-height: 360px;
 }
 
-.testimonials .quote-container > div p .quote {
+.testimonials .quote-container>div p .quote {
   font-size: 20px;
   line-height: 40px;
   font-style: italic;
   margin-bottom: 30px;
 }
 
-.testimonials .quote-container > div p span {
+.testimonials .quote-container>div p span {
   display: block;
 }
 
-.testimonials .quote-container > div p span.person {
+.testimonials .quote-container>div p span.person {
   font-weight: 500;
   font-size: 16px;
   margin-top: auto;
@@ -1425,14 +1383,14 @@ header .mobile-menu {
   margin-bottom: 6px;
 }
 
-.testimonials .quote-container > div p span.job {
+.testimonials .quote-container>div p span.job {
   font-weight: 400;
   font-size: 14px;
   font-style: normal;
   color: rgba(255, 255, 255, 0.7);
 }
 
-.testimonials .quote-container > div img {
+.testimonials .quote-container>div img {
   max-width: 120px;
   position: absolute;
   bottom: -60px;
@@ -1455,17 +1413,17 @@ header .mobile-menu {
   display: flex;
 }
 
-.blog .latestposts > div {
+.blog .latestposts>div {
   position: relative;
   border-radius: 20px;
   background: #222;
 }
 
-.blog .latestposts > div:not(:first-child) {
+.blog .latestposts>div:not(:first-child) {
   margin-left: 75px;
 }
 
-.blog .latestposts > div a {
+.blog .latestposts>div a {
   display: block;
   color: #fff;
   position: relative;
@@ -1473,7 +1431,7 @@ header .mobile-menu {
   border-radius: 20px;
 }
 
-.blog .latestposts > div a .img-holder {
+.blog .latestposts>div a .img-holder {
   overflow: hidden;
   display: block;
   border-radius: 20px 20px 0 0;
@@ -1533,11 +1491,11 @@ header .mobile-menu {
   opacity: 0.6;
 }
 
-.blog .meta > div i {
+.blog .meta>div i {
   margin-right: 6px;
 }
 
-.blog .meta > div:not(:first-child) {
+.blog .meta>div:not(:first-child) {
   margin-left: 15px;
 }
 
@@ -1548,7 +1506,7 @@ header .mobile-menu {
   display: flex;
 }
 
-.copyright > div {
+.copyright>div {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -1559,7 +1517,7 @@ header .mobile-menu {
   font-weight: 500;
 }
 
-.copyright > img {
+.copyright>img {
   transform: translateX(calc(-100% + 1px));
   height: 100vh;
 }
@@ -1572,7 +1530,7 @@ header .mobile-menu {
   display: block;
 }
 
-.copyright > div > span a {
+.copyright>div>span a {
   text-decoration: none;
 }
 
@@ -1603,7 +1561,7 @@ header .mobile-menu {
   max-width: 1152px;
 }
 
-.blog-page .container .row > div:not(.pagination-container) {
+.blog-page .container .row>div:not(.pagination-container) {
   height: auto;
   margin-bottom: 30px;
 }
@@ -1693,11 +1651,11 @@ header .mobile-menu {
   flex-wrap: wrap;
 }
 
-.blog-page .blog-content .meta > div i {
+.blog-page .blog-content .meta>div i {
   margin-right: 6px;
 }
 
-.blog-page .blog-content .meta > div:not(:last-child) {
+.blog-page .blog-content .meta>div:not(:last-child) {
   margin-right: 15px;
 }
 
@@ -1788,11 +1746,11 @@ header .mobile-menu {
     display: none;
   }
 
-  body.body-safari .testimonials .quote-container > div {
+  body.body-safari .testimonials .quote-container>div {
     width: 380px;
   }
 
-  body.body-safari .blog .latestposts > div {
+  body.body-safari .blog .latestposts>div {
     width: 360px;
   }
 
@@ -1815,7 +1773,7 @@ header .mobile-menu {
     transform: translateY(-100%);
   }
 
-  .about .infos ul li > span > span {
+  .about .infos ul li>span>span {
     animation-delay: initial !important;
   }
 
@@ -1868,7 +1826,7 @@ header .mobile-menu {
     left: 0;
   }
 
-  #menuToggle > span {
+  #menuToggle>span {
     display: flex;
     width: 23px;
     height: 2px;
@@ -1882,26 +1840,26 @@ header .mobile-menu {
       background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
   }
 
-  #menuToggle > span:first-child {
+  #menuToggle>span:first-child {
     transform-origin: 0 0;
   }
 
-  #menuToggle > span:nth-last-child(2) {
+  #menuToggle>span:nth-last-child(2) {
     transform-origin: 0 100%;
   }
 
-  #menuToggle input:checked ~ span {
+  #menuToggle input:checked~span {
     opacity: 1;
     transform: rotate(45deg) translate(4px, 0);
     background: #fff;
   }
 
-  #menuToggle input:checked ~ span:nth-last-child(3) {
+  #menuToggle input:checked~span:nth-last-child(3) {
     opacity: 0;
     transform: rotate(0deg) scale(0.2, 0.2);
   }
 
-  #menuToggle input:checked ~ span:nth-last-child(2) {
+  #menuToggle input:checked~span:nth-last-child(2) {
     transform: rotate(-45deg) translate(2px, 4px);
   }
 
@@ -1920,7 +1878,7 @@ header .mobile-menu {
     transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
   }
 
-  #menuToggle input:checked ~ ul {
+  #menuToggle input:checked~ul {
     transform: none;
   }
 
@@ -1939,7 +1897,7 @@ header .mobile-menu {
   }
 
   #menu li:last-child:after,
-  .home > div > div .intro {
+  .home>div>div .intro {
     display: none;
   }
 
@@ -1961,12 +1919,12 @@ header .mobile-menu {
     opacity: 1 !important;
   }
 
-  .home > div > div h1 > span {
+  .home>div>div h1>span {
     padding: 0;
     line-height: 120px;
   }
 
-  .home > div > div h1 > span > span:not(.intro) {
+  .home>div>div h1>span>span:not(.intro) {
     padding: 0 15px;
   }
 
@@ -2020,29 +1978,29 @@ header .mobile-menu {
     margin: 70px 0;
   }
 
-  .about .skills > div > div {
+  .about .skills>div>div {
     flex-direction: row;
     justify-content: space-between;
   }
 
-  .about .skills > div > div:not(:first-child) {
+  .about .skills>div>div:not(:first-child) {
     margin-left: 0;
   }
 
-  .about .skills > div > div > div {
+  .about .skills>div>div>div {
     margin: 0 20px;
   }
 
-  .about .skills > div > div > div span {
+  .about .skills>div>div>div span {
     width: 90px;
     height: 90px;
   }
 
-  .about .skills > div > div > div:first-child {
+  .about .skills>div>div>div:first-child {
     margin-bottom: 50px;
   }
 
-  .about .skills > div > div > div h4 {
+  .about .skills>div>div>div h4 {
     margin-top: 25px;
   }
 
@@ -2097,8 +2055,8 @@ header .mobile-menu {
     max-width: 538px;
   }
 
-  .about .timeline ol li:nth-child(odd) > div::before,
-  .about .timeline ol li:nth-child(even) > div::before {
+  .about .timeline ol li:nth-child(odd)>div::before,
+  .about .timeline ol li:nth-child(even)>div::before {
     left: 50%;
     top: 100%;
     transform: translateX(-50%);
@@ -2108,21 +2066,21 @@ header .mobile-menu {
   }
 
   .about .timeline ol li:last-child,
-  .about .timeline ol li:nth-last-child(2) > div::before,
+  .about .timeline ol li:nth-last-child(2)>div::before,
   .about .timeline ol li:not(:last-child)::after {
     display: none;
   }
 
-  .facts > div {
+  .facts>div {
     padding: 165px 0;
   }
 
-  .facts > div > div:nth-child(odd) > div {
+  .facts>div>div:nth-child(odd)>div {
     margin-top: initial;
     margin-right: 200px;
   }
 
-  .facts > div > div:nth-child(even) > div {
+  .facts>div>div:nth-child(even)>div {
     margin-top: initial;
     margin-left: 200px;
   }
@@ -2225,12 +2183,12 @@ header .mobile-menu {
     max-width: 538px;
   }
 
-  .contact .boxes > div > div {
+  .contact .boxes>div>div {
     width: 244px;
     min-width: inherit;
   }
 
-  .contact .boxes > div:not(:first-child) {
+  .contact .boxes>div:not(:first-child) {
     margin: 0;
   }
 
@@ -2243,7 +2201,7 @@ header .mobile-menu {
     margin-top: 50px;
   }
 
-  .blog .latestposts > div:not(:first-child) {
+  .blog .latestposts>div:not(:first-child) {
     margin-left: 0;
     margin-top: 50px;
   }
@@ -2256,7 +2214,7 @@ header .mobile-menu {
     margin-bottom: 70px;
   }
 
-  .blog .latestposts > div {
+  .blog .latestposts>div {
     width: 538px;
   }
 
@@ -2276,7 +2234,7 @@ header .mobile-menu {
     justify-content: center;
   }
 
-  .copyright > div {
+  .copyright>div {
     padding: 0;
   }
 
@@ -2304,7 +2262,7 @@ header .mobile-menu {
     flex-direction: column;
   }
 
-  .home > div {
+  .home>div {
     padding: 0;
     display: flex;
     align-items: center;
@@ -2312,11 +2270,11 @@ header .mobile-menu {
     justify-content: center;
   }
 
-  .home > div:before {
+  .home>div:before {
     background-color: initial;
   }
 
-  .home > div > div {
+  .home>div>div {
     text-align: center;
   }
 
@@ -2327,11 +2285,11 @@ header .mobile-menu {
     flex-direction: column;
   }
 
-  .home > div > div h1 {
+  .home>div>div h1 {
     font-size: 90px;
   }
 
-  .home > div > div .intro {
+  .home>div>div .intro {
     margin: 10px auto 25px;
   }
 
@@ -2345,7 +2303,7 @@ header .mobile-menu {
     max-width: 538px;
   }
 
-  .clients .swiper-slide > div {
+  .clients .swiper-slide>div {
     width: 100%;
   }
 
@@ -2353,8 +2311,8 @@ header .mobile-menu {
     transform: rotate(90deg);
   }
 
-  .testimonials .quote-container > div,
-  .testimonials .quote-container > div p {
+  .testimonials .quote-container>div,
+  .testimonials .quote-container>div p {
     min-height: initial;
   }
 
@@ -2382,20 +2340,20 @@ header .mobile-menu {
     line-height: 28px;
   }
 
-  .home > div > div {
+  .home>div>div {
     text-align: left;
   }
 
-  .home > div > div h1 {
+  .home>div>div h1 {
     font-size: 45px;
   }
 
-  .home > div > div .intro {
+  .home>div>div .intro {
     line-height: 36px;
     margin: 15px 0 25px;
   }
 
-  .home > div {
+  .home>div {
     padding: 0;
     display: flex;
     align-items: center;
@@ -2403,7 +2361,7 @@ header .mobile-menu {
     justify-content: center;
   }
 
-  .home > div > div h1 > span {
+  .home>div>div h1>span {
     padding: 0;
     line-height: 75px;
   }
@@ -2433,21 +2391,21 @@ header .mobile-menu {
     margin-left: 0;
   }
 
-  .facts > div {
+  .facts>div {
     padding: 30px 0 130px;
   }
 
-  .facts > div > div > div {
+  .facts>div>div>div {
     margin: 100px 0 0 !important;
     width: 180px;
     height: 180px;
   }
 
-  .facts > div > div > div > div h3 {
+  .facts>div>div>div>div h3 {
     font-size: 50px;
   }
 
-  .facts > div > div > div > div p {
+  .facts>div>div>div>div p {
     font-size: 18px;
   }
 
@@ -2491,7 +2449,7 @@ header .mobile-menu {
     line-height: 35px;
   }
 
-  .contact .boxes > div > div {
+  .contact .boxes>div>div {
     width: 100%;
   }
 
@@ -2499,7 +2457,7 @@ header .mobile-menu {
     padding: 85px 30px 15px;
   }
 
-  .contact .boxes > div > div {
+  .contact .boxes>div>div {
     margin-bottom: 70px;
   }
 
@@ -2511,41 +2469,41 @@ header .mobile-menu {
     padding: 0;
   }
 
-  .testimonials .quote-container > div {
+  .testimonials .quote-container>div {
     height: 100%;
     min-width: auto;
     width: 100%;
   }
 
-  .testimonials .quote-container > div:before {
+  .testimonials .quote-container>div:before {
     top: -72px;
     z-index: 1;
     left: 30px;
     font-size: 150px;
   }
 
-  .testimonials .quote-container > div p {
+  .testimonials .quote-container>div p {
     padding: 30px;
   }
 
-  .testimonials .quote-container > div p .quote {
+  .testimonials .quote-container>div p .quote {
     font-size: 18px;
     line-height: 36px;
     margin-bottom: 0;
   }
 
-  .testimonials .quote-container > div img {
+  .testimonials .quote-container>div img {
     max-width: 80px;
     bottom: -40px;
     right: 30px;
     border: 2px solid #222;
   }
 
-  .testimonials .quote-container > div p span.person {
+  .testimonials .quote-container>div p span.person {
     margin: 25px 0 5px;
   }
 
-  .blog .latestposts > div {
+  .blog .latestposts>div {
     width: 100%;
   }
 
