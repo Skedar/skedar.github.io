@@ -31,7 +31,7 @@ const About = () => {
                 <span>
                   <span className="animated-layer fade-in-up-animation fadeInUp wow">
                     <span>Idade :</span>
-                    <span>33 Anos</span>
+                    <span>34 Anos</span>
                   </span>
                 </span>
               </li>
@@ -74,7 +74,7 @@ const About = () => {
                   <span className="animated-layer fade-in-up-animation fadeInUp wow">
                     <span>Profissão :</span>
                     <span><a href="https://www.linkedin.com/in/skedarcorp/">
-                   Game Designer | QA | TI
+                   Game Designer | Quality Assurance
                 </a></span>
                   </span>
                 </span>
@@ -138,6 +138,15 @@ const About = () => {
             {/* SKILL ITEM ENDS */}
           </div>
           <div>
+          <div>
+            {/* SKILL ITEM STARTS */}
+            <div className="animated-layer fade-in-up-animation fadeInRight wow">
+              <span>
+                <i className="devicon-godot-plain" />
+              </span>
+              <h4>Godot</h4>
+            </div>
+            {/* SKILL ITEM ENDS */}
             {/* SKILL ITEM STARTS */}
             <div className="animated-layer fade-in-down-animation fadeInLeft wow">
               <span>
@@ -191,15 +200,6 @@ const About = () => {
             </div>
             {/* SKILL ITEM ENDS */}
             </div>
-          <div>
-            {/* SKILL ITEM STARTS */}
-            <div className="animated-layer fade-in-up-animation fadeInRight wow">
-              <span>
-                <i className="devicon-cucumber-plain" />
-              </span>
-              <h4>Cucumber</h4>
-            </div>
-            {/* SKILL ITEM ENDS */}
             {/* SKILL ITEM STARTS */}
             <div className="animated-layer fade-in-up-animation fadeInRight wow">
               <span>
