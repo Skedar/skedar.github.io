@@ -245,7 +245,10 @@ const About = () => {
           {/* MAIN TITLE ENDS */}
         </div>
         {/* TITLE ENDS */}
-        {/* TIMELINE ITEM STARTS */}
+        {/* TIMELINE STARTS */}
+        <div className="timeline">
+          <ol className="animated-layer fade-in-animation">
+            {/* TIMELINE ITEM STARTS */}
         <li>
               <div className="animated-layer fade-in-down-animation fadeInUp wow">
                 <div className="experience">
@@ -262,9 +265,6 @@ const About = () => {
               </div>
             </li>
             {/* TIMELINE ITEM ENDS */}
-        {/* TIMELINE STARTS */}
-        <div className="timeline">
-          <ol className="animated-layer fade-in-animation">
             {/* TIMELINE ITEM STARTS */}
             <li>
               <div className="animated-layer fade-in-down-animation fadeInUp wow">
