@@ -30,6 +30,20 @@ const Testimonials = () => {
           </div>
         </div>
         {/* TESTIMONIAL ITEM ENDS */}
+         {/* TESTIMONIAL ITEM STARTS */}
+         <div className="quote-container animated-layer fade-in-right-animation fadeInUp wow">
+          <div>
+            <p>
+              <span className="quote">
+                " Minha riqueza da minha vidas "
+              </span>
+              <span className="person">Barbara</span>
+              <span className="job">Esposa.</span>
+            </p>
+            <img src="assets/testimonials/testimonial-2.jpg" alt="" />
+          </div>
+        </div>
+        {/* TESTIMONIAL ITEM ENDS */}
       </div>
       <img
         alt=""

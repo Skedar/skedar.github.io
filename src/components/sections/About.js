@@ -245,6 +245,23 @@ const About = () => {
           {/* MAIN TITLE ENDS */}
         </div>
         {/* TITLE ENDS */}
+        {/* TIMELINE ITEM STARTS */}
+        <li>
+              <div className="animated-layer fade-in-down-animation fadeInUp wow">
+                <div className="experience">
+                  <h4>Gestor de E-Commerce</h4>
+                  <p>
+                    <i className="fa-regular fa-clock" />
+                    <span>2024 - Atualmente</span>
+                  </p>
+                  <p>
+                    <i className="fa-regular fa-building" />
+                    <span>Grupo Phercon - Todo Teto</span>
+                  </p>
+                </div>
+              </div>
+            </li>
+            {/* TIMELINE ITEM ENDS */}
         {/* TIMELINE STARTS */}
         <div className="timeline">
           <ol className="animated-layer fade-in-animation">
@@ -255,7 +272,7 @@ const About = () => {
                   <h4>Pós-Graduação User Experience</h4>
                   <p>
                     <i className="fa-regular fa-clock" />
-                    <span>2023</span>
+                    <span>2024</span>
                   </p>
                   <p>
                     <i className="fa-solid fa-building-columns" />
@@ -272,7 +289,7 @@ const About = () => {
                   <h4>Monitor de Informática</h4>
                   <p>
                     <i className="fa-regular fa-clock" />
-                    <span>2023 - Atualmente</span>
+                    <span>2023 - 2024</span>
                   </p>
                   <p>
                     <i className="fa-regular fa-building" />
