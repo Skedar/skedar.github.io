@@ -51,7 +51,7 @@ const Portfolio = () => {
                   <span>
                     <i className="fa-regular fa-user" /> Cliente :
                   </span>
-                  <span>Turma do Saber</span>
+                  <span>Diversão Educativa</span>
                 </li>
                 <li>
                   <span>
@@ -63,11 +63,11 @@ const Portfolio = () => {
                   <span>
                     <i className="fa-solid fa-code-branch" /> Frameworks :
                   </span>
-                  <span>HTML5, CSS, JS, PHP, Construct, Unity</span>
+                  <span>HTML5, CSS, JS, PHP, Construct, Unity, Godot</span>
                 </li>
               </ul>
             </div>
-            <a href="https://turmadosaber.com.br" target="_blank" className="custom-btn">
+            <a href="https://diversaoeducativa.com.br" target="_blank" className="custom-btn">
               <span>
                 Visitar <i className="fa-solid fa-arrow-up-right-from-square" />
               </span>
