@@ -488,7 +488,7 @@ header .header-inner .mail p a {
 header .mail a {
   text-decoration: none;
   color:#ffb400;
-  
+
 }
 
 header .mobile-menu {
@@ -1520,7 +1520,7 @@ header .mobile-menu {
   justify-content: center;
   padding: 0 50px 0 0;
   text-align: center;
-  min-width: 250px;
+  min-width: 300px;
   font-weight: 500;
 }
 
