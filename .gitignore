@@ -1,0 +1,6 @@
+.next/
+node modules/
+jsconfig
+next.config
+package
+package-lock
