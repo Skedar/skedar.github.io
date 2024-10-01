@@ -478,10 +478,17 @@ header .header-inner .menu ul li span.active:before {
   top: -34px;
 }
 
-header .header-inner .mail p {
+header .header-inner .mail p a {
   margin: 0;
   font-size: 18px;
   font-weight: 500;
+  
+}
+
+header .mail a {
+  text-decoration: none;
+  color:#ffb400;
+  
 }
 
 header .mobile-menu {

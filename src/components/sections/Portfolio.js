@@ -4,9 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 const Portfolio = () => {
   return (
     <section
-      className="portfolio main-section flex-column-mobile"
-      id="portfolio"
-    >
+      className="portfolio main-section flex-column-mobile" id="portfolio">
       {/* TITLE STARTS */}
       <div className="custom-title">
         {/* MAIN TITLE STARTS */}

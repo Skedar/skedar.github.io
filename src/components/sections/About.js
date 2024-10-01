@@ -11,7 +11,7 @@ const About = () => {
         >
           <div>
             <div>
-              <img className="my-photo" src="assets/about.jpg" alt="" />
+              <img className="my-photo" src="assets/about.jpg" alt="foto do luis" />
             </div>
           </div>
         </div>
@@ -30,16 +30,28 @@ const About = () => {
               <li>
                 <span>
                   <span className="animated-layer fade-in-up-animation fadeInUp wow">
-                    <span>Idade :</span>
-                    <span>34 Anos</span>
+                  <span>Blog :</span>
+                    <span><a href="https://skedarcorp.com">
+                   skedarcorp.com
+                </a></span>
                   </span>
                 </span>
               </li>
               <li>
                 <span>
                   <span className="animated-layer fade-in-up-animation fadeInUp wow">
-                    <span>Nacionalidade :</span>
-                    <span>Brasileiro</span>
+                  <span>Profissão :</span>
+                    <span><a href="https://www.linkedin.com/in/skedarcorp/">
+                   Game Designer | QA
+                </a></span>
+                  </span>
+                </span>
+              </li>
+              <li>
+                <span>
+                  <span className="animated-layer fade-in-up-animation fadeInUp wow">
+                    <span>Idiomas :</span>
+                    <span>Português | Inglês</span>         
                   </span>
                 </span>
               </li>
@@ -51,21 +63,15 @@ const About = () => {
                   </span>
                 </span>
               </li>
-              <li>
-                <span>
-                  <span className="animated-layer fade-in-up-animation fadeInUp wow">
-                    <span>Idiomas :</span>
-                    <span>Português | Inglês</span>
-                  </span>
-                </span>
-              </li>
             </ul>
             <ul>
               <li>
                 <span>
                   <span className="animated-layer fade-in-up-animation fadeInUp wow">
-                    <span>Endereço :</span>
-                    <span>Ribeirão Preto - SP</span>
+                    <span>Curriculo :</span>
+                    <span><a href="CV_RIZZI_Luis_Augusto_pt.pdf">
+                   PDF | Download
+                </a></span>
                   </span>
                 </span>
               </li>
@@ -103,6 +109,7 @@ const About = () => {
         {/* INFO ENDS */}
       </div>
       {/* INFO HOLDER ENDS */}
+      
       {/* SKILLS STARTS */}
       <div className="skills flex-column-mobile">
         {/* TITLE STARTS */}

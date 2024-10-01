@@ -8,7 +8,7 @@ const Header = () => {
           <nav>
             <ul>
               <li>
-                <span className="active" id="home-link">
+                <span id="home-link">
                   Home
                 </span>
               </li>
@@ -28,7 +28,7 @@ const Header = () => {
         {/* FREELANCE STARTS */}
         <div className="mail">
           <p>
-            Email :<span> contato@skedarcorp.com</span>
+            e-mail:<span><a href="mailto:contato@skedarcorp.com"> contato@skedarcorp.com</a></span>
           </p>
         </div>
         {/* FREELANCE ENDS */}
