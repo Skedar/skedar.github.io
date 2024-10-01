@@ -5,7 +5,7 @@ const Clients = () => {
   return (
     <section className="clients">
       <div className="clients-container animated-layer fade-in-right-animation fadeInUp wow">
-        <h3>My Clients</h3>
+        <h3>Meus Clientes</h3>
         <Swiper
           {...salimovSlider.clients}
           className="swiper swiper-clients fadeInUp wow"

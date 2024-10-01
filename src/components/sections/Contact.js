@@ -19,22 +19,22 @@ const Contact = () => {
         <div>
           {/* CONTACT ITEM STARTS */}
           <div className="animated-layer fade-in-down-animation fadeInUp wow">
-            <i className="fa-solid fa-globe" />
+            <i className="fa-solid fa-link" />
             <p>
-              <span className="small-text">Site Principal</span>
-              <a href="https://skedarcorp.com">
-                 Skedar Corporation
+              <span className="small-text">Todos os Links</span>
+              <a href="https://everlink.tools/skedar">
+                 -Clique Aqui-
                 </a>
             </p>
           </div>
           {/* CONTACT ITEM ENDS */}
           {/* CONTACT ITEM STARTS */}
           <div className="animated-layer fade-in-up-animation fadeInUp wow">
-            <i className="fa fa-location-dot" />
+            <i className="fa-brands fa-telegram" />
             <p>
-              <span className="small-text">Portfolio</span>
-              <a href="https://portfolio.skedarcorp.com">
-              portfolio.skedarcorp.com
+              <span className="small-text">Telegram</span>
+              <a href="https://t.me/skedar">
+              t.me/skedar
                 </a>
             </p>
           </div>
@@ -56,13 +56,18 @@ const Contact = () => {
             <span className="small-text">social</span>
             <ul className="social">
               <li>
+                <a href="https://skedarcorp.com">
+                  <i className="fa-solid fa-globe" />
+                </a>
+              </li>
+              <li>
                 <a href="https://github.com/Skedar">
                   <i className="fa-brands fa-github" />
                 </a>
               </li>
               <li>
-                <a href="https://twitter.com/skedarcorp">
-                  <i className="fa-brands fa-twitter" />
+                <a href="https://bsky.app/profile/skedar.bsky.social">
+                  <i className="fa-brands fa-bluesky" />
                 </a>
               </li>
               <li>

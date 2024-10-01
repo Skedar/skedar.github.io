@@ -7,7 +7,7 @@ const Copyright = () => {
         src="assets/separator-copyright.png"
       />
       <div>
-        <span>© {new Date().getFullYear()} Luis "Skedar" Rizzi</span>
+        <span>© {new Date().getFullYear()}<a href="https://skedarcorp.com"> Luis "Skedar" Rizzi</a></span>
         
         <ul>
           <li>
@@ -16,8 +16,8 @@ const Copyright = () => {
             </a>
           </li>
           <li>
-            <a href="https://twitter.com/skedarcorp">
-              <i className="fa-brands fa-twitter" />
+            <a href="https://bsky.app/profile/skedar.bsky.social">
+              <i className="fa-brands fa-bluesky" />
             </a>
           </li>
           <li>

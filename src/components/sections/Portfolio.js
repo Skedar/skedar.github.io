@@ -27,6 +27,67 @@ const Portfolio = () => {
         <SwiperSlide className="single-item swiper-slide">
           {/* ITEM MAIN CONTENT STARTS */}
           <div className="main-content">
+            <Swiper
+              {...salimovSlider.portfolioItems}
+              className="swiper swiper-portfolio-item"
+            >
+              <SwiperSlide className="swiper-slide">
+                <img src="assets/portfolio/project-2.jpg" title="img" />
+              </SwiperSlide>
+              <SwiperSlide className="swiper-slide">
+                <img src="assets/portfolio/project-3.jpg" title="img" />
+              </SwiperSlide>
+              <SwiperSlide className="swiper-slide">
+                <img src="assets/portfolio/project-1.jpg" title="img" />
+              </SwiperSlide>
+              <div className="swiper-pagination" />
+            </Swiper>
+          </div>
+          {/* ITEM MAIN CONTENT ENDS */}
+          {/* ITEM DETAILS STARTS */}
+          <div className="details">
+            <h4>Brukutu Motos</h4>
+            <div>
+              <ul>
+                <li>
+                  <span>
+                    <i className="fa-regular fa-file-lines" /> Projeto :
+                  </span>
+                  <span>Site e Descritivo</span>
+                </li>
+                <li>
+                  <span>
+                    <i className="fa-regular fa-user" /> Cliente :
+                  </span>
+                  <span>José Roberto</span>
+                </li>
+                <li>
+                  <span>
+                    <i className="fa-regular fa-hourglass" /> Duração :
+                  </span>
+                  <span>2 meses</span>
+                </li>
+                <li>
+                  <span>
+                    <i className="fa-solid fa-code-branch" /> Frameworks :
+                  </span>
+                  <span>Wordpress, JS, Photoshop, Illustrator</span>
+                </li>
+              </ul>
+            </div>
+            <a href="https://brukutumotos.com.br" target="_blank" className="custom-btn">
+              <span>
+                preview <i className="fa-solid fa-arrow-up-right-from-square" />
+              </span>
+            </a>
+          </div>
+          {/* ITEM DETAILS ENDS */}
+        </SwiperSlide>
+        {/* PORTFOLIO ITEM ENDS */}
+        {/* PORTFOLIO ITEM STARTS */}
+        <SwiperSlide className="single-item swiper-slide">
+          {/* ITEM MAIN CONTENT STARTS */}
+          <div className="main-content">
             <img
               className="img-fluid"
               src="assets/portfolio/project-1.jpg"
@@ -36,32 +97,32 @@ const Portfolio = () => {
           {/* ITEM MAIN CONTENT ENDS */}
           {/* ITEM DETAILS STARTS */}
           <div className="details">
-            <h4>Portal Educacional</h4>
+            <h4>Diversão Educativa</h4>
             <div>
               <ul>
                 <li>
                   <span>
                     <i className="fa-regular fa-file-lines" /> Projeto :
                   </span>
-                  <span>Website e Jogos</span>
+                  <span>Portal para Alfabetização Tecnológica</span>
                 </li>
                 <li>
                   <span>
                     <i className="fa-regular fa-user" /> Cliente :
                   </span>
-                  <span>Diversão Educativa</span>
+                  <span>Projeto Pessoal</span>
                 </li>
                 <li>
                   <span>
                     <i className="fa-regular fa-hourglass" /> Duração :
                   </span>
-                  <span>3 meses</span>
+                  <span><i class="fa-solid fa-infinity"></i></span>
                 </li>
                 <li>
                   <span>
                     <i className="fa-solid fa-code-branch" /> Frameworks :
                   </span>
-                  <span>HTML5, CSS, JS, PHP, Construct, Unity, Godot</span>
+                  <span>HTML5, Construct, Godot</span>
                 </li>
               </ul>
             </div>
@@ -89,20 +150,20 @@ const Portfolio = () => {
           {/* ITEM MAIN CONTENT ENDS */}
           {/* ITEM DETAILS STARTS */}
           <div className="details">
-            <h4>No Talk Channel - Youtube </h4>
+            <h4>Barbara Dobre</h4>
             <div>
               <ul>
                 <li>
                   <span>
                     <i className="fa-regular fa-file-lines" /> Projeto :
                   </span>
-                  <span>Timelapse</span>
+                  <span>Site e Loja Virtual</span>
                 </li>
                 <li>
                   <span>
                     <i className="fa-regular fa-user" /> Cliente :
                   </span>
-                  <span>Skedar Corporation</span>
+                  <span>Barbara</span>
                 </li>
                 <li>
                   <span>
@@ -114,7 +175,7 @@ const Portfolio = () => {
                   <span>
                     <i className="fa-solid fa-code-branch" /> Frameworks :
                   </span>
-                  <span>After Effects, Davinci Resolve</span>
+                  <span>Wordpress, Photoshop, Illustrator</span>
                 </li>
               </ul>
             </div>
@@ -150,14 +211,14 @@ const Portfolio = () => {
           {/* ITEM MAIN CONTENT ENDS */}
           {/* ITEM DETAILS STARTS */}
           <div className="details">
-            <h4>Slider Project</h4>
+            <h4>Neon Shelter</h4>
             <div>
               <ul>
                 <li>
                   <span>
                     <i className="fa-regular fa-file-lines" /> Projeto :
                   </span>
-                  <span>Mobile App</span>
+                  <span>Game Mobile</span>
                 </li>
                 <li>
                   <span>
@@ -169,13 +230,13 @@ const Portfolio = () => {
                   <span>
                     <i className="fa-regular fa-hourglass" /> Duração :
                   </span>
-                  <span>3 meses</span>
+                  <span>6 meses</span>
                 </li>
                 <li>
                   <span>
                     <i className="fa-solid fa-code-branch" /> Frameworks :
                   </span>
-                  <span>React JS</span>
+                  <span>Godot, Photoshop</span>
                 </li>
               </ul>
             </div>
@@ -207,36 +268,36 @@ const Portfolio = () => {
           {/* ITEM MAIN CONTENT ENDS */}
           {/* ITEM DETAILS STARTS */}
           <div className="details">
-            <h4>External Link</h4>
+            <h4>Barbara Dobre</h4>
             <div>
               <ul>
                 <li>
                   <span>
                     <i className="fa-regular fa-file-lines" /> Projeto :
                   </span>
-                  <span>Advertising</span>
+                  <span>Site e Loja Virtual</span>
                 </li>
                 <li>
                   <span>
                     <i className="fa-regular fa-user" /> Cliente :
                   </span>
-                  <span>Envato</span>
+                  <span>Barbara Dobre</span>
                 </li>
                 <li>
                   <span>
                     <i className="fa-regular fa-hourglass" /> Duração :
                   </span>
-                  <span>1 month</span>
+                  <span>3 Meses</span>
                 </li>
                 <li>
                   <span>
                     <i className="fa-solid fa-code-branch" /> Frameworks :
                   </span>
-                  <span>Adobe Premiere</span>
+                  <span>Wordpress, Photoshop</span>
                 </li>
               </ul>
             </div>
-            <a href="#" target="_blank" className="custom-btn">
+            <a href="https://barbaradobre.com.br/" target="_blank" className="custom-btn">
               <span>
                 preview <i className="fa-solid fa-arrow-up-right-from-square" />
               </span>
