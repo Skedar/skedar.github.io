@@ -13,9 +13,8 @@ const SalimovHead = () => {
         rel="stylesheet"
       />
       {/* Template CSS Files */}
-
+      <script src="https://kit.fontawesome.com/df2027f2a9.js" crossorigin="anonymous"></script>
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
-      <link rel="stylesheet" href="css/all.min.css" />
       <link rel="stylesheet" href="css/bootstrap.min.css" />
       <link rel="stylesheet" href="css/swiper-bundle.min.css" />
       <link rel="stylesheet" href="css/animate.min.css" />
