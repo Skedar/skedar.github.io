@@ -69,7 +69,7 @@ const About = () => {
                 <span>
                   <span className="animated-layer fade-in-up-animation fadeInUp wow">
                     <span>Curriculum :</span>
-                    <span><a href="https://skedarcorp.com/CV_RIZZI_Luis_Augusto_pt.pdf">
+                    <span><a href="Certificado.pdf">
                     Download | PDF
                 </a></span>
                   </span>
@@ -126,7 +126,7 @@ const About = () => {
             {/* SKILL ITEM STARTS */}
             <div className="animated-layer fade-in-down-animation fadeInLeft wow">
               <span>
-                <i className="devicon-unity-original" />
+                <i className="devicon-unity-plain" />
               </span>
               <h4>Unity</h4>
             </div>
