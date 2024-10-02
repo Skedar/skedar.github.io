@@ -1,6 +1,6 @@
 .next/
 node modules/
-jsconfig
-next.config
-package
-package-lock
+jsconfig.json
+next.config.js
+package.json
+package-lock.json
