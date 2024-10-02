@@ -32,13 +32,13 @@ const Portfolio = () => {
               className="swiper swiper-portfolio-item"
             >
               <SwiperSlide className="swiper-slide">
-                <img src="assets/portfolio/project-2.jpg" title="img" />
+                <img src="assets/portfolio/projeto-brukutu.jpg" title="img" />
               </SwiperSlide>
               <SwiperSlide className="swiper-slide">
-                <img src="assets/portfolio/project-3.jpg" title="img" />
+                <img src="assets/portfolio/projeto-brukutu-02.jpg" title="img" />
               </SwiperSlide>
               <SwiperSlide className="swiper-slide">
-                <img src="assets/portfolio/project-1.jpg" title="img" />
+                <img src="assets/portfolio/projeto-brukutu-03.jpg" title="img" />
               </SwiperSlide>
               <div className="swiper-pagination" />
             </Swiper>
@@ -142,7 +142,7 @@ const Portfolio = () => {
             <div className="videocontainer">
               <iframe
                 className="youtube-video"
-                src="https://www.youtube.com/embed/AqcjdkPMPJA?enablejsapi=1&version=3&playerapiid=ytplayer"
+                src="https://www.youtube.com/embed/CM9fgTknDwM?si=GV0YEG7JHlRj1T7K"
                 allowFullScreen=""
               />
             </div>
@@ -150,32 +150,32 @@ const Portfolio = () => {
           {/* ITEM MAIN CONTENT ENDS */}
           {/* ITEM DETAILS STARTS */}
           <div className="details">
-            <h4>Barbara Dobre</h4>
+            <h4>Skedar Corp - Intro</h4>
             <div>
               <ul>
                 <li>
                   <span>
                     <i className="fa-regular fa-file-lines" /> Projeto :
                   </span>
-                  <span>Site e Loja Virtual</span>
+                  <span>Introdução Canal Youtube</span>
                 </li>
                 <li>
                   <span>
                     <i className="fa-regular fa-user" /> Cliente :
                   </span>
-                  <span>Barbara</span>
+                  <span>Projeto Pessoal</span>
                 </li>
                 <li>
                   <span>
                     <i className="fa-regular fa-hourglass" /> Duração :
                   </span>
-                  <span>8 meses</span>
+                  <span>1 mes</span>
                 </li>
                 <li>
                   <span>
                     <i className="fa-solid fa-code-branch" /> Frameworks :
                   </span>
-                  <span>Wordpress, Photoshop, Illustrator</span>
+                  <span>After Effects, Photoshop, Illustrator</span>
                 </li>
               </ul>
             </div>
@@ -197,13 +197,13 @@ const Portfolio = () => {
               className="swiper swiper-portfolio-item"
             >
               <SwiperSlide className="swiper-slide">
-                <img src="assets/portfolio/project-2.jpg" title="img" />
+                <img src="assets/portfolio/projeto-neon-shelter-03.jpg" title="img" />
               </SwiperSlide>
               <SwiperSlide className="swiper-slide">
-                <img src="assets/portfolio/project-3.jpg" title="img" />
+                <img src="assets/portfolio/projeto-neon-shelter-01.jpg" title="img" />
               </SwiperSlide>
               <SwiperSlide className="swiper-slide">
-                <img src="assets/portfolio/project-1.jpg" title="img" />
+                <img src="assets/portfolio/projeto-neon-shelter-02.jpg" title="img" />
               </SwiperSlide>
               <div className="swiper-pagination" />
             </Swiper>
@@ -254,13 +254,13 @@ const Portfolio = () => {
           {/* ITEM MAIN CONTENT STARTS */}
           <div className="main-content">
             <a
-              href="https://themeforest.net"
+              href="https://barbaradobre.com.br"
               target="_blank"
               className="external"
             >
               <img
                 className="img-fluid"
-                src="assets/portfolio/project-3.jpg"
+                src="assets/portfolio/projeto-barbara.jpg"
                 alt="External Project"
               />
             </a>
