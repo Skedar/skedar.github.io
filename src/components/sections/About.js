@@ -69,7 +69,7 @@ const About = () => {
                 <span>
                   <span className="animated-layer fade-in-up-animation fadeInUp wow">
                     <span>Curriculum :</span>
-                    <span><a href="Certificado.pdf">
+                    <span><a href="CV_RIZZI_Luis_Augusto_pt.pdf">
                     Download | PDF
                 </a></span>
                   </span>
