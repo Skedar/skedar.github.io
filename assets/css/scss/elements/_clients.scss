@@ -1,0 +1,17 @@
+//
+// Clients //
+//
+.client-box {
+	a {
+		img {
+			opacity: 0.5;
+			width: 100%;
+			@include transition(ease-out 0.12s);
+		}
+		&:hover {
+			img {
+				opacity: 1;
+			}
+		}
+	}
+}

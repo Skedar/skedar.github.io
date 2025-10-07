@@ -1,0 +1,92 @@
+//
+// Background Colors //
+//
+.bg-gray { background: $color-gray; }
+.bg-dark { background: $color-dark; }
+.bg-black { background: black; }
+.bg-white { background: white; }
+
+
+//
+// Font Families //
+//
+.font-family-primary { font-family: $font-family-primary }
+.font-family-secondary { font-family: $font-family-secondary }
+.font-family-mono { font-family: $font-family-mono }
+
+
+//
+// Font Weights //
+//
+.fw-thin { font-weight: $font-weight-thin; }
+.fw-medium { font-weight: $font-weight-medium; }
+.fw-semi-bold { font-weight: $font-weight-semi-bold; }
+.fw-black { font-weight: $font-weight-black; }
+
+
+//
+// Letter Spacing //
+//
+.letter-spacing-05 { letter-spacing: 0.5px; }
+.letter-spacing-1 { letter-spacing: 1px; }
+.letter-spacing-2 { letter-spacing: 2px; }
+.letter-spacing-3 { letter-spacing: 3px; }
+.letter-spacing-4 { letter-spacing: 4px; }
+
+
+//
+// Line Heights //
+//
+.line-height-100 { line-height: 1; }
+.line-height-110 { line-height: 1.1; }
+.line-height-120 { line-height: 1.2; }
+.line-height-130 { line-height: 1.3; }
+.line-height-140 { line-height: 1.4; }
+
+
+//
+// Text Colors //
+//
+*.text-white-09 { color: $color-white-09; }
+*.text-white-08 { color: $color-white-08; }
+*.text-white-07 { color: $color-white-07; }
+*.text-white-06 { color: $color-white-06; }
+*.text-white-05 { color: $color-white-05; }
+*.text-white-04 { color: $color-white-04; }
+*.text-white-03 { color: $color-white-03; }
+*.text-white-02 { color: $color-white-02; }
+*.text-white-01 { color: $color-white-01; }
+*.text-black { color: black; }
+*.text-black-09 { color: $color-black-09; }
+*.text-black-08 { color: $color-black-08; }
+*.text-black-07 { color: $color-black-07; }
+*.text-black-06 { color: $color-black-06; }
+*.text-black-05 { color: $color-black-05; }
+*.text-black-04 { color: $color-black-04; }
+*.text-black-03 { color: $color-black-03; }
+*.text-black-02 { color: $color-black-02; }
+*.text-black-01 { color: $color-black-01; }
+*.text-primary { color: $color-primary; }
+*.text-green { color: $color-green; }
+*.text-red { color: $color-red; }
+*.text-yellow { color: $color-yellow; }
+
+//
+// Stroke Text //
+//
+.stroke-text {
+	color: black;
+	-webkit-text-fill-color: transparent;
+	-webkit-text-stroke-width: 1.4px;
+	-webkit-text-stroke-color: black;
+	@include breakpoint-less(lg) {
+		-webkit-text-stroke-width: 1.2px;
+	}
+}
+.theme-dark {
+	.stroke-text {
+		color: white;
+		-webkit-text-fill-color: transparent;
+		-webkit-text-stroke-color: white;
+	}
+}

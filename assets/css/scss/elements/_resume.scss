@@ -1,0 +1,98 @@
+//
+// Resume //
+//
+.resume-wrapper {
+	position: relative;
+	padding-left: 20px;
+	&:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		border-left: 1px dashed $color-black-02;
+	}
+	i {
+		color: black;
+	}
+	.resume-box {
+		margin-bottom: 30px;
+		&:last-child {
+			margin-bottom: 0;
+		}
+		.resume-date {
+			position: relative;
+			display: inline-block;
+			border: 1px dashed $color-black-02;
+			border-radius: 2em;
+			margin-bottom: 1em;
+			padding: 0.5em 1em;
+			font-family: $font-family-mono;
+			font-size: 0.9em;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+			font-weight: 500;
+			@include transition(linear 0.1s);
+			&:before {
+				content: '';
+				position: absolute;
+				top: 50%;
+				left: -20px;
+				@include transform(translateY(-50%));
+				width: 20px;
+				height: 1px;
+				border-top: 1px dashed $color-black-02;
+			}
+			&:after {
+				content: '';
+				position: absolute;
+				top: 50%;
+				left: -23px;
+				@include transform(translateY(-50%));
+				background: black;
+				width: 5px;
+				height: 5px;
+				border-radius: 50%;
+			}
+		}
+		&:hover {
+			.resume-date {
+				color: black;
+			}
+		}
+	}
+	@include breakpoint-less(md) {
+		.resume-box {
+			margin-bottom: 24px;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+}
+.theme-dark {
+	.resume-wrapper {
+		&:before {
+			border-color: $color-white-02;
+		}
+		i {
+			color: white;
+		}
+		.resume-box {
+			.resume-date {
+				border-color: $color-white-02;
+				&:before {
+					border-color: $color-white-02;
+				}
+				&:after {
+					background: white;
+				}
+			}
+			&:hover {
+				.resume-date {
+					color: white;
+				}
+			}
+		}
+	}
+}

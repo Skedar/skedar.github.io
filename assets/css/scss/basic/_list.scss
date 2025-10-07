@@ -1,0 +1,193 @@
+//
+// List styles //
+//
+ol {
+	margin: 0 0 -7px;
+	li {
+		margin: 0 0 7px;
+	}
+}
+ul {
+	margin: 0 0 -7px;
+	li {
+		margin: 0 0 7px;
+		ul, ol {
+			margin-top: 7px;
+		}
+		a {
+			@include transition(linear 0.1s);
+		}
+	}
+	&[class*=' list-'], &[class^='list-'] {
+		padding: 0;
+	}
+	&.list-unstyled, 
+	&.list-dash, 
+	&.list-circle {
+		li {
+			list-style-type: none;
+		}
+	}
+	&.list-dash {
+		li {
+			&:before {
+				content: '-';
+				padding-right: 7px;
+			}
+			ul, ol {
+				padding-left: 40px;
+			}
+		}
+	}
+	&.list-circle {
+		li {
+			position: relative;
+			padding-left: 13px;
+			&:before {
+				content: '';
+				position: absolute;
+				top: 50%;
+				left: 0;
+				opacity: 0.7;
+				@include transform(translateY(-50%));
+				background: black;
+				width: 4px;
+				height: 4px;
+				border-radius: 50%;
+				@include transition(linear 0.1s);
+			}
+			&:hover {
+				&:before {
+					opacity: 1;
+				}
+			}
+		}
+	}
+	//
+	// Horizontal List //
+	//
+	&[class*=' list-inline'], &[class^='list-inline'] {
+		li {
+			display: inline-block;
+		}
+	}
+	&.list-inline-lg {
+		margin-right: -14px;
+		margin-left: -14px;
+		li { 
+			padding: 0 14px;
+		}
+	}
+	&.list-inline {
+		margin-right: -7px;
+		margin-left: -7px;
+		li {
+			padding: 0 7px;
+		}
+	}
+	&.list-inline-sm {
+		margin-right: -3px;
+		margin-left: -3px;
+		li { 
+			padding: 0 3px;
+		}
+	}
+	&.list-inline-dash {
+		li {
+			&:after {
+				content: '-';
+				padding: 0 3px 0 6px;
+			}
+			&:last-child {
+				&:after {
+					content: '';
+					padding: 0;
+				}
+			}
+		}
+	}
+	&.list-inline-pills {
+		margin: 0;
+		li {
+			display: inline-flex;
+			align-items: center;
+			border: 1px dashed $color-black-02;
+			border-radius: 2em;
+			margin: 0 7px 10px 0;
+			padding: 0.5em 1em;
+			@include transition(linear 0.1s);
+			i {
+				font-size: 1.2em;
+			}
+			&:hover {
+				color: black;
+			}
+		}
+	}
+}
+.theme-dark {
+	ul {
+		&.list-inline-pills {
+			li {
+				border-color: $color-white-03;
+				&:hover {
+					color: white;
+				}
+			}
+		}
+	}
+}
+@include breakpoint-less(md) {
+	ol {
+		margin: 0 0 -5px;
+		li {
+			margin: 0 0 5px;
+		}
+	}
+	ul {
+		margin: 0 0 -5px;
+		li {
+			margin: 0 0 5px;
+			ul, ol {
+				margin-top: 5px;
+			}
+		}
+		&.list-dash {
+			li {
+				&:before {
+					content: '-';
+					padding-right: 6px;
+				}
+				a {
+					&:hover {
+						padding-left: 2px;
+					}
+				}
+				ul, ol {
+					padding-left: 30px;
+				}
+			}
+		}
+		&.list-inline-lg {
+			margin-right: -12px;
+			margin-left: -12px;
+			li { 
+				padding: 0 12px;
+			}
+		}
+		&.list-inline {
+			margin-right: -6px;
+			margin-left: -6px;
+			li {
+				padding: 0 6px;
+			}
+		}
+		&.list-inline-sm {
+			margin-right: -2px;
+			margin-left: -2px;
+			li { 
+				padding: 0 2px;
+			}
+		}
+	}
+}

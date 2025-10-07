@@ -1,0 +1,122 @@
+//
+// Portfolio Filter //
+//
+.filter {
+	ul {
+		margin: 0;
+		padding: 0;
+		li {
+			position: relative;
+			display: inline-block;
+			border: 1px dashed black;
+			border-radius: 2em;
+			margin: 0 7px 10px 0;
+			padding: 0.5em 1em;
+			font-size: 0.9em;
+			font-family: $font-family-mono;
+			color: black;
+			cursor: pointer;
+			@include transition(linear 0.1s);
+			&:hover, &.mixitup-control-active {
+				background: black;
+				color: white;
+			}
+		}
+	}
+}
+.theme-dark {
+	.filter {
+		ul {
+			li {
+				border-color: white;
+				color: white;
+				&:hover, &.mixitup-control-active {
+					background: white;
+					color: black;
+				}
+			}
+		}
+	}
+}
+
+
+//
+// Portfolio Item //
+//
+.portfolio-box {
+	position: relative;
+	@include transform(translate3d(0,0,0));
+	overflow: hidden;
+	border-radius: 0.5em;
+	&:after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		opacity: 0;
+		background-image: linear-gradient(to top, $color-black-03, transparent);
+		width: 100%;
+		height: 100%;
+		@include transition(ease-out 0.16s);
+	}
+	img {
+		@include transform(scale(1));
+		width: 100%;
+		@include transition(transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1));
+	}
+	.portfolio-category {
+		position: absolute;
+		top: 16px;
+		right: 16px;
+		display: inline-block;
+		background: $color-black-02;
+		backdrop-filter: blur(5px);
+		border-radius: 2em;
+		padding: 0.5em 1em;
+		color: white;
+		font-family: $font-family-mono;
+		font-weight: 400;
+		font-size: 0.9em;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+	}
+	.portfolio-caption {
+		z-index: 1;
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		visibility: hidden;
+		opacity: 0;
+		margin-bottom: -6px;
+		padding: 0 30px 24px;
+		@include transition(ease-out 0.16s);
+		* {
+			margin: 0;
+			color: white;
+			font-weight: 600;
+			letter-spacing: 0.5px;
+			-webkit-text-fill-color: transparent;
+			-webkit-text-stroke-width: 1px;
+			-webkit-text-stroke-color: white;
+			@include transition(linear 0.06s);
+			&:hover {
+				text-shadow: 0 0 white;
+			}
+		}
+	}
+	&:hover {
+		&:after {
+			opacity: 1;
+		}
+		img {
+			@include transform(scale(1.04));
+			@include filter(blur(1.5px));
+		}
+		.portfolio-caption {
+			visibility: visible;
+			opacity: 1;
+			margin-bottom: 0;
+		}
+	}
+}

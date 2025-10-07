@@ -1,0 +1,161 @@
+//
+// Toggle Menu //
+//
+.menu-dots {
+	position: relative;
+	z-index: 994;
+	display: inline-block;
+	background: black;
+	width: 50px;
+	height: 50px;
+	margin-left: 24px;
+	border-bottom-right-radius: 0.5em 0.5em;
+	border-bottom-left-radius: 0.5em 0.5em;
+	span {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		@include transform(translate(-50%, -50%) scale(1));
+		display: inline-block;
+		background: white;
+		width: 4px;
+		height: 4px;
+		border-radius: 50%;
+		@include transition(linear 0.1s);
+		&:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			right: calc(100% + 5px);
+			background: white;
+			width: 4px;
+			height: 4px;
+			border-radius: 50%;
+			@include transition(linear 0.1s);
+		}
+		&:after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: calc(100% + 5px);
+			background: white;
+			width: 4px;
+			height: 4px;
+			border-radius: 50%;
+			@include transition(linear 0.1s);
+		}
+	}
+	&:hover, &.active {
+		span {
+			@include transform(translate(-50%, -50%) scale(3));
+			@include transition-delay(0.1s);
+			&:before {
+				opacity: 0;
+				right: 0;
+			}
+			&:after {
+				opacity: 0;
+				left: 0;
+			}
+		}
+	}
+}
+.theme-dark {
+	.menu-dots {
+		background: $color-dark;
+	}
+}
+
+.toggle-menu {
+	z-index: 995;
+	position: fixed;
+	top: 0;
+	right: -10px;
+	bottom: 0;
+	visibility: hidden;
+	opacity: 0;
+	background: black;
+	width: 400px;
+	height: 100%;
+	height: auto;
+	padding: 50px 40px;
+	@include transition(ease-out 0.16s);
+	color: $color-white-07;
+	h1,h2,h3,h4,h5,h6 {
+		color: white;
+		a {
+			color: $color-white-08;
+			&:hover, &:focus { color: white; }
+		}
+	}
+	a {
+		&:not([class*='button'], .link-decoration, .nav-link) {
+			color: $color-white-08;
+			&:hover, &:focus { color: white; }
+		}
+	}
+	ul {
+		&.list-circle {
+			li {
+				&:before {
+					background: white;
+				}
+			}
+		}
+	}
+	&.show {
+		right: 0;
+		visibility: visible;
+		opacity: 1;
+	}
+	.toggle-close {
+		position: absolute;
+		top: 16px;
+		right: 16px;
+		display: inline-block;
+		background: $color-white-015;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		line-height: 40px;
+		color: white;
+		text-align: center;
+		font-size: 1.33em;
+		@include transition(ease-out 0.16s);
+		&:hover {
+			background: $color-white-02;
+		}
+	}
+	.tm-bottom {
+		position: absolute;
+		right: 40px;
+		bottom: 48px;
+		left: 40px;
+	}
+}
+.theme-dark {
+	.toggle-menu {
+		background: $color-dark;
+		@include box-shadow(0 8px 26px 0 rgba(0,0,0,0.3));
+	}
+}
+@include breakpoint-less(md) {
+	.toggle-menu {
+		width: 350px;
+		padding: 50px 30px 30px;
+		.toggle-close {
+			top: 12px;
+			right: 12px;
+		}
+		.tm-bottom {
+			right: 30px;
+			bottom: 48px;
+			left: 30px;
+		}
+	}
+}
+@include breakpoint-less(xs) {
+	.toggle-menu {
+		width: 100%;
+	}
+}

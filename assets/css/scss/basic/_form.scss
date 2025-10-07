@@ -1,0 +1,77 @@
+//
+// Forms //
+//
+input:not(.form-check-input), 
+textarea {
+	background: transparent;
+	width: 100%;
+	border: 1px dashed $color-black-02;
+	border-top-width: 0;
+	border-right-width: 0;
+	border-bottom-width: 1px;
+	border-left-width: 0;
+	margin-bottom: 2rem;
+	padding: 0 0 1rem;
+	box-shadow: none;
+	font: 400 14px $font-family-primary;
+	@include transition(ease-out 0.16s);
+	&:focus, &:active {
+		outline: 0;
+		box-shadow: none;
+		border-color: black;
+	}
+}
+textarea {
+	height: 140px;
+}
+input:not(.form-check-input), textarea, 
+.form-control {
+	color: black;
+	&::-webkit-input-placeholder { color: $color-primary-lighter; }
+	&::-moz-placeholder { color: $color-primary-lighter; }
+	&:-ms-placeholder { color: $color-primary-lighter; }
+	&::-ms-placeholder { color: $color-primary-lighter; }
+	&::placeholder { color: $color-primary-lighter; }
+}
+label {
+	font-size: 14px;
+}
+.required {
+	&:after {
+		content: '*';
+		padding-left: 3px;
+	}
+}
+
+.theme-dark {
+	input:not(.form-check-input), textarea, .form-control {
+		background: transparent;
+		border-color: $color-white-02;
+		color: $color-white-07;
+		&::-webkit-input-placeholder { color: $color-white-05; }
+		&::-moz-placeholder { color: $color-white-05; }
+		&:-ms-placeholder { color: $color-white-05; }
+		&::-ms-placeholder { color: $color-white-05; }
+		&::placeholder { color: $color-white-05; }
+		&:focus {
+			border-color: white;
+		}
+	}
+}
+
+//
+// Contact Form Submit Result //
+//
+.submit-result {
+	span {
+		display: none;
+		@include transition(ease-out 0.2s);
+		&.show-result {
+			margin-top: 30px;
+			display: block;
+		}
+		&#success { color: $color-green; }
+		&#error { color: $color-red; }
+		.error-color { background: rgba(255, 0, 0, 0.1); }
+	}
+}

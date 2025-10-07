@@ -1,0 +1,144 @@
+//
+// Buttons //
+//
+a {
+	color: $color-black-07;
+	@include transition(linear 0.1s);
+	text-decoration: none;
+	&:hover {
+		color: black;
+		text-decoration: none;
+	}
+}
+button {
+	background: transparent;
+	box-shadow: none;
+	border: 0;
+	padding: 0;
+	cursor: pointer;
+}
+a, button {
+	&:focus, &:active {
+		box-shadow: none;
+		outline: 0;
+	}
+}
+
+//
+// Regular Button //
+//
+.button {
+	position: relative;
+	display: inline-block;
+	overflow: hidden;
+	background: black;
+	border-radius: 2em;
+	padding: 14px 32px;
+	color: white;
+	font-size: 0.9em;
+	font-family: $font-family-mono;
+	@include transition(ease-out 0.12s);
+	i {
+		margin-right: 8px;
+		font-size: 15px;
+	}
+	&:hover {
+		background: $color-black-09;
+		color: white;
+	}
+	&.button-outline {
+		background: transparent;
+		border: 1px dashed black;
+		color: black;
+		&:hover {
+			background: black;
+			color: white;
+		}
+	}
+}
+.theme-dark, 
+.toggle-menu {
+	.button {
+		background: $color-white-015;
+		color: white;
+		&:hover {
+			background: $color-white-02;
+			color: white;
+		}
+	}
+	.button-outline {
+		background: transparent;
+		border: 1px dashed white;
+		color: white;
+		&:hover {
+			background: white;
+			color: black;
+		}
+	}
+}
+.button-sm { padding: 10px 22px; }
+.button-lg { padding: 16px 42px; }
+
+
+//
+// Circle Button //
+//
+.button-circle {
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	background: black;
+	line-height: 50px;
+	border-radius: 50%;
+	border: 0;
+	color: white;
+	text-align: center;
+	@include transition(ease-out 0.12s);
+	i { line-height: 50px; }
+	&:hover {
+		background: $color-black-09;
+		color: white;
+	}
+	&.button-circle-sm {
+		width: 40px;
+		height: 40px;
+		line-height: 40px;
+		i { line-height: 40px; }
+	}
+	&.button-circle-lg {
+		width: 60px;
+		height: 60px;
+		line-height: 60px;
+		i { line-height: 60px; }
+	}
+}
+.button-circle-outline, a.button-circle-outline {
+	background: transparent;
+	border: 1px dashed black;
+	color: black;
+	&:hover {
+		background: black;
+		color: white;
+	}
+}
+.theme-dark, 
+.toggle-menu {
+	.button-circle, a.button-circle {
+		background: $color-white-015;
+		border: 0;
+		color: white;
+		&:hover {
+			background: $color-white-02;
+			color: white;
+		}
+	}
+	.button-circle-outline, a.button-circle-outline {
+		background: transparent;
+		border: 1px dashed white;
+		color: white;
+		&:hover {
+			background: white;
+			color: black;
+		}
+	}
+}

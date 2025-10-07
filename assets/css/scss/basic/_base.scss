@@ -1,0 +1,260 @@
+//
+// Base styles //
+//
+html, body {
+	width: 100%;
+	height: 100%;
+}
+body {
+	overflow-x: hidden;
+	position: relative;
+	z-index: 1;
+	background: $color-gray;
+	min-height: 100%;
+	color: $color-primary;
+	h1,h2,h3,h4,h5,h6 { color: black; }
+	a {
+		&:not([class*='button'], .link-decoration, .nav-link) {
+			color: $color-primary;
+			&:hover, &:focus { color: black; }
+		}
+	}
+}
+.theme-dark {
+	background: black;
+	color: $color-white-07;
+	h1,h2,h3,h4,h5,h6 {
+		color: white;
+		a {
+			color: $color-white-08;
+			&:hover, &:focus { color: white; }
+		}
+	}
+	a {
+		&:not([class*='button'], .link-decoration, .nav-link) {
+			color: $color-white-08;
+			&:hover, &:focus { color: white; }
+		}
+	}
+}
+
+.container, .container-fluid {
+	position: relative;
+}
+
+//
+// Section //
+//
+.sections-wrapper {
+	padding-bottom: 3em;
+	@include breakpoint-less(sm) {
+		padding-bottom: 1.5em;
+	}
+}
+.section-box {
+	background: white;
+	border-radius: 0.5em;
+	padding: 3em;
+	@include box-shadow(0 8px 26px 0 rgba(22,24,26,0.07));
+	@include transition(ease-out 0.16s);
+	&:hover {
+		@include box-shadow(0 8px 32px 0 rgba(22,24,26,0.11));
+	}
+	@include breakpoint-less(md) {
+		padding: 2.5em 2em;
+	}
+	@include breakpoint-less(sm) {
+		padding: 2em 1.5em;
+	}
+}
+.theme-dark {
+	.section-box {
+		background: $color-dark;
+		@include box-shadow(none);
+		&:hover {
+			@include box-shadow(none);
+		}
+	}
+}
+
+//
+// Background Vertical Lines //
+//
+.bg-lines {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+	.bg-line-1, 
+	.bg-line-2, 
+	.bg-line-3, 
+	.bg-line-4 {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		border-right: 1px solid $border-gray;
+		&:before {
+			content: '';
+			position: absolute;
+			top: -80px;
+			right: -1px;
+			background: linear-gradient(transparent, rgba(0,0,0,0.5));
+			width: 1px;
+			height: 80px;
+			@include animation(bgLine 8s linear infinite);
+		}
+	}
+	.bg-line-1 {
+		width: 20%;
+	}
+	.bg-line-2 {
+		width: 40%;
+		&:before {
+			@include animation-delay(2s);
+		}
+	}
+	.bg-line-3 {
+		width: 60%;
+		&:before {
+			@include animation-delay(4s);
+		}
+	}
+	.bg-line-4 {
+		width: 80%;
+		&:before {
+			@include animation-delay(6s);
+		}
+	}
+	@include breakpoint-less(md) {
+		.bg-line-1 {
+			width: 25%;
+		}
+		.bg-line-2 {
+			width: 50%;
+		}
+		.bg-line-3 {
+			width: 75%;
+		}
+		.bg-line-4 {
+			display: none;
+		}
+	}
+}
+.theme-dark {
+	.bg-lines {
+		.bg-line-1, 
+		.bg-line-2, 
+		.bg-line-3, 
+		.bg-line-4 {
+			border-color: $color-white-02;
+			&:before {
+				background: linear-gradient(transparent, rgba(255,255,255,0.7));
+			}
+		}
+	}
+}
+@-webkit-keyframes bgLine {
+	0% {
+		top: -80px;
+	}
+	100% {
+		top: 100%;
+	}
+}
+@keyframes bgLine {
+	0% {
+		top: -80px;
+	}
+	100% {
+		top: 100%;
+	}
+}
+
+
+//
+// Link Decoration //
+//
+.link-decoration {
+	color: $color-black-09;
+	&:hover, &:focus {
+		color: black;
+		text-decoration: underline;
+	}
+}
+.theme-dark, 
+.toggle-menu {
+	.link-decoration {
+		color: white;
+		&:hover, &:focus {
+			color: white;
+		}
+	}
+}
+
+
+//
+// Box Shadow //
+//
+.box-shadow {
+	@include box-shadow(0 8px 26px 0 rgba(22,24,26,0.11));
+	@include transition(ease-out 0.16s);
+	&:hover {
+		@include box-shadow(0 8px 32px 0 rgba(22,24,26,0.15));
+	}
+}
+
+//
+// Box border radius //
+//
+.border-radius { border-radius: 0.5em; overflow: hidden; }
+.border-radius-1 { border-radius: 1em; overflow: hidden; }
+.border-radius-2 { border-radius: 2em; overflow: hidden; }
+
+
+//
+// Hero avatar //
+//
+.hero-avatar {
+	position: relative;
+	img {
+		width: 100%;
+		height: auto;
+		max-width: 256px;
+		max-height: 256px;
+		border-radius: 50%;
+	}
+	.hero-avatar-text {
+		position: absolute;
+		bottom: 1em;
+		left: 0.5em;
+		background: $color-black-03;
+		backdrop-filter: blur(5px);
+		border-radius: 2em;
+		padding: 0.5em 1em;
+		color: white;
+		font-family: $font-family-mono;
+		font-weight: 400;
+		font-size: 0.9em;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+		@include box-shadow(0 8px 26px 0 rgba(22,24,26,0.11));
+		* {
+			color: white !important;
+		}
+	}
+}
+.theme-dark {
+	.hero-avatar {
+		.hero-avatar-text {
+			background: $color-white-05;
+			color: black;
+			font-weight: 500;
+			* {
+				color: black !important;
+			}
+		}
+	}
+}
