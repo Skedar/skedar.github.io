@@ -12,7 +12,7 @@
 	function renderPostCard(post) {
 		const category = Array.isArray(post.categories) ? post.categories[0] : (post.category || 'Blog');
 		const dateText = post.date ? formatDate(post.date) : '';
-		const href = `post.html?slug=${encodeURIComponent(post.slug)}`;
+		const href = `blog.html?slug=${encodeURIComponent(post.slug)}`;
 		const image = post.image || 'assets/images/blog-post-img.jpg';
 		return (
 			'<div class="blog-post-box">' +
