@@ -191,7 +191,18 @@
 		}
 	}
 
-	document.addEventListener('DOMContentLoaded', init);
+	// Update copyright year dynamically
+	function updateYear() {
+		const yearEl = document.getElementById('current-year');
+		if (yearEl) {
+			yearEl.textContent = new Date().getFullYear();
+		}
+	}
+
+	document.addEventListener('DOMContentLoaded', () => {
+		updateYear();
+		init();
+	});
 })();
 
 
