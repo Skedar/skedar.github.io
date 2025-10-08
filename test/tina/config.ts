@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { defineConfig } from "tinacms";
 
 export default defineConfig({

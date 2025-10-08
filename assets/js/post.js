@@ -6,8 +6,9 @@
 
 	async function fetchPost(slug) {
 		const res = await fetch('content/posts/index.json', { cache: 'no-store' });
-		const list = await res.json();
-		const meta = list.find((p) => p.slug === slug);
+	const data = await res.json();
+	const list = Array.isArray(data) ? data : (data.posts || []);
+	const meta = list.find((p) => p.slug === slug);
 		if (!meta) throw new Error('Post not found');
 		const mdRes = await fetch(`content/posts/${slug}.md`, { cache: 'no-store' });
 		const markdown = await mdRes.text();
@@ -58,7 +59,10 @@
 		if (meta.image) {
 			rows.push(
 				'<div class="col-12">' +
-					`<img class="border-radius" src="${meta.image}" alt="">` +
+					`<a class="lightbox-image-box border-radius" href="${meta.image}">` +
+						`<img src="${meta.image}" alt="">` +
+						'<i class="bi bi-arrows-fullscreen"></i>' +
+					'</a>' +
 				'</div>'
 			);
 		}
