@@ -140,11 +140,15 @@
 		}, {});
 		const archivesList = document.getElementById('archives-list');
 		if (archivesList) {
-			const items = Object.keys(archives).sort((a,b)=>b.localeCompare(a)).map(k => {
-				const [y,m] = k.split('-');
-				const label = `${m}/${y}`;
-				return `<li><a class="mono-heading link-decoration" href="?archive=${k}">${label} (${archives[k]})</a></li>`;
-			}).join('');
+			const monthNames = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+			const items = Object.keys(archives)
+				.sort((a,b)=>b.localeCompare(a))
+				.map(k => {
+					const [y,m] = k.split('-');
+					const monthIndex = Math.max(0, Math.min(11, parseInt(m,10)-1));
+					const label = `${y} - ${monthNames[monthIndex]}`;
+					return `<li><a class="mono-heading link-decoration" href="?archive=${k}">${label} (${archives[k]})</a></li>`;
+				}).join('');
 			archivesList.innerHTML = items || '<li>Sem arquivos</li>';
 		}
 		// Tag cloud
@@ -170,6 +174,13 @@
 		} else if (tag) {
 			const filtered = posts.filter(p => Array.isArray(p.tags) && p.tags.includes(tag)).sort((a,b)=>(b.date||'').localeCompare(a.date||''));
 			renderList(filtered, `Tag #${tag}`);
+		} else {
+			// Default: latest 12 posts
+			const latest = posts
+				.slice()
+				.sort((a,b)=>(b.date||'').localeCompare(a.date||''))
+				.slice(0,12);
+			renderList(latest, 'Últimos Posts');
 		}
 		} catch (e) {
 			console.error(e);
