@@ -46,6 +46,36 @@ export default defineConfig({
 					{ type: "rich-text", name: "_body", label: "Body", isBody: true },
 				],
 			},
+			{
+				name: "index",
+				label: "Posts Index",
+				path: "content/posts",
+				format: "json",
+				uI: {
+					singleton: true,
+				},
+				match: {
+					include: "index",
+				},
+				fields: [
+					{
+						type: "object",
+						name: "posts",
+						label: "Posts",
+						list: true,
+						fields: [
+							{ type: "string", name: "slug", label: "Slug", required: true },
+							{ type: "string", name: "title", label: "Title", required: true },
+							{ type: "datetime", name: "date", label: "Date" },
+							{ type: "string", name: "author", label: "Author" },
+							{ type: "string", name: "image", label: "Image" },
+							{ type: "string", name: "excerpt", label: "Excerpt", ui: { component: "textarea" } },
+							{ type: "string", name: "categories", label: "Categories", list: true },
+							{ type: "string", name: "tags", label: "Tags", list: true },
+						],
+					},
+				],
+			},
 		],
 	},
 });

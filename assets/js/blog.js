@@ -39,7 +39,8 @@
 		try {
 			const res = await fetch('content/posts/index.json', { cache: 'no-store' });
 			if (!res.ok) throw new Error('Failed to load posts');
-			const posts = await res.json();
+			const data = await res.json();
+			const posts = Array.isArray(data) ? data : (data.posts || []);
 			posts.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
 			container.innerHTML = posts.map(renderPostCard).join('');
 		} catch (e) {

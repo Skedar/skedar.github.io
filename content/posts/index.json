@@ -1,12 +1,26 @@
-[
-	{
-		"slug": "hello-world",
-		"title": "Bem-vindo ao Blog",
-		"date": "2025-10-08",
-		"categories": ["Geral"],
-		"image": "assets/images/blog-post-img.jpg",
-		"excerpt": "Post de exemplo gerenciado via TinaCMS.",
-		"author": "admin"
-	}
-]
+{
+	"posts": [
+		{
+			"slug": "hello-world",
+			"title": "Bem-vindo ao Blog",
+			"date": "2025-10-08",
+			"categories": ["Geral"],
+			"image": "assets/images/blog-post-img.jpg",
+			"excerpt": "Post de exemplo gerenciado via TinaCMS.",
+			"author": "admin",
+			"tags": ["intro"]
+		}
+		,
+		{
+			"slug": "primeiro-post",
+			"title": "Primeiro Post de Teste",
+			"date": "2025-10-08",
+			"categories": ["Geral"],
+			"image": "assets/images/blog-post-img.jpg",
+			"excerpt": "Um post de teste criado para validar a integração.",
+			"author": "skedar",
+			"tags": ["teste", "tina"]
+		}
+	]
+}
 
