@@ -4,6 +4,15 @@
 		return p.get(name);
 	}
 
+	function formatDate(dateStr) {
+		try {
+			const d = new Date(dateStr);
+			return d.toLocaleDateString('pt-BR', { month: 'short', day: '2-digit', year: 'numeric' });
+		} catch (e) {
+			return dateStr;
+		}
+	}
+
 	async function fetchPost(slug) {
 		const res = await fetch('content/posts/index.json', { cache: 'no-store' });
 		const data = await res.json();
@@ -73,12 +82,95 @@
 		}
 	}
 
+	function renderList(posts, title) {
+		const headerEl = document.getElementById('post-header');
+		const contentEl = document.getElementById('post-content');
+		const metaEl = document.getElementById('post-meta');
+		const tagsEl = document.getElementById('post-tags');
+		if (metaEl) metaEl.innerHTML = '';
+		if (tagsEl) tagsEl.innerHTML = '';
+		if (headerEl) headerEl.innerHTML = `<h1>${title}</h1>`;
+		function renderCard(post) {
+			const category = Array.isArray(post.categories) ? post.categories[0] : (post.category || 'Blog');
+			const dateText = post.date ? formatDate(post.date) : '';
+			const href = `blog.html?slug=${encodeURIComponent(post.slug)}`;
+			const image = post.image || 'assets/images/blog-post-img.jpg';
+			return (
+				'<div class="blog-post-box">' +
+					'<div class="blog-post-img">' +
+						`<a href="${href}">` +
+							`<img src="${image}" alt="">` +
+						'</a>' +
+						'<div class="blog-post-category">' +
+							`<a href="#">${category}</a>` +
+						'</div>' +
+					'</div>' +
+					'<div class="blog-post-caption">' +
+						(dateText ? `<p class="mb-2">Publicado em ${dateText}</p>` : '') +
+						`<h2><a class="link-decoration" href="${href}">${post.title}</a></h2>` +
+						`<a class="button button-sm button-outline mt-2" href="${href}">Ler mais</a>` +
+					'</div>' +
+				'</div>'
+			);
+		}
+		if (contentEl) {
+			const html = posts.map(renderCard).join('') || '<div class="col-12"><p>Nenhuma postagem encontrada.</p></div>';
+			contentEl.innerHTML = html;
+		}
+	}
+
 	async function init() {
-		const slug = getParam('slug');
-		if (!slug) return;
+	const slug = getParam('slug');
+	const archive = getParam('archive'); // YYYY-MM
+	const tag = getParam('tag');
+	// If no slug, still render archives and tags only, and optionally filtered list
 		try {
+		// load index for archives and tags
+		const res = await fetch('content/posts/index.json', { cache: 'no-store' });
+		const data = await res.json();
+		const posts = Array.isArray(data) ? data : (data.posts || []);
+		// Archives (YYYY-MM)
+		const archives = posts.reduce((acc, p) => {
+			if (!p.date) return acc;
+			const d = new Date(p.date);
+			if (isNaN(d)) return acc;
+			const key = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
+			acc[key] = (acc[key] || 0) + 1;
+			return acc;
+		}, {});
+		const archivesList = document.getElementById('archives-list');
+		if (archivesList) {
+			const items = Object.keys(archives).sort((a,b)=>b.localeCompare(a)).map(k => {
+				const [y,m] = k.split('-');
+				const label = `${m}/${y}`;
+				return `<li><a class="mono-heading link-decoration" href="?archive=${k}">${label} (${archives[k]})</a></li>`;
+			}).join('');
+			archivesList.innerHTML = items || '<li>Sem arquivos</li>';
+		}
+		// Tag cloud
+		const tagSet = new Set();
+		posts.forEach(p => Array.isArray(p.tags) && p.tags.forEach(t => tagSet.add(t)));
+		const tagCloud = document.getElementById('tag-cloud');
+		if (tagCloud) {
+			tagCloud.innerHTML = Array.from(tagSet).sort().map(t => `<li><a href="?tag=${encodeURIComponent(t)}">#${t}</a></li>`).join('') || '<li>#sem-tags</li>';
+		}
+		if (slug) {
 			const { meta, markdown } = await fetchPost(slug);
 			render(meta, markdown);
+		} else if (archive) {
+			const filtered = posts.filter(p => {
+				if (!p.date) return false;
+				const d = new Date(p.date);
+				if (isNaN(d)) return false;
+				const key = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
+				return key === archive;
+			}).sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+			const [y,m] = archive.split('-');
+			renderList(filtered, `Arquivo ${m}/${y}`);
+		} else if (tag) {
+			const filtered = posts.filter(p => Array.isArray(p.tags) && p.tags.includes(tag)).sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+			renderList(filtered, `Tag #${tag}`);
+		}
 		} catch (e) {
 			console.error(e);
 			const contentEl = document.getElementById('post-content');
