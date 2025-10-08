@@ -82,6 +82,10 @@
 			render(meta, markdown);
 		} catch (e) {
 			console.error(e);
+			const contentEl = document.getElementById('post-content');
+			if (contentEl) {
+				contentEl.innerHTML = '<div class="col-12"><p>Não foi possível carregar este post. Verifique se o arquivo markdown existe e o slug está correto.</p></div>';
+			}
 		}
 	}
 
