@@ -1,0 +1,12 @@
+[
+	{
+		"slug": "hello-world",
+		"title": "Bem-vindo ao Blog",
+		"date": "2025-10-08",
+		"categories": ["Geral"],
+		"image": "assets/images/blog-post-img.jpg",
+		"excerpt": "Post de exemplo gerenciado via TinaCMS.",
+		"author": "admin"
+	}
+]
+
