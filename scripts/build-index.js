@@ -6,6 +6,7 @@ const path = require('path');
 const ROOT = path.resolve(__dirname, '..');
 const POSTS_DIR = path.join(ROOT, 'content', 'posts');
 const INDEX_FILE = path.join(POSTS_DIR, 'index.json');
+const DEFAULT_IMAGE = 'assets/images/blog-post-img.jpg';
 
 function parseFrontmatter(text) {
   // Expect frontmatter delimited by --- at start
@@ -46,31 +47,76 @@ function isMarkdownFile(filename) {
   return filename.toLowerCase().endsWith('.md');
 }
 
+function findCoverForSlug(slug) {
+  // Priority: content/posts/<slug>/<slug>.webp|.jpg|.jpeg
+  const folder = path.join(POSTS_DIR, slug);
+  const candidates = [
+    path.join(folder, `${slug}.webp`),
+    path.join(folder, `${slug}.jpg`),
+    path.join(folder, `${slug}.jpeg`),
+    path.join(folder, `${slug}.png`),
+  ];
+  for (const p of candidates) {
+    if (fs.existsSync(p)) {
+      // Return path relative to site root
+      return path.relative(ROOT, p).replace(/\\/g, '/');
+    }
+  }
+  return DEFAULT_IMAGE;
+}
+
 function buildIndex() {
-  const entries = fs.readdirSync(POSTS_DIR, { withFileTypes: true });
+  const dirents = fs.readdirSync(POSTS_DIR, { withFileTypes: true });
   const posts = [];
-  for (const dirent of entries) {
-    if (!dirent.isFile() || !isMarkdownFile(dirent.name)) continue;
-    const slug = path.basename(dirent.name, path.extname(dirent.name));
-    const full = path.join(POSTS_DIR, dirent.name);
-    const content = safeRead(full);
-    if (!content) continue;
-    const meta = parseFrontmatter(content);
-    // Ensure slug present
-    meta.slug = meta.slug || slug;
-    // Normalize arrays
-    if (meta.categories && !Array.isArray(meta.categories)) meta.categories = [String(meta.categories)];
-    if (meta.tags && !Array.isArray(meta.tags)) meta.tags = [String(meta.tags)];
-    posts.push({
-      slug: meta.slug,
-      title: meta.title || slug,
-      date: meta.date || '',
-      categories: Array.isArray(meta.categories) ? meta.categories : [],
-      image: meta.image || 'assets/images/blog-post-img.jpg',
-      excerpt: meta.excerpt || '',
-      author: meta.author || 'admin',
-      tags: Array.isArray(meta.tags) ? meta.tags : []
-    });
+
+  // 1) Top-level .md files (no folder) use default cover
+  for (const d of dirents) {
+    if (d.isFile() && isMarkdownFile(d.name)) {
+      const slug = path.basename(d.name, path.extname(d.name));
+      const full = path.join(POSTS_DIR, d.name);
+      const content = safeRead(full);
+      if (!content) continue;
+      const meta = parseFrontmatter(content);
+      meta.slug = meta.slug || slug;
+      if (meta.categories && !Array.isArray(meta.categories)) meta.categories = [String(meta.categories)];
+      if (meta.tags && !Array.isArray(meta.tags)) meta.tags = [String(meta.tags)];
+      posts.push({
+        slug: meta.slug,
+        title: meta.title || slug,
+        date: meta.date || '',
+        categories: Array.isArray(meta.categories) ? meta.categories : [],
+        image: meta.image || DEFAULT_IMAGE,
+        excerpt: meta.excerpt || '',
+        author: meta.author || 'admin',
+        tags: Array.isArray(meta.tags) ? meta.tags : []
+      });
+    }
+  }
+
+  // 2) Folders named by slug: expect <slug>/<slug>.md and optional cover image
+  for (const d of dirents) {
+    if (d.isDirectory()) {
+      const slug = d.name;
+      const mdPath = path.join(POSTS_DIR, slug, `${slug}.md`);
+      if (!fs.existsSync(mdPath)) continue;
+      const content = safeRead(mdPath);
+      if (!content) continue;
+      const meta = parseFrontmatter(content);
+      meta.slug = meta.slug || slug;
+      if (meta.categories && !Array.isArray(meta.categories)) meta.categories = [String(meta.categories)];
+      if (meta.tags && !Array.isArray(meta.tags)) meta.tags = [String(meta.tags)];
+      const image = meta.image || findCoverForSlug(slug);
+      posts.push({
+        slug: meta.slug,
+        title: meta.title || slug,
+        date: meta.date || '',
+        categories: Array.isArray(meta.categories) ? meta.categories : [],
+        image,
+        excerpt: meta.excerpt || '',
+        author: meta.author || 'admin',
+        tags: Array.isArray(meta.tags) ? meta.tags : []
+      });
+    }
   }
   // Sort newest first by date string (ISO-like expected)
   posts.sort((a, b) => (b.date || '').localeCompare(a.date || ''));

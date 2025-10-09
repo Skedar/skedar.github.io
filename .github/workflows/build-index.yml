@@ -5,6 +5,10 @@ on:
     branches: [ main ]
     paths:
       - 'content/posts/**/*.md'
+      - 'content/posts/**/*.jpg'
+      - 'content/posts/**/*.jpeg'
+      - 'content/posts/**/*.png'
+      - 'content/posts/**/*.webp'
       - 'scripts/build-index.js'
   workflow_dispatch: {}
 
