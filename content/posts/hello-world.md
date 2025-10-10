@@ -1,10 +1,10 @@
 ---
-title: "Bem-vindo ao Blog"
-slug: "hello-world"
-date: "2025-10-08"
-categories: ["Geral"]
+title: "Como automatizei este Site"
+slug: "automatic-github-actions"
+date: "2025-10-09"
+categories: ["Github"]
 image: "/assets/images/col-1.jpg"
-author: "admin"
+author: "Luis Rizzi"
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
