@@ -1,6 +1,6 @@
 ## Luis "Skedar" Rizzi Portfolio and Resume
 
-Contact-me on: skedar@pm.me 
+Contact-me on: contact@skedar.com.br | skedar@pm.me
 
 CV | Portfolio: https://skedar.com.br
 
@@ -13,7 +13,7 @@ Game DevLog: https://gamedesigner.space
 
 Diversão Educativa: https://diversaoeducativa.com.br
 
-RAWR!! Pages: https://rawr.page
+RAWR!! Pages: https://########.### (WIP)
 
 Dead Pirate Studios: https://deadpiratestudios.com
 
@@ -27,9 +27,7 @@ Brand: https://necromantis.com.br
 
 ### Nova URL: https://skedar.com.br 
 
-
-
-Este site foi a minha segunda experiência com blog estático. sendo a primeira dela no [Game Designer Space](https://gamedesigner.space).
+Este site foi a minha segunda experiência com blog estático com markdown. Sendo a primeira dela no [Game Designer Space](https://gamedesigner.space).
 
 Enquanto no Devlog utilizei um sistema para automatizar a escrita e envios do markdown (TinaCMS), neste fiz tudo semi-automatico sem o uso de terceiros aplicando somente um GitHub Action para adicionar e remover arquivos de publicações MarkDown automaticamente sem eu precisar ficar editando a entrada.
 
@@ -51,7 +49,7 @@ Enquanto no Devlog utilizei um sistema para automatizar a escrita e envios do ma
 #### 3- Estrutura suportada
   * Simples (sem pasta):
 	+ content/posts/hello-world.md → capa padrão assets/images/blog-post-img.jpg
-  * Por pasta (recomendado):
+  * Por pasta:
 	+ content/posts/meu-post/meu-post.md
 	+ content/posts/meu-post/meu-post.webp (ou .jpg/.jpeg/.png)
 	+ A capa é detectada e usada nos cards/listas.
