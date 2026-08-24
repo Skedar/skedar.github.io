@@ -4,6 +4,8 @@
    =================================== */
 
 :root {
+    /* ---- COLORS ---- */
+
     /* Backgrounds */
     --bg-primary: #0a0e12;
     --bg-secondary: #141b22;
@@ -24,7 +26,7 @@
     /* Text */
     --text-primary: #e0e0e0;
     --text-secondary: #8899a6;
-    --text-tertiary: #788b9d;
+    --text-tertiary: #445566;
     --text-inverse: #0a0e12;
     --text-accent: var(--accent-cyan);
 
@@ -40,24 +42,24 @@
     --status-warning: var(--accent-yellow);
     --status-loading: var(--accent-cyan);
 
-    /* Typography */
+    /* ---- TYPOGRAPHY ---- */
+
     --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
     --font-display: 'Rajdhani', 'Segoe UI', sans-serif;
     --font-body: 'JetBrains Mono', monospace;
 
-    --text-size-xs: 0.6875rem;
-    --text-size-sm: 0.75rem;
-    --text-size-base: 0.875rem;
-    --text-size-md: 1rem;
-    --text-size-lg: 1.25rem;
-    --text-size-xl: 1.5rem;
-    --text-size-2xl: 2rem;
-    --text-size-3xl: 2.5rem;
+    --text-size-xs: 0.6875rem;   /* 11px */
+    --text-size-sm: 0.75rem;     /* 12px */
+    --text-size-base: 0.875rem;  /* 14px */
+    --text-size-md: 1rem;        /* 16px */
+    --text-size-lg: 1.25rem;     /* 20px */
+    --text-size-xl: 1.5rem;      /* 24px */
+    --text-size-2xl: 2rem;       /* 32px */
+    --text-size-3xl: 2.5rem;     /* 40px */
 
     --font-weight-light: 300;
     --font-weight-normal: 400;
     --font-weight-medium: 500;
-    --font-weight-semibold: 600;
     --font-weight-bold: 700;
 
     --line-height-tight: 1.2;
@@ -69,38 +71,44 @@
     --letter-spacing-wide: 0.05em;
     --letter-spacing-wider: 0.1em;
 
-    /* Spacing */
-    --space-1: 0.25rem;
-    --space-2: 0.5rem;
-    --space-3: 0.75rem;
-    --space-4: 1rem;
-    --space-5: 1.5rem;
-    --space-6: 2rem;
-    --space-7: 3rem;
-    --space-8: 4rem;
-    --space-9: 6rem;
+    /* ---- SPACING ---- */
 
-    /* Grid */
+    --space-1: 0.25rem;  /* 4px */
+    --space-2: 0.5rem;   /* 8px */
+    --space-3: 0.75rem;  /* 12px */
+    --space-4: 1rem;     /* 16px */
+    --space-5: 1.5rem;   /* 24px */
+    --space-6: 2rem;     /* 32px */
+    --space-7: 3rem;     /* 48px */
+    --space-8: 4rem;     /* 64px */
+    --space-9: 6rem;     /* 96px */
+
+    /* ---- GRID ---- */
+
     --grid-columns: 12;
     --grid-gutter: 1rem;
     --container-max: 1200px;
     --container-padding: 1.5rem;
 
-    /* Borders */
+    /* ---- BORDERS ---- */
+
     --border-radius-none: 0;
     --border-radius-sm: 2px;
     --border-radius-md: 4px;
     --border-radius-lg: 8px;
+
     --border-width-thin: 1px;
     --border-width-medium: 2px;
     --border-width-thick: 3px;
 
-    /* Transitions */
+    /* ---- TRANSITIONS ---- */
+
     --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
-    /* Z-index */
+    /* ---- Z-INDEX ---- */
+
     --z-base: 0;
     --z-raised: 10;
     --z-dropdown: 100;
@@ -111,34 +119,40 @@
     --z-popover: 600;
     --z-tooltip: 700;
 
-    /* Shadows */
+    /* ---- SHADOWS ---- */
+
     --shadow-none: none;
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
     --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
     --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
     --shadow-glow: 0 0 20px var(--accent-cyan-glow);
 
-    /* Animation */
+    /* ---- ANIMATION ---- */
+
     --animation-duration-fast: 0.15s;
     --animation-duration-normal: 0.3s;
     --animation-duration-slow: 0.5s;
     --animation-duration-glitch: 0.1s;
 }
 
+/* ---- MEDIA QUERIES ---- */
+
 @media (max-width: 768px) {
     :root {
         --container-padding: 1rem;
-        --text-size-base: 0.8125rem;
+        --text-size-base: 0.8125rem; /* 13px */
         --grid-gutter: 0.75rem;
     }
 }
 
 @media (max-width: 480px) {
     :root {
-        --text-size-base: 0.75rem;
+        --text-size-base: 0.75rem; /* 12px */
         --grid-gutter: 0.5rem;
     }
 }
+
+/* ---- REDUCED MOTION ---- */
 
 @media (prefers-reduced-motion: reduce) {
     :root {

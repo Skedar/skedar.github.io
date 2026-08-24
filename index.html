@@ -5,19 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Skedar_ - Terminal central de projetos. Interface de acesso e navegação para todos os sistemas.">
     <meta name="theme-color" content="#0a0e12">
-    <link rel="canonical" href="https://skedar.github.io/">
     <title>Skedar_ // Terminal Central</title>
 
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&amp;family=Rajdhani:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- Styles -->
     <link rel="stylesheet" href="css/tokens.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/glitch.css">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' fill='%2300f3ff'%3E%E2%96%88%3C/text%3E%3C/svg%3E">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2300f3ff'>█</text></svg>">
 </head>
 <body>
+    <!-- Boot Screen -->
     <div id="boot-screen" role="status" aria-live="polite">
         <div class="boot-container">
             <div class="boot-header">
@@ -32,22 +35,24 @@
         </div>
     </div>
 
-    <div class="interface" id="main-interface" inert>
-        <header class="top-bar">
+    <!-- Main Interface -->
+    <div class="interface" id="main-interface" aria-hidden="true">
+        <!-- Top Navigation -->
+        <header class="top-bar" role="banner">
             <div class="top-bar-left">
-                <div class="logo-container" role="img" aria-label="Skedar">
-                    <span class="logo-bracket" aria-hidden="true">[</span>
+                <div class="logo-container">
+                    <span class="logo-bracket">[</span>
                     <span class="logo-text">SKEDAR_</span>
-                    <span class="logo-bracket" aria-hidden="true">]</span>
+                    <span class="logo-bracket">]</span>
                 </div>
                 <nav class="main-nav" aria-label="Navegação principal">
-                    <button type="button" class="nav-link active" data-section="projects" aria-current="page">
+                    <button class="nav-link active" data-section="projects" aria-current="page">
                         <span class="nav-index">01</span> PROJETOS
                     </button>
-                    <button type="button" class="nav-link" data-section="about">
+                    <button class="nav-link" data-section="about">
                         <span class="nav-index">02</span> SOBRE
                     </button>
-                    <button type="button" class="nav-link" data-section="archive">
+                    <button class="nav-link" data-section="archive">
                         <span class="nav-index">03</span> ARQUIVO
                     </button>
                 </nav>
@@ -62,8 +67,10 @@
             </div>
         </header>
 
-        <main class="main-content">
-            <section id="section-projects" class="section active" aria-labelledby="projects-heading" tabindex="-1">
+        <!-- Main Content -->
+        <main class="main-content" role="main">
+            <!-- Projects Section -->
+            <section id="section-projects" class="section active" aria-labelledby="projects-heading">
                 <div class="section-header">
                     <h1 id="projects-heading" class="section-title">
                         <span class="title-prefix">//</span> PROJETOS_ATIVOS
@@ -73,45 +80,51 @@
                             <span class="meta-label">TOTAL:</span>
                             <span class="meta-value" id="project-count">0</span>
                         </span>
-                        <label class="meta-item">
+                        <span class="meta-item">
                             <span class="meta-label">FILTRO:</span>
-                            <select id="project-filter" class="filter-select">
+                            <select id="project-filter" class="filter-select" aria-label="Filtrar projetos por categoria">
                                 <option value="all">TODOS</option>
                                 <option value="web">WEB</option>
                                 <option value="game">GAME</option>
                                 <option value="tool">FERRAMENTA</option>
                                 <option value="experiment">EXPERIMENTO</option>
                             </select>
-                        </label>
+                        </span>
                         <span class="meta-item">
-                            <label for="project-search" class="sr-only">Buscar projetos</label>
-                            <input type="search" id="project-search" class="search-input" placeholder="BUSCAR...">
+                            <input type="search" id="project-search" class="search-input"
+                                   placeholder="BUSCAR..." aria-label="Buscar projetos">
                         </span>
                     </div>
                 </div>
 
-                <section class="projects-grid" id="projects-grid" aria-live="polite" aria-label="Lista de projetos">
+                <div class="projects-grid" id="projects-grid" role="region" aria-live="polite" aria-label="Lista de projetos">
+                    <!-- Loading State -->
                     <div class="loading-state" id="loading-state">
                         <div class="loading-bar"></div>
                         <p class="loading-text">CARREGANDO DADOS DOS PROJETOS...</p>
                     </div>
 
-                    <div class="error-state" id="error-state" role="alert" hidden inert>
-                        <div class="error-icon" aria-hidden="true">⚠</div>
+                    <!-- Error State (hidden by default) -->
+                    <div class="error-state" id="error-state" role="alert" hidden>
+                        <div class="error-icon">⚠</div>
                         <h2 class="error-title">FALHA NA CONEXÃO</h2>
                         <p class="error-message">Não foi possível carregar os dados dos projetos.</p>
-                        <button type="button" class="btn-retry" id="btn-retry">TENTAR NOVAMENTE</button>
+                        <button class="btn-retry" id="btn-retry">TENTAR NOVAMENTE</button>
                     </div>
 
+                    <!-- Empty State (hidden by default) -->
                     <div class="empty-state" id="empty-state" hidden>
-                        <div class="empty-icon" aria-hidden="true">◇</div>
+                        <div class="empty-icon">◇</div>
                         <h2 class="empty-title">NENHUM PROJETO ENCONTRADO</h2>
-                        <p class="empty-message">Ajuste os filtros ou o termo de busca.</p>
+                        <p class="empty-message">Ajuste os filtros ou termo de busca.</p>
                     </div>
-                </section>
+
+                    <!-- Projects will be dynamically inserted here -->
+                </div>
             </section>
 
-            <section id="section-about" class="section" aria-labelledby="about-heading" tabindex="-1" hidden>
+            <!-- About Section -->
+            <section id="section-about" class="section" aria-labelledby="about-heading" hidden>
                 <div class="section-header">
                     <h2 id="about-heading" class="section-title">
                         <span class="title-prefix">//</span> SOBRE_O_SISTEMA
@@ -121,16 +134,17 @@
                     <article class="about-block">
                         <h3 class="about-subtitle">MISSÃO</h3>
                         <p class="about-text">
-                            Skedar_ é um hub central para projetos experimentais, ferramentas e sistemas
-                            na interseção entre tecnologia, design e cultura hacker. Cada projeto é uma
-                            unidade independente, documentada e acessível.
+                            Skedar_ é um hub central para projetos experimentais, ferramentas e experimentos
+                            na interseção entre tecnologia, design e cultura hacker. Cada projeto é um
+                            sistema independente, documentado e acessível.
                         </p>
                     </article>
                     <article class="about-block">
                         <h3 class="about-subtitle">FILOSOFIA</h3>
                         <p class="about-text">
-                            Interface limpa e zero rastreamento. A estética é funcional: cada elemento
-                            visual serve a um propósito de navegação ou feedback. Sem enfeites vazios.
+                            Interface limpa, código aberto, zero rastreamento. A estética é funcional:
+                            cada elemento visual serve a um propósito de navegação ou feedback.
+                            Sem enfeites vazios.
                         </p>
                     </article>
                     <article class="about-block">
@@ -146,7 +160,8 @@
                 </div>
             </section>
 
-            <section id="section-archive" class="section" aria-labelledby="archive-heading" tabindex="-1" hidden>
+            <!-- Archive Section -->
+            <section id="section-archive" class="section" aria-labelledby="archive-heading" hidden>
                 <div class="section-header">
                     <h2 id="archive-heading" class="section-title">
                         <span class="title-prefix">//</span> ARQUIVO_MORTO
@@ -163,18 +178,31 @@
             </section>
         </main>
 
-        <div class="modal-overlay" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden inert>
+        <!-- Project Detail Modal -->
+        <div class="modal-overlay" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
             <div class="modal-container">
                 <div class="modal-header">
                     <h2 class="modal-title" id="modal-title">PROJECT_TITLE</h2>
-                    <button type="button" class="modal-close" id="modal-close" aria-label="Fechar detalhes do projeto">×</button>
+                    <button class="modal-close" id="modal-close" aria-label="Fechar detalhes do projeto">×</button>
                 </div>
                 <div class="modal-body">
                     <div class="modal-meta">
-                        <div class="meta-row"><span class="meta-label">STATUS:</span><span class="meta-value" id="modal-status">--</span></div>
-                        <div class="meta-row"><span class="meta-label">CATEGORIA:</span><span class="meta-value" id="modal-category">--</span></div>
-                        <div class="meta-row"><span class="meta-label">TECNOLOGIAS:</span><span class="meta-value" id="modal-tech">--</span></div>
-                        <div class="meta-row"><span class="meta-label">ÚLTIMA ATUALIZAÇÃO:</span><span class="meta-value" id="modal-updated">--</span></div>
+                        <div class="meta-row">
+                            <span class="meta-label">STATUS:</span>
+                            <span class="meta-value" id="modal-status">--</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">CATEGORIA:</span>
+                            <span class="meta-value" id="modal-category">--</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">TECNOLOGIAS:</span>
+                            <span class="meta-value" id="modal-tech">--</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">ÚLTIMA ATUALIZAÇÃO:</span>
+                            <span class="meta-value" id="modal-updated">--</span>
+                        </div>
                     </div>
                     <div class="modal-description">
                         <h3 class="modal-section-title">DESCRIÇÃO</h3>
@@ -192,29 +220,48 @@
             </div>
         </div>
 
-        <footer class="hud-bar">
+        <!-- Bottom HUD -->
+        <footer class="hud-bar" role="contentinfo">
             <div class="hud-left">
-                <div class="hud-item"><span class="hud-label">MEM:</span><span class="hud-value" id="hud-memory">--</span></div>
-                <div class="hud-item"><span class="hud-label">FPS:</span><span class="hud-value" id="hud-fps">--</span></div>
-                <div class="hud-item"><span class="hud-label">NET:</span><span class="hud-value" id="hud-ping">--</span></div>
+                <div class="hud-item">
+                    <span class="hud-label">MEM:</span>
+                    <span class="hud-value" id="hud-memory">--</span>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-label">FPS:</span>
+                    <span class="hud-value" id="hud-fps">--</span>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-label">PING:</span>
+                    <span class="hud-value" id="hud-ping">--</span>
+                </div>
             </div>
             <div class="hud-center">
                 <div class="hud-activity" id="hud-activity" aria-hidden="true">
-                    <span class="activity-block"></span><span class="activity-block"></span>
-                    <span class="activity-block"></span><span class="activity-block"></span>
+                    <span class="activity-block"></span>
+                    <span class="activity-block"></span>
+                    <span class="activity-block"></span>
+                    <span class="activity-block"></span>
                     <span class="activity-block"></span>
                 </div>
             </div>
             <div class="hud-right">
-                <div class="hud-item"><span class="hud-label">UPTIME:</span><span class="hud-value" id="hud-uptime">00:00:00</span></div>
-                <div class="hud-item"><span class="hud-label">SESSÃO:</span><span class="hud-value" id="hud-session">--</span></div>
+                <div class="hud-item">
+                    <span class="hud-label">UPTIME:</span>
+                    <span class="hud-value" id="hud-uptime">00:00:00</span>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-label">SESSÃO:</span>
+                    <span class="hud-value" id="hud-session">--</span>
+                </div>
             </div>
         </footer>
     </div>
 
+    <!-- Scripts -->
     <script src="js/main.js" type="module"></script>
     <noscript>
-        <div class="noscript-message">
+        <div style="padding: 2rem; text-align: center; font-family: monospace; color: #00f3ff;">
             JAVASCRIPT DESATIVADO // INTERFACE INOPERANTE<br>
             Ative JavaScript para acessar o terminal Skedar_.
         </div>

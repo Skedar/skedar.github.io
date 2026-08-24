@@ -3,6 +3,8 @@
    Efeitos de glitch funcionais
    =================================== */
 
+/* ---- GLITCH TEXT EFFECT ---- */
+
 .glitch-text {
     position: relative;
     display: inline-block;
@@ -52,6 +54,8 @@
     100% { transform: translate(0, 0); }
 }
 
+/* ---- GLITCH CARD EFFECT ---- */
+
 .project-card.glitching {
     animation: cardGlitch 0.3s steps(2) 2;
 }
@@ -63,6 +67,8 @@
     75% { transform: translate(-2px, -1px); filter: brightness(1.5); }
     100% { transform: translate(0, 0); filter: none; }
 }
+
+/* ---- SCANLINE EFFECT ---- */
 
 .scanline-overlay {
     position: fixed;
@@ -86,6 +92,8 @@
     0% { transform: translateY(0); }
     100% { transform: translateY(4px); }
 }
+
+/* ---- DATA STREAM BACKGROUND ---- */
 
 .data-stream {
     position: fixed;
@@ -113,6 +121,8 @@
     to { transform: translateY(100vh); }
 }
 
+/* ---- CRT FLICKER ---- */
+
 .crt-flicker {
     animation: crtFlicker 4s linear infinite;
 }
@@ -123,6 +133,8 @@
     98% { opacity: 0.95; }
     99% { opacity: 1; }
 }
+
+/* ---- HOLO BORDER ---- */
 
 .holo-border {
     position: relative;
@@ -135,7 +147,12 @@
     left: -2px;
     right: -2px;
     bottom: -2px;
-    background: linear-gradient(45deg, transparent 40%, var(--accent-cyan) 50%, transparent 60%);
+    background: linear-gradient(
+        45deg,
+        transparent 40%,
+        var(--accent-cyan) 50%,
+        transparent 60%
+    );
     background-size: 200% 200%;
     animation: holoBorderMove 3s linear infinite;
     opacity: 0;
@@ -152,11 +169,15 @@
     100% { background-position: 100% 100%; }
 }
 
+/* ---- TYPE WRITER ---- */
+
 .typewriter {
     overflow: hidden;
     border-right: 2px solid var(--accent-cyan);
     white-space: nowrap;
-    animation: typewriter 2s steps(40) forwards, cursorBlink 0.7s step-end infinite;
+    animation:
+        typewriter 2s steps(40) forwards,
+        cursorBlink 0.7s step-end infinite;
 }
 
 @keyframes typewriter {
@@ -168,6 +189,8 @@
     0%, 100% { border-color: transparent; }
     50% { border-color: var(--accent-cyan); }
 }
+
+/* ---- GLITCH TRIGGER (UTILITY) ---- */
 
 .glitch-trigger {
     cursor: pointer;
@@ -186,6 +209,8 @@
     100% { transform: translate(0); }
 }
 
+/* ---- REDUCED MOTION ---- */
+
 @media (prefers-reduced-motion: reduce) {
     .glitch-text.glitching::before,
     .glitch-text.glitching::after {
@@ -193,10 +218,22 @@
         opacity: 0 !important;
     }
 
-    .project-card.glitching,
-    .scanline-overlay,
-    .stream-line,
-    .crt-flicker,
+    .project-card.glitching {
+        animation: none !important;
+    }
+
+    .scanline-overlay {
+        animation: none !important;
+    }
+
+    .stream-line {
+        animation: none !important;
+    }
+
+    .crt-flicker {
+        animation: none !important;
+    }
+
     .holo-border::after {
         animation: none !important;
     }
@@ -207,6 +244,8 @@
         border-right: none !important;
     }
 }
+
+/* ---- PRINT STYLES ---- */
 
 @media print {
     .scanline-overlay,
