@@ -1,0 +1,153 @@
+/* ===================================
+   SKEDAR_ // DESIGN TOKENS
+   Sistema de tokens para consistência
+   =================================== */
+
+:root {
+    /* Backgrounds */
+    --bg-primary: #0a0e12;
+    --bg-secondary: #141b22;
+    --bg-tertiary: #1a232c;
+    --bg-elevated: #0d1418;
+
+    /* Accents */
+    --accent-cyan: #00f3ff;
+    --accent-cyan-dim: #0099aa;
+    --accent-cyan-glow: rgba(0, 243, 255, 0.3);
+    --accent-magenta: #ff0055;
+    --accent-magenta-dim: #aa0039;
+    --accent-green: #00ff88;
+    --accent-green-dim: #00aa5c;
+    --accent-yellow: #ffcc00;
+    --accent-red: #ff3333;
+
+    /* Text */
+    --text-primary: #e0e0e0;
+    --text-secondary: #8899a6;
+    --text-tertiary: #788b9d;
+    --text-inverse: #0a0e12;
+    --text-accent: var(--accent-cyan);
+
+    /* Borders */
+    --border-primary: #2a3440;
+    --border-secondary: #1a232c;
+    --border-accent: var(--accent-cyan);
+    --border-focus: var(--accent-cyan);
+
+    /* Status */
+    --status-online: var(--accent-green);
+    --status-offline: var(--accent-red);
+    --status-warning: var(--accent-yellow);
+    --status-loading: var(--accent-cyan);
+
+    /* Typography */
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+    --font-display: 'Rajdhani', 'Segoe UI', sans-serif;
+    --font-body: 'JetBrains Mono', monospace;
+
+    --text-size-xs: 0.6875rem;
+    --text-size-sm: 0.75rem;
+    --text-size-base: 0.875rem;
+    --text-size-md: 1rem;
+    --text-size-lg: 1.25rem;
+    --text-size-xl: 1.5rem;
+    --text-size-2xl: 2rem;
+    --text-size-3xl: 2.5rem;
+
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    --line-height-tight: 1.2;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.8;
+
+    --letter-spacing-tight: -0.02em;
+    --letter-spacing-normal: 0;
+    --letter-spacing-wide: 0.05em;
+    --letter-spacing-wider: 0.1em;
+
+    /* Spacing */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.5rem;
+    --space-6: 2rem;
+    --space-7: 3rem;
+    --space-8: 4rem;
+    --space-9: 6rem;
+
+    /* Grid */
+    --grid-columns: 12;
+    --grid-gutter: 1rem;
+    --container-max: 1200px;
+    --container-padding: 1.5rem;
+
+    /* Borders */
+    --border-radius-none: 0;
+    --border-radius-sm: 2px;
+    --border-radius-md: 4px;
+    --border-radius-lg: 8px;
+    --border-width-thin: 1px;
+    --border-width-medium: 2px;
+    --border-width-thick: 3px;
+
+    /* Transitions */
+    --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Z-index */
+    --z-base: 0;
+    --z-raised: 10;
+    --z-dropdown: 100;
+    --z-sticky: 200;
+    --z-fixed: 300;
+    --z-modal-backdrop: 400;
+    --z-modal: 500;
+    --z-popover: 600;
+    --z-tooltip: 700;
+
+    /* Shadows */
+    --shadow-none: none;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 20px var(--accent-cyan-glow);
+
+    /* Animation */
+    --animation-duration-fast: 0.15s;
+    --animation-duration-normal: 0.3s;
+    --animation-duration-slow: 0.5s;
+    --animation-duration-glitch: 0.1s;
+}
+
+@media (max-width: 768px) {
+    :root {
+        --container-padding: 1rem;
+        --text-size-base: 0.8125rem;
+        --grid-gutter: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --text-size-base: 0.75rem;
+        --grid-gutter: 0.5rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --transition-fast: 0.01ms;
+        --transition-normal: 0.01ms;
+        --transition-slow: 0.01ms;
+        --animation-duration-fast: 0.01ms;
+        --animation-duration-normal: 0.01ms;
+        --animation-duration-slow: 0.01ms;
+        --animation-duration-glitch: 0.01ms;
+    }
+}
