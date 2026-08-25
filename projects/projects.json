@@ -2,6 +2,32 @@
   "projects": [
     {
       "id": "PRJ-001",
+      "title": "Skedar Corporation",
+      "description": "Um backup digital do meu cérebro.",
+      "fullDescription": "Aqui é meu blog pessoa, livro de receitas, hobbies diversos, cultura maker, DIY, informações e mais a respeito de quem sou e o que gosto.",
+      "status": "active",
+      "category": "web",
+      "technologies": ["Wordpress", "CSS", "Blog"],
+      "terminalFile": "skedarcorp.sh",
+      "liveUrl": "https://skedarcorp.com",
+      "repoUrl": "",
+      "lastUpdated": "2026-08-24T00:00:00Z"
+    },
+    {
+      "id": "PRJ-002",
+      "title": "Luis 'Skedar' Rizzi",
+      "description": "Meu Curriculum Vitae",
+      "fullDescription": "Local onde mora toda a minha tragetória profissional e estudos.",
+      "status": "active",
+      "category": "web",
+      "technologies": ["HTML5", "Markdown", "CV", "JS", "CSS"],
+      "terminalFile": "luisrizzi-cv.sh",
+      "liveUrl": "https://skedar.com.br",
+      "repoUrl": "",
+      "lastUpdated": "2025-10-25T08:30:23Z"
+    },
+    {
+      "id": "PRJ-666",
       "title": "Cyberpunk Archive",
       "description": "Arquivo cronológico dedicado ao cyberpunk, reunindo obras, autores, conceitos e recursos do gênero.",
       "fullDescription": "Cyberpunk Archive é um arquivo digital, cronológico e orientado por fontes dedicado à preservação e organização do gênero cyberpunk. O projeto reúne obras, autores, conceitos, movimentos e recursos oficiais em uma interface pública de consulta.",
