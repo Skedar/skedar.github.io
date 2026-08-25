@@ -21,6 +21,7 @@ const validProject = {
     status: 'active',
     category: 'web',
     technologies: ['GitHub Pages'],
+    terminalFile: 'cyberpunk-archive.sh',
     liveUrl: 'projects/cyberpunk-archive/',
     repoUrl: '',
     lastUpdated: '2026-08-24T00:00:00Z',
@@ -48,6 +49,13 @@ test('rejects malformed technology entries', () => {
     assert.equal(validate.call({}, { ...validProject, technologies: Array(20).fill('tag') }), false);
 });
 
+test('requires a safe editable shell filename for every project', () => {
+    assert.equal(validate.call({}, { ...validProject, terminalFile: undefined }), false);
+    assert.equal(validate.call({}, { ...validProject, terminalFile: '../escape.sh' }), false);
+    assert.equal(validate.call({}, { ...validProject, terminalFile: 'project.txt' }), false);
+    assert.equal(validate.call({}, { ...validProject, terminalFile: 'project-two.sh' }), true);
+});
+
 test('rejects duplicate IDs and fails the entire malformed collection', () => {
     const manager = Object.create(ProjectManager.prototype);
     assert.throws(
@@ -57,5 +65,12 @@ test('rejects duplicate IDs and fails the entire malformed collection', () => {
     assert.throws(
         () => manager.validateProjectCollection([validProject, { ...validProject, id: 'PRJ-002', title: '' }]),
         /inválido/i,
+    );
+    assert.throws(
+        () => manager.validateProjectCollection([
+            validProject,
+            { ...validProject, id: 'PRJ-002', terminalFile: validProject.terminalFile },
+        ]),
+        /executável.*duplicado/i,
     );
 });

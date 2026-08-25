@@ -3,9 +3,12 @@
  * Ponto de entrada da aplicação.
  */
 
+import { createGlitchFrame } from './glitch-core.js';
 import { HUD } from './hud.js';
 import { ProjectManager } from './projects.js';
 import { Terminal } from './terminal.js';
+
+const glitchTimers = new WeakMap();
 
 const GLYPH_FRAMES = [
     ' /\\\n/__\\',
@@ -396,6 +399,45 @@ class SkedarApp {
         if (this.prefersReducedMotion()) return;
         element.classList.add('glitching');
         window.setTimeout(() => element.classList.remove('glitching'), 300);
+
+        // Character-scramble animation on any .glitch-label children (pure text only)
+        const labels = element.classList.contains('glitch-label')
+            ? [element]
+            : Array.from(element.querySelectorAll('.glitch-label'));
+        for (const label of labels) {
+            this.scrambleGlitchLabel(label);
+        }
+    }
+
+    scrambleGlitchLabel(label) {
+        if (label.childElementCount > 0) return; // preserve nested markup
+        const existing = glitchTimers.get(label);
+        if (existing) {
+            window.clearTimeout(existing.timerId);
+            label.textContent = existing.original;
+        }
+        const original = label.dataset.glitchText || label.textContent;
+        if (!original) return;
+        label.dataset.glitchText = original;
+
+        let frame = 0;
+        const TOTAL_FRAMES = 4;
+        const state = { timerId: null, original };
+        glitchTimers.set(label, state);
+
+        const step = () => {
+            if (this.prefersReducedMotion() || frame >= TOTAL_FRAMES) {
+                label.textContent = original;
+                glitchTimers.delete(label);
+                return;
+            }
+            const intensity = (TOTAL_FRAMES - frame) / TOTAL_FRAMES;
+            label.textContent = createGlitchFrame(original, intensity, Math.random);
+            frame += 1;
+            state.timerId = window.setTimeout(step, 50);
+        };
+
+        step();
     }
 
     sleep(milliseconds) {

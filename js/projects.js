@@ -3,7 +3,10 @@
  * Carrega, filtra e apresenta o catálogo de projetos.
  */
 
+import { createGlitchFrame } from './glitch-core.js';
 import { sanitizeNavigationUrl } from './terminal-core.js';
+
+const cardGlitchTimers = new WeakMap();
 
 export class ProjectManager {
     constructor() {
@@ -81,6 +84,9 @@ export class ProjectManager {
             || (isNonEmptyString(project?.repoUrl)
                 && isSafeProjectUrl(project.repoUrl));
 
+        const isValidTerminalFile = (value) => typeof value === 'string'
+            && /^[a-z0-9][a-z0-9._-]*\.sh$/.test(value);
+
         return Boolean(
             project
             && isNonEmptyString(project.id, 64)
@@ -97,12 +103,14 @@ export class ProjectManager {
             && !Number.isNaN(Date.parse(project.lastUpdated))
             && hasSafeLiveUrl
             && hasSafeRepoUrl
+            && isValidTerminalFile(project.terminalFile)
         );
     }
 
     validateProjectCollection(projects) {
         if (!Array.isArray(projects)) throw new Error('Catálogo de projetos inválido');
         const seenIds = new Set();
+        const seenTerminalFiles = new Set();
 
         return projects.map((project, index) => {
             if (!this.isValidProject(project)) {
@@ -112,6 +120,10 @@ export class ProjectManager {
                 throw new Error(`ID de projeto duplicado: ${project.id}`);
             }
             seenIds.add(project.id);
+            if (seenTerminalFiles.has(project.terminalFile)) {
+                throw new Error(`Executável duplicado: ${project.terminalFile}`);
+            }
+            seenTerminalFiles.add(project.terminalFile);
             return project;
         });
     }
@@ -202,6 +214,7 @@ export class ProjectManager {
         const title = document.createElement('h3');
         title.className = 'project-title';
         title.textContent = project.title;
+        title.dataset.glitchText = project.title;
 
         const description = document.createElement('p');
         description.className = 'project-description';
@@ -365,6 +378,35 @@ export class ProjectManager {
         if (isHover && Math.random() > 0.3) return;
         card.classList.add('glitching');
         window.setTimeout(() => card.classList.remove('glitching'), 300);
+        const title = card.querySelector('.project-title');
+        if (title instanceof HTMLElement) this.scrambleCardTitle(title);
+    }
+
+    scrambleCardTitle(title) {
+        const existing = cardGlitchTimers.get(title);
+        if (existing) {
+            window.clearTimeout(existing.timerId);
+            title.textContent = existing.original;
+        }
+        const original = title.dataset.glitchText || title.textContent;
+        if (!original) return;
+        title.dataset.glitchText = original;
+
+        let frame = 0;
+        const state = { timerId: null, original };
+        cardGlitchTimers.set(title, state);
+
+        const step = () => {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || frame >= 4) {
+                title.textContent = original;
+                cardGlitchTimers.delete(title);
+                return;
+            }
+            title.textContent = createGlitchFrame(original, (4 - frame) / 4, Math.random);
+            frame += 1;
+            state.timerId = window.setTimeout(step, 50);
+        };
+        step();
     }
 
     showLoading() {

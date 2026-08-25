@@ -7,11 +7,12 @@
 import {
     COMMAND_NAMES,
     HOME_PATH,
+    PROJECTS_PATH,
     completeToken,
     listVirtualChildren,
+    normalizeVirtualExecutablePath,
     normalizeVirtualPath,
     parseCommand,
-    resolveVirtualSection,
     resolveVirtualTargetUrl,
     sanitizeNavigationUrl,
 } from './terminal-core.js';
@@ -23,8 +24,8 @@ const MAX_OUTPUT_LINES = 200;
 const INTRO_LINES = [
     'SKEDAR_SHELL // secure session established',
     'decrypting node graph .... [OK]',
-    'mounting ~/home ................ [OK]',
-    'user@skedar:~/home$ auth --token •••••••• granted',
+    'mounting /home ................ [OK]',
+    'shell@project:/home$ auth --token •••••••• granted',
     '',
     'Bem-vindo ao console Skedar_. Ambiente somente-leitura, sem rastreamento.',
     'Type /help. or /h. for the command list',
@@ -77,8 +78,9 @@ export class Terminal {
             '/help': () => this.printHelp(),
             '/h': () => this.printHelp(),
             pwd: () => this.print(this.cwd),
-            ls: () => this.runLs(),
+            ls: (args) => this.runLs(args),
             cd: (args) => this.runCd(args),
+            '..': () => this.runCd(['..']),
             clear: () => this.clearOutput(),
             search: (args, rawArgs) => this.runSearch(rawArgs),
             run: (args) => this.runRun(args),
@@ -124,7 +126,6 @@ export class Terminal {
         this.input.value = this.historyIndex === this.history.length
             ? this.historyDraft
             : (this.history[this.historyIndex] ?? '');
-        // move o cursor para o fim
         const end = this.input.value.length;
         this.input.setSelectionRange(end, end);
     }
@@ -149,15 +150,18 @@ export class Terminal {
 
         let completionBase = this.cwd;
         if (parentFragment) {
-            const normalizedParent = parentFragment.replace(/^~\/home\/?/, '').replace(/\/$/, '');
-            const firstSegment = normalizedParent.split('/')[0];
-            const startsAtHome = listVirtualChildren(HOME_PATH).includes(firstSegment);
-            completionBase = normalizeVirtualPath(startsAtHome ? HOME_PATH : this.cwd, normalizedParent);
+            completionBase = normalizeVirtualPath(this.cwd, parentFragment) ?? null;
         }
 
-        const matches = completionBase
-            ? completeToken(leafFragment, listVirtualChildren(completionBase))
-            : [];
+        let candidates;
+        if (completionBase === PROJECTS_PATH) {
+            const projects = this.projectManager?.getProjects?.() ?? [];
+            candidates = projects.map((p) => p.terminalFile).filter(Boolean);
+        } else {
+            candidates = completionBase ? listVirtualChildren(completionBase) : [];
+        }
+
+        const matches = completeToken(leafFragment, candidates);
         const completedMatches = matches.map((match) => (
             parentFragment ? `${parentFragment}/${match}` : match
         ));
@@ -223,23 +227,42 @@ export class Terminal {
             pwd: 'mostra o diretório atual',
             ls: 'lista o conteúdo do diretório',
             cd: 'muda de diretório (ex.: cd projects)',
+            '..': 'sobe para o diretório pai',
             clear: 'limpa o terminal',
             search: 'filtra projetos por termo',
-            run: 'abre um destino (ex.: run ~/home/projects/cyberpunk-archive)',
+            run: 'executa um projeto (ex.: run projects/cyberpunk-archive.sh)',
             open: 'abre um projeto pelo id',
             status: 'exibe métricas da sessão',
             about: 'exibe a seção Sobre',
             projects: 'vai para Projetos',
             archive: 'vai para Arquivo',
-            home: 'volta para ~/home',
+            home: 'volta para /home',
         };
         for (const [name, desc] of Object.entries(descriptions)) {
             this.print(`  ${name.padEnd(10)} ${desc}`);
         }
     }
 
-    runLs() {
-        const children = listVirtualChildren(this.cwd);
+    runLs(args) {
+        const target = args?.[0] ?? null;
+        const path = target ? normalizeVirtualPath(this.cwd, target) : this.cwd;
+
+        if (!path) {
+            this.printError(`ls: diretório inacessível: ${target}`);
+            return;
+        }
+
+        if (path === PROJECTS_PATH) {
+            const projects = this.projectManager?.getProjects?.() ?? [];
+            if (projects.length === 0) {
+                this.printMuted('(vazio)');
+                return;
+            }
+            this.print(projects.map((p) => p.terminalFile).join('  '));
+            return;
+        }
+
+        const children = listVirtualChildren(path);
         if (children.length === 0) {
             this.printMuted('(vazio)');
             return;
@@ -261,9 +284,6 @@ export class Terminal {
         }
         this.cwd = next;
         this.updatePrompt();
-        // cd projects/about/archive troca a seção correspondente do site.
-        const section = resolveVirtualSection(next);
-        if (section) this.navigate(section);
     }
 
     runSearch(rawArgs) {
@@ -302,6 +322,9 @@ export class Terminal {
     }
 
     projectVirtualPath(project) {
+        if (typeof project.terminalFile === 'string' && project.terminalFile) {
+            return `${PROJECTS_PATH}/${project.terminalFile}`;
+        }
         let slug = '';
         if (typeof project.liveUrl === 'string') {
             const match = project.liveUrl.match(/projects\/([^/?#]+)/);
@@ -314,7 +337,7 @@ export class Terminal {
                 .replace(/[^a-z0-9]+/g, '-')
                 .replace(/^-+|-+$/g, '');
         }
-        return `~/home/projects/${slug}`;
+        return `${PROJECTS_PATH}/${slug}`;
     }
 
     runRun(args) {
@@ -323,9 +346,16 @@ export class Terminal {
             this.printError('run: informe um destino');
             return;
         }
-        const virtualPath = target.startsWith('~')
-            ? normalizeVirtualPath('~/home', target.replace(/^~\/home\/?/, '').replace(/\/$/, '') || '.')
-            : normalizeVirtualPath(this.cwd, target);
+
+        // Tenta resolver como executável de projeto (.sh)
+        const execPath = normalizeVirtualExecutablePath(this.cwd, target);
+        if (execPath) {
+            this.runProjectExecutable(execPath, target);
+            return;
+        }
+
+        // Legado: tenta como caminho virtual com URL associada
+        const virtualPath = normalizeVirtualPath(this.cwd, target);
         const relativeUrl = virtualPath ? resolveVirtualTargetUrl(virtualPath) : null;
         if (!relativeUrl) {
             this.printError(`run: destino não executável: ${target}`);
@@ -334,24 +364,31 @@ export class Terminal {
         this.openUrl(relativeUrl, target);
     }
 
+    runProjectExecutable(execPath, label) {
+        const filename = execPath.slice(PROJECTS_PATH.length + 1);
+        const projects = this.projectManager?.getProjects?.() ?? [];
+        const project = projects.find((p) => p.terminalFile === filename);
+        if (!project) {
+            this.printError(`run: executável não encontrado: ${label}`);
+            return;
+        }
+        this.print(`executando ${filename} ...`);
+        this.projectManager.openProjectById(project.id, this.input);
+    }
+
     runOpen(args) {
         const target = args[0] ?? '';
         if (!target) {
             this.printError('open: informe um id de projeto');
             return;
         }
-        // tenta como caminho virtual com URL associada
-        const virtualPath = normalizeVirtualPath(this.cwd, target)
-            ?? (target.startsWith('~') ? normalizeVirtualPath('~/home', target.replace(/^~\/home\/?/, '').replace(/\/$/, '') || '.') : null);
+        const virtualPath = normalizeVirtualPath(this.cwd, target);
         const relativeUrl = virtualPath ? resolveVirtualTargetUrl(virtualPath) : null;
         if (relativeUrl) {
             this.openUrl(relativeUrl, target);
             return;
         }
-        // caso contrário, abre um projeto pelo id no modal
         if (this.projectManager?.openProjectById) {
-            // Navegue antes de abrir: o modal deve ser a última operação para
-            // conservar o foco no botão de fechar e manter o fundo inerte.
             this.navigate('projects');
             const opened = this.projectManager.openProjectById(target, this.input);
             if (opened) {
@@ -389,7 +426,7 @@ export class Terminal {
         this.cwd = HOME_PATH;
         this.updatePrompt();
         this.navigate('terminal');
-        this.print('-> ~/home');
+        this.print('-> /home');
     }
 
     openUrl(relativeUrl, label) {
@@ -400,8 +437,6 @@ export class Terminal {
             return;
         }
         this.print(`abrindo ${label} ...`);
-        // Com noopener o navegador pode retornar null mesmo quando a nova aba
-        // abriu corretamente; nunca use esse retorno para uma segunda navegação.
         window.open(safe, '_blank', 'noopener,noreferrer');
     }
 
@@ -417,7 +452,7 @@ export class Terminal {
         const line = this.createLine('terminal-line prompt-echo');
         const path = document.createElement('span');
         path.className = 'terminal-line-path';
-        path.textContent = `${this.cwd}$`;
+        path.textContent = `shell@project:${this.cwd}$`;
         const command = document.createElement('span');
         command.className = 'terminal-line-command';
         command.textContent = ` ${text}`;
@@ -466,7 +501,7 @@ export class Terminal {
     }
 
     updatePrompt() {
-        if (this.promptPath) this.promptPath.textContent = `${this.cwd}$`;
+        if (this.promptPath) this.promptPath.textContent = `shell@project:${this.cwd}$`;
     }
 
     focus() {

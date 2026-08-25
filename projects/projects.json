@@ -8,6 +8,7 @@
       "status": "active",
       "category": "web",
       "technologies": ["GitHub Pages", "Curadoria", "Pesquisa"],
+      "terminalFile": "cyberpunk-archive.sh",
       "liveUrl": "https://skedar.github.io/projects/cyberpunk-archive/",
       "repoUrl": "",
       "lastUpdated": "2026-08-24T00:00:00Z"

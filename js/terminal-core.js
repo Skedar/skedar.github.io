@@ -14,6 +14,7 @@ export const COMMAND_NAMES = Object.freeze([
     'pwd',
     'ls',
     'cd',
+    '..',
     'clear',
     'search',
     'run',
@@ -26,48 +27,43 @@ export const COMMAND_NAMES = Object.freeze([
 ]);
 
 /**
- * Árvore de arquivos virtual confinada em ~/home.
- * Cada nó guarda seu caminho canônico exato (com ou sem barra final).
+ * Árvore de arquivos virtual confinada em /home.
+ * Os projetos (.sh) são dinâmicos e não aparecem como nós estáticos.
  */
 const VFS_NODES = {
-    home: { name: 'home', path: '~/home', parent: null, children: ['about', 'archive', 'projects'] },
+    home: { name: 'home', path: '/home', parent: null, children: ['about', 'archive', 'projects'] },
     about: {
         name: 'about',
-        path: '~/home/about/',
+        path: '/home/about',
         parent: 'home',
         children: [],
         section: 'about',
     },
     archive: {
         name: 'archive',
-        path: '~/home/archive/',
+        path: '/home/archive',
         parent: 'home',
         children: [],
         section: 'archive',
     },
     projects: {
         name: 'projects',
-        path: '~/home/projects/',
+        path: '/home/projects',
         parent: 'home',
-        children: ['cyberpunk-archive'],
-        section: 'projects',
-    },
-    'cyberpunk-archive': {
-        name: 'cyberpunk-archive',
-        path: '~/home/projects/cyberpunk-archive',
-        parent: 'projects',
         children: [],
-        leaf: true,
-        url: 'projects/cyberpunk-archive/',
+        section: 'projects',
     },
 };
 
 /** Caminho canônico do diretório inicial. */
 export const HOME_PATH = VFS_NODES.home.path;
 
-/** Mapa caminho-sem-barra-final -> chave de nó, para resolução rápida. */
+/** Caminho canônico do diretório de projetos. */
+export const PROJECTS_PATH = VFS_NODES.projects.path;
+
+/** Mapa caminho -> chave de nó, para resolução rápida. */
 const PATH_TO_KEY = new Map(
-    Object.entries(VFS_NODES).map(([key, node]) => [stripTrailingSlash(node.path), key]),
+    Object.entries(VFS_NODES).map(([key, node]) => [node.path, key]),
 );
 
 function stripTrailingSlash(value) {
@@ -86,7 +82,7 @@ function nodeByPath(path) {
  */
 export function normalizeCommandName(raw) {
     if (typeof raw !== 'string') return '';
-    return raw.trim().toLowerCase().replace(/\.+$/, '');
+    return raw.trim().toLowerCase().replace(/([^.])\.+$/, '$1');
 }
 
 /**
@@ -125,14 +121,23 @@ export function parseCommand(raw) {
 
 /**
  * Resolve um segmento de caminho relativo a partir de uma base, dentro da
- * árvore virtual confinada. Aceita segmentos compostos ("a/b", "..").
- * Retorna o caminho canônico do destino ou null se sair do confinamento
- * ou apontar para algo inexistente.
+ * árvore virtual confinada. Aceita segmentos compostos e caminhos absolutos
+ * iniciados em /home. Retorna o caminho canônico ou null.
  */
 export function normalizeVirtualPath(base, segment) {
+    if (typeof segment !== 'string') return null;
+
+    // Caminhos absolutos: devem estar dentro de /home
+    if (segment.startsWith('/')) {
+        if (!segment.startsWith('/home')) return null;
+        const after = segment.slice('/home'.length);
+        if (after !== '' && !after.startsWith('/')) return null;
+        if (after === '' || after === '/') return HOME_PATH;
+        return normalizeVirtualPath(HOME_PATH, after.slice(1));
+    }
+
     let node = nodeByPath(base);
     if (!node) return null;
-    if (typeof segment !== 'string') return null;
 
     const parts = segment.split('/').filter((part) => part.length > 0);
     for (const part of parts) {
@@ -140,7 +145,7 @@ export function normalizeVirtualPath(base, segment) {
             continue;
         }
         if (part === '..') {
-            if (!node.parent) return null; // tentativa de sair de ~/home
+            if (!node.parent) return null;
             node = VFS_NODES[node.parent];
             continue;
         }
@@ -171,6 +176,42 @@ export function resolveVirtualSection(path) {
     return node && typeof node.section === 'string' ? node.section : null;
 }
 
+const SAFE_BASENAME_RE = /^[a-z0-9][a-z0-9._-]*\.sh$/;
+
+/**
+ * Resolve um caminho de executável de projeto (.sh) dentro de /home/projects.
+ * Aceita caminhos relativos ao cwd, o prefixo projects/ e o absoluto /home/projects/.
+ * Rejeita traversal e extensões que não sejam .sh.
+ * @returns {string|null}
+ */
+export function normalizeVirtualExecutablePath(cwd, target) {
+    if (typeof target !== 'string') return null;
+    if (!target.endsWith('.sh')) return null;
+
+    // Caminho absoluto: /home/projects/foo.sh
+    if (target.startsWith('/')) {
+        if (!target.startsWith('/home/projects/')) return null;
+        const filename = target.slice('/home/projects/'.length);
+        if (!filename || filename.includes('/') || !SAFE_BASENAME_RE.test(filename)) return null;
+        return `${PROJECTS_PATH}/${filename}`;
+    }
+
+    // Caminho relativo: separa diretório e nome do arquivo
+    const slashIdx = target.lastIndexOf('/');
+    const dirPart = slashIdx >= 0 ? target.slice(0, slashIdx) : '';
+    const filename = slashIdx >= 0 ? target.slice(slashIdx + 1) : target;
+
+    if (!SAFE_BASENAME_RE.test(filename)) return null;
+
+    const resolvedDir = dirPart
+        ? normalizeVirtualPath(cwd, dirPart)
+        : cwd;
+
+    if (resolvedDir !== PROJECTS_PATH) return null;
+
+    return `${PROJECTS_PATH}/${filename}`;
+}
+
 /**
  * Aceita apenas URLs HTTP(S) de mesma origem ou caminhos relativos de mesma
  * origem. Rejeita javascript:, data:, protocolo relativo ("//host") e
@@ -180,7 +221,6 @@ export function sanitizeNavigationUrl(url, base) {
     if (typeof url !== 'string') return null;
     const trimmed = url.trim();
     if (!trimmed) return null;
-    // "//host/path" é relativo ao protocolo e pode apontar para outra origem.
     if (trimmed.startsWith('//')) return null;
 
     let baseUrl;
