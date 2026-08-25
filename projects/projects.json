@@ -12,19 +12,6 @@
       "liveUrl": "https://skedar.github.io/projects/cyberpunk-archive/",
       "repoUrl": "",
       "lastUpdated": "2026-08-24T00:00:00Z"
-    },
-    {
-      "id": "PRJ-002",
-      "title": "Skedar Corporation",
-      "description": "Um backup digital do meu cérebro.",
-      "fullDescription": "Aqui é meu blog pessoa, livro de receitas, hobbies diversos, cultura maker, DIY, informações e mais a respeito de quem sou e o que gosto.",
-      "status": "active",
-      "category": "web",
-      "technologies": ["Wordpress", "CSS", "Blog"],
-      "terminalFile": "skedarcorp.sh",
-      "liveUrl": "https://skedarcorp.com",
-      "repoUrl": "",
-      "lastUpdated": "2026-08-24T00:00:00Z"
     }
   ]
 }
