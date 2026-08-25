@@ -12,6 +12,19 @@
       "liveUrl": "https://skedar.github.io/projects/cyberpunk-archive/",
       "repoUrl": "",
       "lastUpdated": "2026-08-24T00:00:00Z"
+    },
+    {
+      "id": "PRJ-002",
+      "title": "Cyberpunk Archive 2",
+      "description": "Arquivo cronológico dedicado ao cyberpunk, reunindo obras, autores, conceitos e recursos do gênero.",
+      "fullDescription": "Cyberpunk Archive é um arquivo digital, cronológico e orientado por fontes dedicado à preservação e organização do gênero cyberpunk. O projeto reúne obras, autores, conceitos, movimentos e recursos oficiais em uma interface pública de consulta.",
+      "status": "active",
+      "category": "web",
+      "technologies": ["GitHub Pages", "Curadoria", "Pesquisa"],
+      "terminalFile": "cyberpunk-archive2.sh",
+      "liveUrl": "https://skedar.github.io/projects/cyberpunk-archive/",
+      "repoUrl": "",
+      "lastUpdated": "2026-08-24T00:10:00Z"
     }
   ]
 }
