@@ -19,6 +19,8 @@ export class ProjectManager {
         this.currentFilter = 'all';
         this.currentSearch = '';
         this.previouslyFocusedElement = null;
+        this.modalFrameId = null;
+        this.modalFocusTimer = null;
 
         this.init();
     }
@@ -40,6 +42,7 @@ export class ProjectManager {
         this.modal?.addEventListener('click', (event) => {
             if (event.target === this.modal) this.closeModal();
         });
+        this.modal?.addEventListener('keydown', (event) => this.handleModalKeydown(event));
         document.getElementById('btn-retry')?.addEventListener('click', () => this.loadProjects());
     }
 
@@ -54,7 +57,7 @@ export class ProjectManager {
                 throw new Error('Formato de catálogo inválido');
             }
 
-            this.projects = data.projects.filter((project) => this.isValidProject(project));
+            this.projects = this.validateProjectCollection(data.projects);
             this.renderProjects();
             this.hideLoading();
         } catch (error) {
@@ -64,7 +67,9 @@ export class ProjectManager {
     }
 
     isValidProject(project) {
-        const isNonEmptyString = (value) => typeof value === 'string' && value.trim().length > 0;
+        const isNonEmptyString = (value, maxLength = 2000) => typeof value === 'string'
+            && value.trim().length > 0
+            && value.length <= maxLength;
         const base = document.baseURI || window.location.href;
         const canonicalBase = document.querySelector?.('link[rel="canonical"]')?.href
             || 'https://skedar.github.io/';
@@ -78,20 +83,37 @@ export class ProjectManager {
 
         return Boolean(
             project
-            && isNonEmptyString(project.id)
-            && isNonEmptyString(project.title)
-            && isNonEmptyString(project.description)
-            && isNonEmptyString(project.fullDescription)
+            && isNonEmptyString(project.id, 64)
+            && isNonEmptyString(project.title, 160)
+            && isNonEmptyString(project.description, 500)
+            && isNonEmptyString(project.fullDescription, 4000)
             && ['active', 'development', 'archived'].includes(project.status)
             && ['web', 'game', 'tool', 'experiment'].includes(project.category)
             && Array.isArray(project.technologies)
             && project.technologies.length > 0
-            && project.technologies.every(isNonEmptyString)
+            && project.technologies.length <= 12
+            && project.technologies.every((technology) => isNonEmptyString(technology, 64))
             && isNonEmptyString(project.lastUpdated)
             && !Number.isNaN(Date.parse(project.lastUpdated))
             && hasSafeLiveUrl
             && hasSafeRepoUrl
         );
+    }
+
+    validateProjectCollection(projects) {
+        if (!Array.isArray(projects)) throw new Error('Catálogo de projetos inválido');
+        const seenIds = new Set();
+
+        return projects.map((project, index) => {
+            if (!this.isValidProject(project)) {
+                throw new Error(`Projeto inválido no índice ${index}`);
+            }
+            if (seenIds.has(project.id)) {
+                throw new Error(`ID de projeto duplicado: ${project.id}`);
+            }
+            seenIds.add(project.id);
+            return project;
+        });
     }
 
     renderProjects() {
@@ -247,19 +269,34 @@ export class ProjectManager {
         // #main-interface, então isolamos apenas seus irmãos, nunca o modal.
         this.setBackgroundInert(true);
         document.body.style.overflow = 'hidden';
-        window.requestAnimationFrame(() => {
+        if (this.modalFrameId !== null) window.cancelAnimationFrame(this.modalFrameId);
+        if (this.modalFocusTimer !== null) window.clearTimeout(this.modalFocusTimer);
+        this.modalFrameId = window.requestAnimationFrame(() => {
+            this.modalFrameId = null;
+            if (!this.isModalOpen()) return;
             this.modal?.classList.add('active');
             // Aguarde a classe ativa ser computada e o submit do terminal
             // encerrar antes de mover o foco; caso contrário o elemento que
             // acabou de ficar inert devolve o foco ao body.
-            window.setTimeout(() => {
-                document.getElementById('modal-close')?.focus({ preventScroll: true });
+            this.modalFocusTimer = window.setTimeout(() => {
+                this.modalFocusTimer = null;
+                if (this.isModalOpen()) {
+                    document.getElementById('modal-close')?.focus({ preventScroll: true });
+                }
             }, 50);
         });
     }
 
     closeModal() {
         if (!this.modal) return;
+        if (this.modalFrameId !== null) {
+            window.cancelAnimationFrame(this.modalFrameId);
+            this.modalFrameId = null;
+        }
+        if (this.modalFocusTimer !== null) {
+            window.clearTimeout(this.modalFocusTimer);
+            this.modalFocusTimer = null;
+        }
         this.modal.classList.remove('active');
         this.modal.hidden = true;
         this.modal.setAttribute('inert', '');
@@ -267,6 +304,27 @@ export class ProjectManager {
         document.body.style.overflow = '';
         if (this.previouslyFocusedElement instanceof HTMLElement) {
             this.previouslyFocusedElement.focus();
+        }
+    }
+
+    handleModalKeydown(event) {
+        if (event.key !== 'Tab' || !this.isModalOpen() || !this.modal) return;
+        const focusable = Array.from(this.modal.querySelectorAll('a[href], button, input, select, textarea'))
+            .filter((element) => element instanceof HTMLElement
+                && !element.hasAttribute('hidden')
+                && !element.closest('[hidden]')
+                && !element.closest('[inert]')
+                && !element.hasAttribute('disabled'));
+        if (focusable.length === 0) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
         }
     }
 
@@ -292,8 +350,10 @@ export class ProjectManager {
         const link = document.getElementById(elementId);
         if (!(link instanceof HTMLAnchorElement)) return;
         const base = document.baseURI || window.location.href;
+        const canonicalBase = document.querySelector?.('link[rel="canonical"]')?.href
+            || 'https://skedar.github.io/';
         const safeUrl = typeof url === 'string' && url.length > 0
-            ? sanitizeNavigationUrl(url, base)
+            ? (sanitizeNavigationUrl(url, base) ?? sanitizeNavigationUrl(url, canonicalBase))
             : null;
         link.hidden = !safeUrl;
         if (safeUrl) link.href = safeUrl;

@@ -45,4 +45,17 @@ test('rejects unsafe, external, and malformed project URLs', () => {
 test('rejects malformed technology entries', () => {
     assert.equal(validate.call({}, { ...validProject, technologies: [''] }), false);
     assert.equal(validate.call({}, { ...validProject, technologies: [{}] }), false);
+    assert.equal(validate.call({}, { ...validProject, technologies: Array(20).fill('tag') }), false);
+});
+
+test('rejects duplicate IDs and fails the entire malformed collection', () => {
+    const manager = Object.create(ProjectManager.prototype);
+    assert.throws(
+        () => manager.validateProjectCollection([validProject, { ...validProject }]),
+        /duplicado/i,
+    );
+    assert.throws(
+        () => manager.validateProjectCollection([validProject, { ...validProject, id: 'PRJ-002', title: '' }]),
+        /inválido/i,
+    );
 });

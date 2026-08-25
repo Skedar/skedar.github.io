@@ -198,6 +198,7 @@ export function sanitizeNavigationUrl(url, base) {
     }
 
     if (resolved.protocol !== 'http:' && resolved.protocol !== 'https:') return null;
+    if (resolved.username || resolved.password) return null;
     if (resolved.origin !== baseUrl.origin) return null;
     return resolved.href;
 }

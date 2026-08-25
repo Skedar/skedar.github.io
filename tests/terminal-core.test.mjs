@@ -51,6 +51,7 @@ test('allows only safe HTTP(S) and same-origin relative navigation URLs', () => 
     assert.equal(sanitizeNavigationUrl('javascript:alert(1)', 'https://skedar.github.io/'), null);
     assert.equal(sanitizeNavigationUrl('data:text/html,boom', 'https://skedar.github.io/'), null);
     assert.equal(sanitizeNavigationUrl('//evil.example/path', 'https://skedar.github.io/'), null);
+    assert.equal(sanitizeNavigationUrl('https://user:pass@skedar.github.io/path', 'https://skedar.github.io/'), null);
 });
 
 test('exposes the complete terminal command surface', () => {

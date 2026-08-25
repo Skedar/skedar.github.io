@@ -51,6 +51,7 @@ export class Terminal {
         this.cwd = HOME_PATH;
         this.history = [];
         this.historyIndex = 0;
+        this.historyDraft = '';
 
         this.commands = this.buildCommandTable();
 
@@ -113,11 +114,16 @@ export class Terminal {
 
     recallHistory(direction) {
         if (this.history.length === 0) return;
+        if (direction < 0 && this.historyIndex === this.history.length) {
+            this.historyDraft = this.input.value;
+        }
         this.historyIndex = Math.min(
             this.history.length,
             Math.max(0, this.historyIndex + direction),
         );
-        this.input.value = this.history[this.historyIndex] ?? '';
+        this.input.value = this.historyIndex === this.history.length
+            ? this.historyDraft
+            : (this.history[this.historyIndex] ?? '');
         // move o cursor para o fim
         const end = this.input.value.length;
         this.input.setSelectionRange(end, end);
@@ -126,17 +132,36 @@ export class Terminal {
     autocomplete() {
         const value = this.input.value;
         const trimmedStart = value.replace(/^\s+/, '');
-        if (!trimmedStart.includes(' ')) {
+        const firstWhitespace = trimmedStart.search(/\s/);
+        if (firstWhitespace === -1) {
             const matches = completeToken(trimmedStart, COMMAND_NAMES);
             this.applyCompletion(trimmedStart, matches, '');
             return;
         }
-        // completa argumento contra os filhos do diretório atual
-        const spaceIndex = value.lastIndexOf(' ');
-        const prefixPart = value.slice(0, spaceIndex + 1);
-        const argFragment = value.slice(spaceIndex + 1);
-        const matches = completeToken(argFragment, listVirtualChildren(this.cwd));
-        this.applyCompletion(argFragment, matches, prefixPart);
+
+        const argumentStart = firstWhitespace
+            + (trimmedStart.slice(firstWhitespace).match(/^\s+/)?.[0].length ?? 0);
+        const prefixPart = `${trimmedStart.slice(0, argumentStart)}`;
+        const argFragment = trimmedStart.slice(argumentStart);
+        const slashIndex = argFragment.lastIndexOf('/');
+        const parentFragment = slashIndex >= 0 ? argFragment.slice(0, slashIndex) : '';
+        const leafFragment = slashIndex >= 0 ? argFragment.slice(slashIndex + 1) : argFragment;
+
+        let completionBase = this.cwd;
+        if (parentFragment) {
+            const normalizedParent = parentFragment.replace(/^~\/home\/?/, '').replace(/\/$/, '');
+            const firstSegment = normalizedParent.split('/')[0];
+            const startsAtHome = listVirtualChildren(HOME_PATH).includes(firstSegment);
+            completionBase = normalizeVirtualPath(startsAtHome ? HOME_PATH : this.cwd, normalizedParent);
+        }
+
+        const matches = completionBase
+            ? completeToken(leafFragment, listVirtualChildren(completionBase))
+            : [];
+        const completedMatches = matches.map((match) => (
+            parentFragment ? `${parentFragment}/${match}` : match
+        ));
+        this.applyCompletion(argFragment, completedMatches, prefixPart);
     }
 
     applyCompletion(fragment, matches, prefixPart) {
@@ -166,7 +191,7 @@ export class Terminal {
         const handler = this.commands[parsed.command];
         if (!handler) {
             this.printError(`comando não encontrado: ${parsed.command}`);
-            const hint = completeToken(parsed.command.replace(/^\//, ''), COMMAND_NAMES);
+            const hint = completeToken(parsed.command, COMMAND_NAMES);
             if (hint.length > 0) this.printMuted(`sugestões: ${hint.join(', ')}`);
             else this.printMuted("digite /help ou /h para a lista de comandos");
             return;
@@ -186,6 +211,7 @@ export class Terminal {
             if (this.history.length > MAX_HISTORY) this.history.shift();
         }
         this.historyIndex = this.history.length;
+        this.historyDraft = '';
     }
 
     /* ---- handlers ---- */
