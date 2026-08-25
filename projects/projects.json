@@ -15,13 +15,26 @@
     },
     {
       "id": "PRJ-002",
-      "title": "Cyberpunk Archive 2",
+      "title": "Luis 'Skedar' Rizzi",
+      "description": "Meu Curriculum Vitae",
+      "fullDescription": "Local onde mora toda a minha tragetória profissional e estudos.",
+      "status": "active",
+      "category": "web",
+      "technologies": ["HTML5", "Markdown", "CV", "JS", "CSS"],
+      "terminalFile": "luisrizzi-cv.sh",
+      "liveUrl": "https://skedar.com.br",
+      "repoUrl": "",
+      "lastUpdated": "2026-08-24T00:00:00Z"
+    },
+    {
+      "id": "PRJ-666",
+      "title": "Cyberpunk Archive",
       "description": "Arquivo cronológico dedicado ao cyberpunk, reunindo obras, autores, conceitos e recursos do gênero.",
       "fullDescription": "Cyberpunk Archive é um arquivo digital, cronológico e orientado por fontes dedicado à preservação e organização do gênero cyberpunk. O projeto reúne obras, autores, conceitos, movimentos e recursos oficiais em uma interface pública de consulta.",
       "status": "active",
       "category": "web",
       "technologies": ["GitHub Pages", "Curadoria", "Pesquisa"],
-      "terminalFile": "cyberpunk-archive2.sh",
+      "terminalFile": "cyberpunk-archive.sh",
       "liveUrl": "https://skedar.github.io/projects/cyberpunk-archive/",
       "repoUrl": "",
       "lastUpdated": "2026-08-24T00:10:00Z"
