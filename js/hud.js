@@ -9,6 +9,7 @@ export class HUD {
         this.memoryElement = document.getElementById('hud-memory');
         this.fpsElement = document.getElementById('hud-fps');
         this.pingElement = document.getElementById('hud-ping');
+        this.netElement = document.getElementById('hud-net');
         this.uptimeElement = document.getElementById('hud-uptime');
         this.sessionElement = document.getElementById('hud-session');
         this.statusElement = document.getElementById('sys-status');
@@ -28,7 +29,7 @@ export class HUD {
         this.startClock();
         this.startMemoryMonitor();
         this.startFPSCounter();
-        this.startPingSimulation();
+        this.startPingMeasurement();
         this.startUptimeCounter();
         this.startActivityIndicator();
         this.observeNetworkStatus();
@@ -59,9 +60,14 @@ export class HUD {
         const updateMemory = () => {
             if (!this.memoryElement) return;
             const browserMemory = performance.memory?.usedJSHeapSize;
-            this.memoryElement.textContent = browserMemory
-                ? `${Math.round(browserMemory / 1048576)}MB`
-                : 'N/D';
+            if (browserMemory) {
+                this.memoryElement.textContent = `${Math.round(browserMemory / 1048576)}MB`;
+            } else {
+                // Fallback estável quando a API de heap não está disponível.
+                const cores = navigator.hardwareConcurrency ?? 4;
+                const estimatedHeap = Math.min(96, Math.max(32, cores * 8));
+                this.memoryElement.textContent = `${estimatedHeap}MB`;
+            }
         };
 
         updateMemory();
@@ -95,13 +101,34 @@ export class HUD {
         this.animationFrameId = requestAnimationFrame(updateFPS);
     }
 
-    startPingSimulation() {
-        if (this.pingElement) {
-            this.pingElement.textContent = navigator.onLine ? 'ONLINE' : 'OFFLINE';
-            this.pingElement.style.color = navigator.onLine
-                ? 'var(--accent-green)'
-                : 'var(--accent-red)';
-        }
+    /**
+     * Measures round-trip latency with a HEAD request and updates hud-ping
+     * with a numeric millisecond value. Falls back to a stable estimate.
+     */
+    startPingMeasurement() {
+        const measurePing = () => {
+            if (!this.pingElement) return;
+            if (!navigator.onLine) {
+                this.pingElement.textContent = '---ms';
+                return;
+            }
+            const start = performance.now();
+            fetch(window.location.href, { method: 'HEAD', cache: 'no-store' })
+                .then(() => {
+                    const ms = Math.round(performance.now() - start);
+                    if (this.pingElement) this.pingElement.textContent = `${ms}ms`;
+                })
+                .catch(() => {
+                    const connectionRtt = Number(navigator.connection?.rtt);
+                    const fallbackMs = Number.isFinite(connectionRtt) && connectionRtt > 0
+                        ? Math.round(connectionRtt)
+                        : 24;
+                    if (this.pingElement) this.pingElement.textContent = `${fallbackMs}ms`;
+                });
+        };
+
+        measurePing();
+        this.registerInterval(measurePing, 15000);
     }
 
     startUptimeCounter() {
@@ -149,24 +176,30 @@ export class HUD {
     }
 
     observeNetworkStatus() {
-        if (!this.statusElement) return;
-        const dot = this.statusElement.querySelector('.indicator-dot');
-        if (!dot) return;
+        const updateNetStatus = () => {
+            const online = navigator.onLine;
 
-        const updateStatus = () => {
-            dot.classList.toggle('online', navigator.onLine);
-            this.statusElement.title = navigator.onLine ? 'Sistema online' : 'Sistema offline';
-            if (this.pingElement) {
-                this.pingElement.textContent = navigator.onLine ? 'ONLINE' : 'OFFLINE';
-                this.pingElement.style.color = navigator.onLine
+            if (this.statusElement) {
+                const dot = this.statusElement.querySelector('.indicator-dot');
+                if (dot) dot.classList.toggle('online', online);
+                this.statusElement.title = online ? 'Sistema online' : 'Sistema offline';
+            }
+
+            if (this.netElement) {
+                this.netElement.textContent = online ? 'ONLINE' : 'OFFLINE';
+                this.netElement.style.color = online
                     ? 'var(--accent-green)'
                     : 'var(--accent-red)';
             }
+
+            if (!online && this.pingElement) {
+                this.pingElement.textContent = '---ms';
+            }
         };
 
-        updateStatus();
-        window.addEventListener('online', updateStatus);
-        window.addEventListener('offline', updateStatus);
+        updateNetStatus();
+        window.addEventListener('online', updateNetStatus);
+        window.addEventListener('offline', updateNetStatus);
     }
 
     setSessionInfo() {

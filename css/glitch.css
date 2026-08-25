@@ -243,6 +243,116 @@
         width: 100% !important;
         border-right: none !important;
     }
+
+    .nav-link.glitching,
+    .logo-container.glitching {
+        animation: none !important;
+    }
+
+    .logo-cursor {
+        animation: none !important;
+        opacity: 1 !important;
+    }
+
+    .system-glyph .system-glyph-lines,
+    .system-glyph-lines {
+        animation: none !important;
+    }
+
+    .system-glyph {
+        animation: none !important;
+    }
+
+    .system-glyph.glitching .system-glyph-lines {
+        animation: none !important;
+    }
+}
+
+/* ---- NAV LINK GLITCH ---- */
+
+.nav-link.glitching {
+    animation: navGlitch 0.3s steps(2);
+    color: var(--accent-cyan);
+}
+
+@keyframes navGlitch {
+    0%, 100% { transform: translate(0, 0); filter: none; }
+    25% { transform: translate(-2px, 1px); filter: hue-rotate(90deg) brightness(1.5); }
+    75% { transform: translate(2px, -1px); filter: hue-rotate(-90deg) brightness(1.2); }
+}
+
+/* ---- LOGO CONTAINER GLITCH ---- */
+
+.logo-container.glitching {
+    animation: logoGlitch 0.3s steps(3);
+}
+
+@keyframes logoGlitch {
+    0%, 100% { transform: translate(0, 0); filter: none; }
+    20% { transform: translate(-3px, 1px); filter: hue-rotate(90deg) brightness(2); }
+    40% { transform: translate(3px, -1px); filter: hue-rotate(-90deg); }
+    60% { transform: translate(-1px, 2px); filter: brightness(1.5) contrast(1.5); }
+    80% { transform: translate(1px, -2px); filter: none; }
+}
+
+/* ---- LOGO CURSOR BLINK ---- */
+
+.logo-cursor {
+    display: inline-block;
+    color: var(--accent-cyan);
+    animation: logoCursorBlink 1s step-end infinite;
+}
+
+@keyframes logoCursorBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* ---- SYSTEM GLYPH ---- */
+
+.system-glyph {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: var(--space-2, 8px);
+    animation: glyphFloat 2.5s ease-in-out infinite alternate;
+    perspective: 200px;
+}
+
+.system-glyph-lines {
+    font-family: var(--font-mono);
+    font-size: 8px;
+    line-height: 1.15;
+    color: var(--accent-cyan-dim);
+    text-shadow: 0 0 4px var(--accent-cyan-glow);
+    white-space: pre;
+    animation: glyphSpin 4s linear infinite;
+    transform-style: preserve-3d;
+}
+
+@keyframes glyphSpin {
+    0%   { transform: rotateY(0deg) scaleX(1); opacity: 0.8; }
+    25%  { transform: rotateY(90deg) scaleX(0.1); opacity: 0.3; }
+    50%  { transform: rotateY(180deg) scaleX(1); opacity: 0.8; }
+    75%  { transform: rotateY(270deg) scaleX(0.1); opacity: 0.3; }
+    100% { transform: rotateY(360deg) scaleX(1); opacity: 0.8; }
+}
+
+@keyframes glyphFloat {
+    from { transform: translateY(0); }
+    to   { transform: translateY(-2px); }
+}
+
+.system-glyph.glitching .system-glyph-lines {
+    animation: glyphGlitch 0.25s steps(3);
+    color: var(--accent-cyan);
+}
+
+@keyframes glyphGlitch {
+    0%, 100% { transform: translate(0, 0) rotateY(0deg); filter: none; }
+    25% { transform: translate(-2px, 1px) rotateY(30deg); filter: hue-rotate(90deg); }
+    50% { transform: translate(2px, -1px) rotateY(-30deg); filter: hue-rotate(-90deg) brightness(2); }
+    75% { transform: translate(-1px, 2px) rotateY(15deg); filter: none; }
 }
 
 /* ---- PRINT STYLES ---- */

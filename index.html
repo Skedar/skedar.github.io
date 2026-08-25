@@ -6,7 +6,7 @@
     <meta name="description" content="Skedar_ - Terminal central de projetos. Interface de acesso e navegação para todos os sistemas.">
     <meta name="theme-color" content="#0a0e12">
     <link rel="canonical" href="https://skedar.github.io/">
-    <title>Skedar_ // Terminal Central</title>
+    <title>[Skedar//Projects]</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -58,25 +58,26 @@
     <div class="interface" id="main-interface" inert>
         <header class="top-bar">
             <div class="top-bar-left">
-                <div class="logo-container" role="img" aria-label="Skedar">
-                    <span class="logo-bracket" aria-hidden="true">[</span>
-                    <span class="logo-text">SKEDAR_</span>
-                    <span class="logo-bracket" aria-hidden="true">]</span>
-                </div>
+                <button type="button" id="site-logo" class="logo-container" aria-label="Skedar - reativar materialização"><span class="logo-bracket" aria-hidden="true">[</span>Skedar<span class="logo-cursor" aria-hidden="true">_</span><span class="logo-bracket" aria-hidden="true">]</span></button>
                 <nav class="main-nav" aria-label="Navegação principal">
-                    <button type="button" class="nav-link active" data-section="projects" aria-current="page">
-                        <span class="nav-index">01</span> PROJETOS
+                    <button type="button" class="nav-link active" data-section="terminal" aria-current="page">
+                        <span class="nav-index">01</span> TERMINAL
+                    </button>
+                    <button type="button" class="nav-link" data-section="projects">
+                        <span class="nav-index">02</span> PROJETOS
                     </button>
                     <button type="button" class="nav-link" data-section="about">
-                        <span class="nav-index">02</span> SOBRE
+                        <span class="nav-index">03</span> SOBRE
                     </button>
                     <button type="button" class="nav-link" data-section="archive">
-                        <span class="nav-index">03</span> ARQUIVO
+                        <span class="nav-index">04</span> ARQUIVO
                     </button>
                 </nav>
             </div>
             <div class="top-bar-right">
                 <div class="system-indicators">
+                    <div id="system-glyph" class="system-glyph" aria-hidden="true"><pre class="system-glyph-lines"> /\
+/__\</pre></div>
                     <span class="indicator" id="sys-status" title="Status do sistema">
                         <span class="indicator-dot online"></span> SYS.ONLINE
                     </span>
@@ -86,7 +87,40 @@
         </header>
 
         <main class="main-content">
-            <section id="section-projects" class="section active" aria-labelledby="projects-heading" tabindex="-1">
+            <section id="section-terminal" class="section terminal-home active" aria-labelledby="terminal-home-heading" tabindex="-1">
+                <h4 class="terminal-home-title" id="terminal-home-heading">..Close the World, TxEn Eht NepO..</h4>
+                <section class="terminal" id="terminal" aria-labelledby="terminal-heading">
+                    <div class="terminal-titlebar">
+                        <h2 class="terminal-title" id="terminal-heading">
+                            <span class="title-prefix" aria-hidden="true">//</span> CONSOLE
+                        </h2>
+                        <span class="terminal-hint" aria-hidden="true">/help</span>
+                    </div>
+                    <div
+                        class="terminal-output"
+                        id="terminal-output"
+                        role="log"
+                        aria-live="polite"
+                        aria-label="Saída do terminal"
+                        tabindex="0"></div>
+                    <form class="terminal-form" id="terminal-form">
+                        <label class="sr-only" for="terminal-input">Entrada do terminal</label>
+                        <span class="terminal-prompt" id="terminal-path" aria-hidden="true">~/home$</span>
+                        <input
+                            type="text"
+                            id="terminal-input"
+                            class="terminal-input"
+                            autocomplete="off"
+                            autocapitalize="off"
+                            spellcheck="false"
+                            aria-label="Digite um comando"
+                            maxlength="256">
+                        <button type="submit" class="sr-only">Executar comando</button>
+                    </form>
+                </section>
+            </section>
+
+            <section id="section-projects" class="section" aria-labelledby="projects-heading" tabindex="-1" hidden>
                 <div class="section-header">
                     <h1 id="projects-heading" class="section-title">
                         <span class="title-prefix">//</span> PROJETOS_ATIVOS
@@ -211,41 +245,12 @@
             </div>
         </div>
 
-        <section class="terminal" id="terminal" aria-labelledby="terminal-heading">
-            <div class="terminal-titlebar">
-                <h2 class="terminal-title" id="terminal-heading">
-                    <span class="title-prefix" aria-hidden="true">//</span> CONSOLE
-                </h2>
-                <span class="terminal-hint" aria-hidden="true">/help</span>
-            </div>
-            <div
-                class="terminal-output"
-                id="terminal-output"
-                role="log"
-                aria-live="polite"
-                aria-label="Saída do terminal"
-                tabindex="0"></div>
-            <form class="terminal-form" id="terminal-form">
-                <label class="sr-only" for="terminal-input">Entrada do terminal</label>
-                <span class="terminal-prompt" id="terminal-path" aria-hidden="true">~/home$</span>
-                <input
-                    type="text"
-                    id="terminal-input"
-                    class="terminal-input"
-                    autocomplete="off"
-                    autocapitalize="off"
-                    spellcheck="false"
-                    aria-label="Digite um comando"
-                    maxlength="256">
-                <button type="submit" class="sr-only">Executar comando</button>
-            </form>
-        </section>
-
         <footer class="hud-bar">
             <div class="hud-left">
                 <div class="hud-item"><span class="hud-label">MEM:</span><span class="hud-value" id="hud-memory">--</span></div>
                 <div class="hud-item"><span class="hud-label">FPS:</span><span class="hud-value" id="hud-fps">--</span></div>
-                <div class="hud-item"><span class="hud-label">NET:</span><span class="hud-value" id="hud-ping">--</span></div>
+                <div class="hud-item"><span class="hud-label">PING:</span><span class="hud-value" id="hud-ping">--</span></div>
+                <div class="hud-item"><span class="hud-label">NET:</span><span class="hud-value" id="hud-net">--</span></div>
             </div>
             <div class="hud-center">
                 <div class="hud-activity" id="hud-activity" aria-hidden="true">

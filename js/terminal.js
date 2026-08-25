@@ -388,7 +388,7 @@ export class Terminal {
     runHome() {
         this.cwd = HOME_PATH;
         this.updatePrompt();
-        this.navigate('projects');
+        this.navigate('terminal');
         this.print('-> ~/home');
     }
 

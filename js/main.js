@@ -7,6 +7,15 @@ import { HUD } from './hud.js';
 import { ProjectManager } from './projects.js';
 import { Terminal } from './terminal.js';
 
+const GLYPH_FRAMES = [
+    ' /\\\n/__\\',
+    '/||\n\\||',
+    ' __\n|__|',
+    '|/|\n|/|',
+    '\\|/\n/|\\',
+    ' ()\n/__\\',
+];
+
 class SkedarApp {
     constructor() {
         this.bootScreen = document.getElementById('boot-screen');
@@ -15,6 +24,8 @@ class SkedarApp {
         this.projectManager = null;
         this.terminal = null;
         this.isInitialized = false;
+        this.glyphFrameIndex = 0;
+        this.isMaterializing = false;
 
         this.init();
     }
@@ -80,8 +91,7 @@ class SkedarApp {
 
     /**
      * Exibe o prompt de confirmação e resolve somente quando o usuário aceita
-     * com Enter, Y ou YES (sem distinção de maiúsculas). NO ou entrada inválida
-     * mantém a espera.
+     * com Enter, Y ou YES. NO ou entrada inválida mantém a espera.
      */
     awaitBootConfirmation() {
         const form = document.getElementById('boot-confirm');
@@ -95,7 +105,6 @@ class SkedarApp {
 
         form.hidden = false;
         if (bootStatus) bootStatus.textContent = 'AGUARDANDO CONFIRMAÇÃO';
-        // Foco na confirmação encerra a sequência de boot (requisito).
         input.focus();
 
         return new Promise((resolve) => {
@@ -121,8 +130,8 @@ class SkedarApp {
     }
 
     /**
-     * Materializa a interface com um efeito Matrix/glitch controlado e depois
-     * assenta no site corrigido. Reduced-motion pula a animação.
+     * Materializes the interface with a Matrix/glitch effect then settles.
+     * Reduced-motion skips the animation.
      */
     async materialize() {
         const reducedMotion = this.prefersReducedMotion();
@@ -146,6 +155,34 @@ class SkedarApp {
         }
 
         window.setTimeout(() => this.bootScreen?.remove(), reducedMotion ? 1 : 600);
+    }
+
+    /**
+     * Replays the Matrix materialization effect on demand (logo click).
+     * Does not re-run boot confirmation. No-op under reduced motion.
+     */
+    async replayMaterialization() {
+        if (this.prefersReducedMotion() || this.isMaterializing) return;
+        const overlay = document.getElementById('materialize-overlay');
+        if (!overlay) return;
+        this.isMaterializing = true;
+        this.clearElement(overlay);
+        overlay.classList.remove('settling');
+        overlay.hidden = false;
+        this.buildMatrixColumns(overlay);
+        this.mainInterface?.classList.add('materializing');
+        try {
+            await this.sleep(1300);
+            overlay.classList.add('settling');
+            this.mainInterface?.classList.remove('materializing');
+            await this.sleep(400);
+            overlay.hidden = true;
+            overlay.classList.remove('settling');
+            this.clearElement(overlay);
+        } finally {
+            this.mainInterface?.classList.remove('materializing');
+            this.isMaterializing = false;
+        }
     }
 
     buildMatrixColumns(overlay) {
@@ -178,6 +215,9 @@ class SkedarApp {
         this.projectManager = new ProjectManager();
         this.setupNavigation();
         this.setupKeyboardShortcuts();
+        this.setupLogoInteraction();
+        this.setupSystemGlyph();
+        this.setupAmbientGlitches();
         this.addScanlineEffect();
         this.addDataStream();
         this.terminal = new Terminal({
@@ -221,7 +261,7 @@ class SkedarApp {
         });
     }
 
-    /** Navega para uma seção conhecida (usado pelo terminal). */
+    /** Navigates to a known section (used by the terminal). */
     navigateTo(section) {
         const link = document.querySelector(`.nav-link[data-section="${section}"]`);
         if (link instanceof HTMLElement) link.click();
@@ -239,11 +279,83 @@ class SkedarApp {
                 || target instanceof HTMLSelectElement
                 || target instanceof HTMLTextAreaElement;
 
-            if (!isTyping && ['1', '2', '3'].includes(event.key)) {
-                const sectionNames = { 1: 'projects', 2: 'about', 3: 'archive' };
+            if (!isTyping && ['1', '2', '3', '4'].includes(event.key)) {
+                const sectionNames = { 1: 'terminal', 2: 'projects', 3: 'about', 4: 'archive' };
                 document.querySelector(`[data-section="${sectionNames[event.key]}"]`)?.click();
             }
         });
+    }
+
+    /** Wires the site-logo button to replay the materialization effect. */
+    setupLogoInteraction() {
+        const logo = document.getElementById('site-logo');
+        if (!(logo instanceof HTMLElement)) return;
+        logo.addEventListener('click', () => {
+            this.triggerGlitchEffect(logo);
+            this.replayMaterialization();
+        });
+    }
+
+    /** Starts the autonomous 3D ASCII system glyph animation. No-op under reduced motion. */
+    setupSystemGlyph() {
+        if (this.prefersReducedMotion()) return;
+        const glyphEl = document.querySelector('.system-glyph-lines');
+        if (!glyphEl) return;
+
+        const rotateGlyph = () => {
+            if (this.prefersReducedMotion()) return;
+            this.glyphFrameIndex = (this.glyphFrameIndex + 1) % GLYPH_FRAMES.length;
+            glyphEl.textContent = GLYPH_FRAMES[this.glyphFrameIndex];
+        };
+
+        window.setInterval(rotateGlyph, 350);
+
+        const scheduleGlyphGlitch = () => {
+            window.setTimeout(() => {
+                if (this.prefersReducedMotion()) return;
+                const container = document.getElementById('system-glyph');
+                if (container) {
+                    container.classList.add('glitching');
+                    window.setTimeout(() => container.classList.remove('glitching'), 250);
+                }
+                scheduleGlyphGlitch();
+            }, 3000 + Math.random() * 9000);
+        };
+
+        scheduleGlyphGlitch();
+    }
+
+    /**
+     * Sets up ambient random glitch effects on nav links and the brand logo.
+     * No-op under reduced motion.
+     */
+    setupAmbientGlitches() {
+        const hoverTargets = [
+            ...document.querySelectorAll('.nav-link'),
+            document.getElementById('site-logo'),
+        ].filter(Boolean);
+        hoverTargets.forEach((target) => {
+            target.addEventListener('mouseenter', () => this.triggerGlitchEffect(target));
+        });
+
+        if (this.prefersReducedMotion()) return;
+
+        const scheduleNext = () => {
+            window.setTimeout(() => {
+                if (this.prefersReducedMotion()) return;
+
+                const targets = [
+                    ...document.querySelectorAll('.nav-link'),
+                    document.getElementById('site-logo'),
+                ].filter(Boolean);
+                const target = targets[Math.floor(Math.random() * targets.length)];
+                if (target) this.triggerGlitchEffect(target);
+
+                scheduleNext();
+            }, 2500 + Math.random() * 7500);
+        };
+
+        scheduleNext();
     }
 
     addScanlineEffect() {
