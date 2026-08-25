@@ -2,156 +2,6 @@
   "projects": [
     {
       "id": "PRJ-001",
-      "title": "Skedar Corporation",
-      "description": "Um backup digital do meu cérebro.",
-      "fullDescription": "Aqui é meu blog pessoa, livro de receitas, hobbies diversos, cultura maker, DIY, informações e mais a respeito de quem sou e o que gosto.",
-      "status": "active",
-      "category": "web",
-      "technologies": ["Wordpress", "CSS", "Blog"],
-      "terminalFile": "skedarcorp.sh",
-      "liveUrl": "https://skedarcorp.com",
-      "repoUrl": "",
-      "lastUpdated": "2026-08-24T00:00:00Z"
-    }
-    ],
-    [  
-    {
-      "id": "PRJ-002",
-      "title": "Luis 'Skedar' Rizzi",
-      "description": "Meu Curriculum Vitae",
-      "fullDescription": "Local onde mora toda a minha tragetória profissional e estudos.",
-      "status": "active",
-      "category": "web",
-      "technologies": ["HTML5", "Markdown", "CV", "JS", "CSS"],
-      "terminalFile": "luisrizzi-cv.sh",
-      "liveUrl": "https://skedar.com.br",
-      "repoUrl": "",
-      "lastUpdated": "2025-10-25T08:30:23Z"
-    }
-    ],
-    [  
-    {
-      "id": "PRJ-003",
-      "title": "Dead Pirate Studios",
-      "description": "Studio de desenvolvimento focado em Sci-Fi e Cyberpunk",
-      "fullDescription": "Desenvolvimento de games, animações, publicidade e elementos focados principalmente na cultura cyberpunk.",
-      "status": "active",
-      "category": "web",
-      "technologies": ["HTML5", "Markdown", "CV", "JS", "CSS"],
-      "terminalFile": "dps.sh",
-      "liveUrl": "https://deadpiratestudios.com",
-      "repoUrl": "",
-      "lastUpdated": "2023-04-27T08:30:23Z"
-    }
-    ],
-    [  
-    {
-      "id": "PRJ-004",
-      "title": "Game Designer Space",
-      "description": "Devlog de Desenvolvimento",
-      "fullDescription": "Blog e devlog para meus projetos e estudos relacionados a criação de jogos.",
-      "status": "active",
-      "category": "web",
-      "technologies": ["HTML5", "Markdown", "Gamedev", "JS", "CSS"],
-      "terminalFile": "gamedesignerspace.sh",
-      "liveUrl": "https://gamedesigner.space",
-      "repoUrl": "",
-      "lastUpdated": "2026-08-20T10:33:23Z"
-    }
-    ],
-    [  
-    {
-      "id": "PRJ-005",
-      "title": "RAWR!! Pages",
-      "description": "Páginas Pessoais Caóticas",
-      "fullDescription": "Rede social de sites e blogs de maneira decentralizada e independente.",
-      "status": "archived",
-      "category": "web",
-      "technologies": ["HTML5", "PHP", "JS", "CSS"],
-      "terminalFile": "rawrpage.sh",
-      "liveUrl": "https://#",
-      "repoUrl": "",
-      "lastUpdated": "2025-10-25T08:30:23Z"
-    }
-    ],
-    [  
-    {
-      "id": "PRJ-006",
-      "title": "Diversão Educativa",
-      "description": "Site para jogos educacionais gratuitos",
-      "fullDescription": "Projeto social de jogos educativos para todas as idades de forma totalmente gratuita.",
-      "status": "active",
-      "category": "web",
-      "technologies": ["HTML5", "PHP", "JS", "CSS"],
-      "terminalFile": "diversaoeducativa.sh",
-      "liveUrl": "https://diversaoeducativa.com.br",
-      "repoUrl": "",
-      "lastUpdated": "2025-10-25T08:30:23Z"
-    }
-    ],
-    [  
-    {
-      "id": "PRJ-007",
-      "title": "Turma do Saber",
-      "description": "Linha de produtos da Turma do Saber",
-      "fullDescription": "Turma do Saber são os personagens dos jogos da Diversão Educativa, linha de desenho animado, gibis, produtos escolares e lúdicos.",
-      "status": "archived",
-      "category": "web",
-      "technologies": ["HTML5", "PHP", "JS", "CSS"],
-      "terminalFile": "turmadosaber.sh",
-      "liveUrl": "https://turmadosaber.com.br",
-      "repoUrl": "",
-      "lastUpdated": "2025-10-25T08:30:23Z"
-    }
-    ],
-    [  
-    {
-      "id": "PRJ-008",
-      "title": "Viral Forge",
-      "description": "Loja Online de Produtos Hi-Tech",
-      "fullDescription": "E-commerce com foco exclusivo ao público hacker, geek, nerd, ti, otaku e afins com produtos para streamers, DIY, e entusiastas.",
-      "status": "active",
-      "category": "web",
-      "technologies": ["HTML5", "PHP", "JS", "CSS"],
-      "terminalFile": "viralforge.sh",
-      "liveUrl": "https://viralforge.com.br",
-      "repoUrl": "",
-      "lastUpdated": "2025-10-25T08:30:23Z"
-    }
-    ],
-    [  
-    {
-      "id": "PRJ-009",
-      "title": "Necromantis",
-      "description": "Linha de produtos",
-      "fullDescription": "Produtos e kits DIY de desenvolvimento próprio",
-      "status": "archived",
-      "category": "web",
-      "technologies": ["HTML5", "PHP", "JS", "CSS"],
-      "terminalFile": "necromantis.sh",
-      "liveUrl": "https://necromantis.com.br",
-      "repoUrl": "",
-      "lastUpdated": "2025-10-25T08:30:23Z"
-    }
-    ],
-    [  
-    {
-      "id": "PRJ-010",
-      "title": "NMTS",
-      "description": "Serviços de Outro Mundo",
-      "fullDescription": "Serviços de Impressão 3D, Manutenção em impressoras 3D, TI, Desenvolvimento e Tecnologia.",
-      "status": "archived",
-      "category": "web",
-      "technologies": ["HTML5", "PHP", "JS", "CSS"],
-      "terminalFile": "nmts.sh",
-      "liveUrl": "https://nmts.com.br",
-      "repoUrl": "",
-      "lastUpdated": "2025-10-25T08:30:23Z"
-    }
-    ],
-    [  
-    {
-      "id": "PRJ-011",
       "title": "Cyberpunk Archive",
       "description": "Arquivo cronológico dedicado ao cyberpunk, reunindo obras, autores, conceitos e recursos do gênero.",
       "fullDescription": "Cyberpunk Archive é um arquivo digital, cronológico e orientado por fontes dedicado à preservação e organização do gênero cyberpunk. O projeto reúne obras, autores, conceitos, movimentos e recursos oficiais em uma interface pública de consulta.",
@@ -160,6 +10,19 @@
       "technologies": ["GitHub Pages", "Curadoria", "Pesquisa"],
       "terminalFile": "cyberpunk-archive.sh",
       "liveUrl": "https://skedar.github.io/projects/cyberpunk-archive/",
+      "repoUrl": "",
+      "lastUpdated": "2026-08-24T00:00:00Z"
+    },
+    {
+      "id": "PRJ-002",
+      "title": "Skedar Corporation",
+      "description": "Um backup digital do meu cérebro.",
+      "fullDescription": "Aqui é meu blog pessoa, livro de receitas, hobbies diversos, cultura maker, DIY, informações e mais a respeito de quem sou e o que gosto.",
+      "status": "active",
+      "category": "web",
+      "technologies": ["Wordpress", "CSS", "Blog"],
+      "terminalFile": "skedarcorp.sh",
+      "liveUrl": "https://skedarcorp.com",
       "repoUrl": "",
       "lastUpdated": "2026-08-24T00:00:00Z"
     }
