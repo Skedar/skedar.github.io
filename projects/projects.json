@@ -2,14 +2,14 @@
   "projects": [
     {
       "id": "PRJ-001",
-      "title": "Cyberpunk Archive",
-      "description": "Arquivo cronológico dedicado ao cyberpunk, reunindo obras, autores, conceitos e recursos do gênero.",
-      "fullDescription": "Cyberpunk Archive é um arquivo digital, cronológico e orientado por fontes dedicado à preservação e organização do gênero cyberpunk. O projeto reúne obras, autores, conceitos, movimentos e recursos oficiais em uma interface pública de consulta.",
+      "title": "Skedar Corporation",
+      "description": "Backup digital do meu cérebro.",
+      "fullDescription": "Blog pessoal com diversas informações relacionadas à culinária, DIY, tech, cyberpunk e etc.",
       "status": "active",
       "category": "web",
-      "technologies": ["GitHub Pages", "Curadoria", "Pesquisa"],
-      "terminalFile": "cyberpunk-archive.sh",
-      "liveUrl": "https://skedar.github.io/projects/cyberpunk-archive/",
+      "technologies": ["Wordpress", "Blog", "Culinária"],
+      "terminalFile": "skedarcorp.sh",
+      "liveUrl": "https://skedarcorp.com",
       "repoUrl": "",
       "lastUpdated": "2026-08-24T00:00:00Z"
     },
