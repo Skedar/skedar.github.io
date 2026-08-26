@@ -59,6 +59,8 @@ test('adds App and Programa filters plus a real archived-project grid', async ()
     const html = await read('index.html');
     assert.match(html, /<option value="app">APP<\/option>/);
     assert.match(html, /<option value="program">PROGRAMA<\/option>/);
+    assert.match(html, /<option value="model-3d">MODELO 3D<\/option>/);
+    assert.match(html, /<option value="design">DESIGN<\/option>/);
     assert.match(html, /id="archive-count"/);
     assert.match(html, /id="archive-grid"/);
     assert.match(html, /id="archive-empty-state"/);
@@ -77,6 +79,9 @@ test('reserves square project media in cards and the modal', async () => {
     assert.match(css, /aspect-ratio:\s*1/);
     assert.match(css, /object-fit:\s*cover/);
     assert.match(css, /@keyframes\s+projectMediaBorder/);
+    assert.match(css, /grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
+    assert.match(css, /grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/);
+    assert.match(css, /\.modal-project-media\s*\{[\s\S]*width:\s*min\(180px,\s*55vw\)/);
 });
 
 test('wires the terminal module and returns home commands to Terminal', async () => {
@@ -98,6 +103,8 @@ test('extends glitch effects with character scrambling and reduced-motion covera
     assert.match(glitch, /\.nav-link\.glitching/);
     assert.match(glitch, /\.logo-container\.glitching/);
     assert.match(glitch, /\.system-glyph/);
+    assert.match(glitch, /@keyframes\s+systemFault/);
+    assert.match(glitch, /@keyframes\s+errorPulse/);
     assert.match(glitch, /@media \(prefers-reduced-motion: reduce\)[\s\S]*\.system-glyph/);
     assert.match(main, /createGlitchFrame/);
     assert.match(main, /glitchTimers/);

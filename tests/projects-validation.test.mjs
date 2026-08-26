@@ -46,6 +46,8 @@ test('accepts safe external HTTPS projects and rejects unsafe URL schemes', () =
 test('accepts App and Programa categories', () => {
     assert.equal(validate.call({}, { ...validProject, category: 'app' }), true);
     assert.equal(validate.call({}, { ...validProject, category: 'program' }), true);
+    assert.equal(validate.call({}, { ...validProject, category: 'model-3d' }), true);
+    assert.equal(validate.call({}, { ...validProject, category: 'design' }), true);
 });
 
 test('accepts an optional safe image and rejects unsafe image URLs', () => {

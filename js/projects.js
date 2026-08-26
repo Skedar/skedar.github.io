@@ -182,7 +182,7 @@ export class ProjectManager {
             && ['active', 'development', 'archived']
                 .includes(project.status)
 
-            && ['web', 'game', 'tool', 'app', 'program', 'experiment']
+            && ['web', 'game', 'tool', 'app', 'program', 'model-3d', 'design', 'experiment']
                 .includes(project.category)
 
             && Array.isArray(project.technologies)
@@ -367,6 +367,8 @@ export class ProjectManager {
             'tool',
             'app',
             'program',
+            'model-3d',
+            'design',
             'experiment'
         ];
 
@@ -421,6 +423,8 @@ export class ProjectManager {
             tool: 'FERRAMENTA',
             app: 'APP',
             program: 'PROGRAMA',
+            'model-3d': 'MODELO 3D',
+            design: 'DESIGN',
             experiment: 'EXPERIMENTO'
         };
 

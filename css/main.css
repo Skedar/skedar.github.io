@@ -481,7 +481,7 @@ select {
 /* Projects */
 .projects-grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-4);
     margin-bottom: var(--space-8);
 }
@@ -585,8 +585,14 @@ select {
 }
 
 .modal-project-media {
-    width: min(280px, 70vw);
+    width: min(180px, 55vw);
     margin: 0 auto;
+}
+
+@media (min-width: 1500px) {
+    .projects-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
 }
 
 .project-card-header {

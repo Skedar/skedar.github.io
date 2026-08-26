@@ -23,17 +23,36 @@
 }
 
 .glitch-text.glitching::before {
-    opacity: 0.8;
+    opacity: 0.95;
     color: var(--accent-cyan);
-    animation: glitchShift1 0.1s infinite;
-    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+    animation: glitchShift1 0.075s steps(2) infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 22%, 0 22%);
 }
 
 .glitch-text.glitching::after {
-    opacity: 0.8;
+    opacity: 0.95;
     color: var(--accent-magenta);
-    animation: glitchShift2 0.1s infinite;
-    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+    animation: glitchShift2 0.065s steps(2) infinite;
+    clip-path: polygon(0 68%, 100% 68%, 100% 100%, 0 100%);
+}
+
+.glitch-text.glitching,
+.glitch-label.glitching {
+    animation: systemFault 0.28s steps(2) 1;
+    color: var(--text-primary);
+    text-shadow:
+        -3px 0 var(--accent-magenta),
+        3px 0 var(--accent-cyan),
+        0 0 14px var(--accent-cyan-glow);
+}
+
+@keyframes systemFault {
+    0%, 100% { transform: translate(0); filter: none; clip-path: inset(0); }
+    10% { transform: translate(-5px, 2px) skewX(-8deg); filter: contrast(2.2) saturate(2); clip-path: inset(9% 0 72% 0); }
+    28% { transform: translate(6px, -2px) skewX(7deg); filter: hue-rotate(95deg) brightness(1.7); clip-path: inset(48% 0 26% 0); }
+    46% { transform: translate(-3px, -1px); filter: invert(1) contrast(2); clip-path: inset(76% 0 4% 0); }
+    65% { transform: translate(4px, 2px); filter: hue-rotate(-120deg) brightness(2); clip-path: inset(31% 0 49% 0); }
+    82% { transform: translate(-1px); filter: none; clip-path: inset(0); }
 }
 
 @keyframes glitchShift1 {
@@ -57,7 +76,11 @@
 /* ---- GLITCH CARD EFFECT ---- */
 
 .project-card.glitching {
-    animation: cardGlitch 0.3s steps(2) 2;
+    animation: cardGlitch 0.22s steps(2) 2, errorPulse 0.44s steps(2) 1;
+    box-shadow:
+        -5px 0 0 rgba(255, 0, 85, 0.55),
+        5px 0 0 rgba(0, 243, 255, 0.55),
+        0 0 28px var(--accent-magenta-dim);
 }
 
 @keyframes cardGlitch {
@@ -66,6 +89,13 @@
     50% { transform: translate(3px, -2px); filter: hue-rotate(-90deg); }
     75% { transform: translate(-2px, -1px); filter: brightness(1.5); }
     100% { transform: translate(0, 0); filter: none; }
+}
+
+@keyframes errorPulse {
+    0%, 100% { filter: none; clip-path: inset(0); }
+    20% { filter: contrast(1.8) hue-rotate(80deg); clip-path: inset(12% 0 58% 0); }
+    45% { filter: brightness(1.8) saturate(2); clip-path: inset(61% 0 14% 0); }
+    70% { filter: invert(0.15) contrast(1.6); clip-path: inset(34% 0 39% 0); }
 }
 
 /* ---- SCANLINE EFFECT ---- */
@@ -218,8 +248,14 @@
         opacity: 0 !important;
     }
 
+    .glitch-text.glitching {
+        animation: none !important;
+        text-shadow: none !important;
+    }
+
     .project-card.glitching {
         animation: none !important;
+        box-shadow: none !important;
     }
 
     .scanline-overlay {
@@ -245,8 +281,10 @@
     }
 
     .nav-link.glitching,
-    .logo-container.glitching {
+    .logo-container.glitching,
+    .glitch-label.glitching {
         animation: none !important;
+        text-shadow: none !important;
     }
 
     .logo-cursor {
@@ -271,7 +309,7 @@
 /* ---- NAV LINK GLITCH ---- */
 
 .nav-link.glitching {
-    animation: navGlitch 0.3s steps(2);
+    animation: navGlitch 0.2s steps(2) 2, systemFault 0.28s steps(2) 1;
     color: var(--accent-cyan);
 }
 
@@ -284,7 +322,7 @@
 /* ---- LOGO CONTAINER GLITCH ---- */
 
 .logo-container.glitching {
-    animation: logoGlitch 0.3s steps(3);
+    animation: logoGlitch 0.2s steps(3) 2, systemFault 0.28s steps(2) 1;
 }
 
 @keyframes logoGlitch {
@@ -344,7 +382,7 @@
 }
 
 .system-glyph.glitching .system-glyph-lines {
-    animation: glyphGlitch 0.25s steps(3);
+    animation: glyphGlitch 0.18s steps(3) 2, errorPulse 0.36s steps(2) 1;
     color: var(--accent-cyan);
 }
 
