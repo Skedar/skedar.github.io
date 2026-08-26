@@ -37,10 +37,36 @@ test('rejects empty required fields and missing or invalid dates', () => {
     assert.equal(validate.call({}, { ...validProject, lastUpdated: 'not-a-date' }), false);
 });
 
-test('rejects unsafe, external, and malformed project URLs', () => {
+test('accepts safe external HTTPS projects and rejects unsafe URL schemes', () => {
     assert.equal(validate.call({}, { ...validProject, liveUrl: 'javascript:alert(1)' }), false);
-    assert.equal(validate.call({}, { ...validProject, liveUrl: 'https://evil.example/project' }), false);
+    assert.equal(validate.call({}, { ...validProject, liveUrl: 'https://example.com/project' }), true);
     assert.equal(validate.call({}, { ...validProject, repoUrl: 'data:text/html,boom' }), false);
+});
+
+test('accepts App and Programa categories', () => {
+    assert.equal(validate.call({}, { ...validProject, category: 'app' }), true);
+    assert.equal(validate.call({}, { ...validProject, category: 'program' }), true);
+});
+
+test('accepts an optional safe image and rejects unsafe image URLs', () => {
+    assert.equal(validate.call({}, { ...validProject, imageUrl: '', imageAlt: '' }), true);
+    assert.equal(validate.call({}, {
+        ...validProject,
+        imageUrl: 'https://images.example.com/logo.png',
+        imageAlt: 'Logo do projeto',
+    }), true);
+    assert.equal(validate.call({}, { ...validProject, imageUrl: 'javascript:alert(1)' }), false);
+});
+
+test('splits active and archived projects deterministically', () => {
+    const manager = Object.create(ProjectManager.prototype);
+    manager.projects = [
+        validProject,
+        { ...validProject, id: 'PRJ-002', terminalFile: 'archived.sh', status: 'archived' },
+        { ...validProject, id: 'PRJ-003', terminalFile: 'development.sh', status: 'development' },
+    ];
+    assert.deepEqual(manager.getActiveProjects().map((project) => project.id), ['PRJ-001', 'PRJ-003']);
+    assert.deepEqual(manager.getArchivedProjects().map((project) => project.id), ['PRJ-002']);
 });
 
 test('rejects malformed technology entries', () => {

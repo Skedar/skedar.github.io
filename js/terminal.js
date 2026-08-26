@@ -5,6 +5,7 @@
  */
 
 import {
+    ARCHIVE_PATH,
     COMMAND_NAMES,
     HOME_PATH,
     PROJECTS_PATH,
@@ -253,12 +254,26 @@ export class Terminal {
         }
 
         if (path === PROJECTS_PATH) {
-            const projects = this.projectManager?.getProjects?.() ?? [];
+            const projects = this.projectManager?.getActiveProjects?.()
+                ?? this.projectManager?.getProjects?.().filter(
+                    (project) => project.status !== 'archived'
+                )
+                ?? [];
             if (projects.length === 0) {
                 this.printMuted('(vazio)');
                 return;
             }
             this.print(projects.map((p) => p.terminalFile).join('  '));
+            return;
+        }
+
+        if (path === ARCHIVE_PATH) {
+            const archivedProjects = this.projectManager?.getArchivedProjects?.() ?? [];
+            if (archivedProjects.length === 0) {
+                this.printMuted('(vazio)');
+                return;
+            }
+            this.print(archivedProjects.map((project) => project.terminalFile).join('  '));
             return;
         }
 

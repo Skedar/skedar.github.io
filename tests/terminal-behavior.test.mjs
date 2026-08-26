@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { HOME_PATH, PROJECTS_PATH } from '../js/terminal-core.js';
+import { ARCHIVE_PATH, HOME_PATH, PROJECTS_PATH } from '../js/terminal-core.js';
 import { Terminal } from '../js/terminal.js';
 
 function createTerminal(overrides = {}) {
@@ -80,4 +80,17 @@ test('run rejects traversal and unknown fictitious executables', () => {
     terminal.runRun(['../../etc/evil.sh']);
     terminal.runRun(['projects/missing.sh']);
     assert.equal(output.filter((line) => line.startsWith('ERROR:')).length, 2);
+});
+
+test('ls in archive exposes only archived project shell files', () => {
+    const { terminal, output } = createTerminal({
+        projectManager: {
+            getArchivedProjects: () => [
+                { id: 'PRJ-009', terminalFile: 'necromantis.sh', status: 'archived' },
+                { id: 'PRJ-010', terminalFile: 'nmts.sh', status: 'archived' },
+            ],
+        },
+    });
+    terminal.runLs([ARCHIVE_PATH]);
+    assert.deepEqual(output, ['necromantis.sh  nmts.sh']);
 });

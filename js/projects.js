@@ -47,9 +47,14 @@ export class ProjectManager {
         this.errorState = document.getElementById('error-state');
         this.emptyState = document.getElementById('empty-state');
         this.countElement = document.getElementById('project-count');
+        this.archiveGrid = document.getElementById('archive-grid');
+        this.archiveEmptyState = document.getElementById('archive-empty-state');
+        this.archiveCountElement = document.getElementById('archive-count');
         this.filterSelect = document.getElementById('project-filter');
         this.mainInterface = document.getElementById('main-interface');
         this.modal = document.getElementById('project-modal');
+        this.modalProjectImage = document.getElementById('modal-project-image');
+        this.modalProjectPlaceholder = document.getElementById('modal-project-placeholder');
 
         this.projects = [];
         this.currentFilter = 'all';
@@ -148,6 +153,21 @@ export class ProjectManager {
                 && isSafeProjectUrl(project.repoUrl)
             );
 
+        const hasSafeImageUrl =
+            project?.imageUrl === undefined
+            || project?.imageUrl === ''
+            || (
+                isNonEmptyString(project?.imageUrl, 2000)
+                && isSafeProjectUrl(project.imageUrl)
+            );
+
+        const hasValidImageAlt =
+            project?.imageAlt === undefined
+            || (
+                typeof project.imageAlt === 'string'
+                && project.imageAlt.length <= 300
+            );
+
         const isValidTerminalFile = (value) =>
             typeof value === 'string'
             && /^[a-z0-9][a-z0-9._-]*\.sh$/.test(value);
@@ -162,7 +182,7 @@ export class ProjectManager {
             && ['active', 'development', 'archived']
                 .includes(project.status)
 
-            && ['web', 'game', 'tool', 'experiment']
+            && ['web', 'game', 'tool', 'app', 'program', 'experiment']
                 .includes(project.category)
 
             && Array.isArray(project.technologies)
@@ -181,6 +201,8 @@ export class ProjectManager {
 
             && hasSafeLiveUrl
             && hasSafeRepoUrl
+            && hasSafeImageUrl
+            && hasValidImageAlt
 
             && isValidTerminalFile(
                 project.terminalFile
@@ -234,34 +256,61 @@ export class ProjectManager {
     renderProjects() {
         if (!this.grid) return;
 
-        this.grid
-            .querySelectorAll('.project-card')
-            .forEach((card) => card.remove());
-
-        const filteredProjects =
-            this.filterProjects(this.projects);
+        const filteredProjects = this.filterProjects(
+            this.getActiveProjects()
+        );
+        const archivedProjects = this.getArchivedProjects();
 
         if (this.countElement) {
             this.countElement.textContent =
                 filteredProjects.length.toString();
         }
 
-        if (filteredProjects.length === 0) {
-            this.showEmpty();
-            return;
+        if (this.archiveCountElement) {
+            this.archiveCountElement.textContent =
+                archivedProjects.length.toString();
         }
 
-        this.hideEmpty();
+        this.renderProjectGrid(this.grid, filteredProjects);
+        this.renderProjectGrid(this.archiveGrid, archivedProjects);
 
-        filteredProjects.forEach(
-            (project, index) => {
-                this.grid.appendChild(
-                    this.createProjectCard(
-                        project,
-                        index
-                    )
-                );
-            }
+        if (filteredProjects.length === 0) {
+            this.showEmpty();
+        } else {
+            this.hideEmpty();
+        }
+
+        if (this.archiveEmptyState) {
+            this.archiveEmptyState.hidden =
+                archivedProjects.length !== 0;
+        }
+    }
+
+    renderProjectGrid(grid, projects) {
+        if (!grid) return;
+
+        grid
+            .querySelectorAll('.project-card')
+            .forEach((card) => card.remove());
+
+        projects.forEach((project, index) => {
+            grid.appendChild(
+                this.createProjectCard(project, index)
+            );
+        });
+    }
+
+    getActiveProjects() {
+        return this.projects.filter(
+            (project) =>
+                project.status === 'active'
+                || project.status === 'development'
+        );
+    }
+
+    getArchivedProjects() {
+        return this.projects.filter(
+            (project) => project.status === 'archived'
         );
     }
 
@@ -316,6 +365,8 @@ export class ProjectManager {
             'web',
             'game',
             'tool',
+            'app',
+            'program',
             'experiment'
         ];
 
@@ -363,6 +414,54 @@ export class ProjectManager {
         return true;
     }
 
+    formatCategory(category) {
+        const labels = {
+            web: 'WEB',
+            game: 'GAME',
+            tool: 'FERRAMENTA',
+            app: 'APP',
+            program: 'PROGRAMA',
+            experiment: 'EXPERIMENTO'
+        };
+
+        return labels[category] ?? category.toUpperCase();
+    }
+
+    createProjectMedia(project) {
+        const media = document.createElement('div');
+        media.className = 'project-media project-card-media';
+
+        const image = document.createElement('img');
+        image.className = 'project-media-image';
+        image.alt = project.imageAlt?.trim()
+            || `Imagem do projeto ${project.title}`;
+        image.hidden = true;
+
+        const placeholder = document.createElement('span');
+        placeholder.className = 'project-media-placeholder';
+        placeholder.setAttribute('aria-hidden', 'true');
+        placeholder.textContent = project.title.trim().charAt(0).toUpperCase() || '◇';
+
+        const safeImageUrl = project.imageUrl
+            ? sanitizeProjectUrl(project.imageUrl, document.baseURI || window.location.href)
+            : null;
+
+        if (safeImageUrl) {
+            image.addEventListener('load', () => {
+                image.hidden = false;
+                placeholder.hidden = true;
+            }, { once: true });
+            image.addEventListener('error', () => {
+                image.hidden = true;
+                placeholder.hidden = false;
+            }, { once: true });
+            image.src = safeImageUrl;
+        }
+
+        media.append(image, placeholder);
+        return media;
+    }
+
     createProjectCard(project, index) {
         const card =
             document.createElement('article');
@@ -382,6 +481,10 @@ export class ProjectManager {
 
         card.style.animationDelay =
             `${index * 50}ms`;
+
+        const media = this.createProjectMedia(project);
+        const content = document.createElement('div');
+        content.className = 'project-card-content';
 
         const header =
             document.createElement('div');
@@ -466,7 +569,7 @@ export class ProjectManager {
             'project-category';
 
         category.textContent =
-            project.category;
+            this.formatCategory(project.category);
 
         const openLabel =
             document.createElement('span');
@@ -492,13 +595,15 @@ export class ProjectManager {
             openLabel
         );
 
-        card.append(
+        content.append(
             header,
             title,
             description,
             tags,
             footer
         );
+
+        card.append(media, content);
 
         card.addEventListener(
             'click',
@@ -547,6 +652,39 @@ export class ProjectManager {
         return card;
     }
 
+    configureModalMedia(project) {
+        const image = this.modalProjectImage;
+        const placeholder = this.modalProjectPlaceholder;
+        if (!(image instanceof HTMLImageElement) || !placeholder) return;
+
+        image.onload = null;
+        image.onerror = null;
+        image.hidden = true;
+        image.removeAttribute('src');
+        image.alt = project.imageAlt?.trim()
+            || `Imagem do projeto ${project.title}`;
+
+        placeholder.hidden = false;
+        placeholder.textContent =
+            project.title.trim().charAt(0).toUpperCase() || '◇';
+
+        const safeImageUrl = project.imageUrl
+            ? sanitizeProjectUrl(project.imageUrl, document.baseURI || window.location.href)
+            : null;
+
+        if (!safeImageUrl) return;
+
+        image.onload = () => {
+            image.hidden = false;
+            placeholder.hidden = true;
+        };
+        image.onerror = () => {
+            image.hidden = true;
+            placeholder.hidden = false;
+        };
+        image.src = safeImageUrl;
+    }
+
     openModal(
         project,
         sourceElement
@@ -556,6 +694,8 @@ export class ProjectManager {
         this.previouslyFocusedElement =
             sourceElement
             ?? document.activeElement;
+
+        this.configureModalMedia(project);
 
         this.setText(
             'modal-title',
@@ -569,7 +709,7 @@ export class ProjectManager {
 
         this.setText(
             'modal-category',
-            project.category.toUpperCase()
+            this.formatCategory(project.category)
         );
 
         this.setText(

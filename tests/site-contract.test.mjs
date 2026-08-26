@@ -44,13 +44,39 @@ test('wires logo replay, ambient glitches, and the autonomous ASCII system glyph
     assert.match(main, /prefersReducedMotion/);
 });
 
-test('preserves the established Portuguese interface outside requested exact labels', async () => {
+test('keeps Portuguese menu labels without numeric prefixes', async () => {
     const html = await read('index.html');
     assert.match(html, /<html lang="pt-BR">/);
-    assert.match(html, /<span class="nav-index">02<\/span> <span[^>]*>PROJETOS<\/span>/);
-    assert.match(html, /<span class="nav-index">03<\/span> <span[^>]*>SOBRE<\/span>/);
-    assert.match(html, /<span class="nav-index">04<\/span> <span[^>]*>ARQUIVO<\/span>/);
+    assert.doesNotMatch(html, /class="nav-index"/);
+    assert.match(html, /data-section="terminal"[\s\S]*>TERMINAL<\/span>/);
+    assert.match(html, /data-section="projects"[\s\S]*>PROJETOS<\/span>/);
+    assert.match(html, /data-section="about"[\s\S]*>SOBRE<\/span>/);
+    assert.match(html, /data-section="archive"[\s\S]*>ARQUIVO<\/span>/);
     assert.match(html, /JAVASCRIPT DESATIVADO/);
+});
+
+test('adds App and Programa filters plus a real archived-project grid', async () => {
+    const html = await read('index.html');
+    assert.match(html, /<option value="app">APP<\/option>/);
+    assert.match(html, /<option value="program">PROGRAMA<\/option>/);
+    assert.match(html, /id="archive-count"/);
+    assert.match(html, /id="archive-grid"/);
+    assert.match(html, /id="archive-empty-state"/);
+});
+
+test('reserves square project media in cards and the modal', async () => {
+    const [html, projects, css] = await Promise.all([
+        read('index.html'),
+        read('js/projects.js'),
+        read('css/main.css'),
+    ]);
+    assert.match(html, /id="modal-project-media"/);
+    assert.match(html, /id="modal-project-image"/);
+    assert.match(projects, /project-card-media/);
+    assert.match(projects, /objectFit|project-media-image/);
+    assert.match(css, /aspect-ratio:\s*1/);
+    assert.match(css, /object-fit:\s*cover/);
+    assert.match(css, /@keyframes\s+projectMediaBorder/);
 });
 
 test('wires the terminal module and returns home commands to Terminal', async () => {
@@ -86,8 +112,8 @@ test('extends glitch effects with character scrambling and reduced-motion covera
 
 test('keeps protected project routes out of the implementation diff surface', async () => {
     const projects = JSON.parse(await read('projects/projects.json'));
-    assert.equal(projects.projects.length, 1);
-    assert.equal(projects.projects[0].title, 'Cyberpunk Archive');
-    assert.equal(projects.projects[0].liveUrl, 'https://skedar.github.io/projects/cyberpunk-archive/');
-    assert.equal(projects.projects[0].terminalFile, 'cyberpunk-archive.sh');
+    const cyberpunkArchive = projects.projects.find((project) => project.title === 'Cyberpunk Archive');
+    assert.ok(cyberpunkArchive);
+    assert.equal(cyberpunkArchive.liveUrl, 'https://skedar.github.io/projects/cyberpunk-archive/');
+    assert.equal(cyberpunkArchive.terminalFile, 'cyberpunk-archive.sh');
 });

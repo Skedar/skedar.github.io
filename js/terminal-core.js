@@ -61,6 +61,9 @@ export const HOME_PATH = VFS_NODES.home.path;
 /** Caminho canônico do diretório de projetos. */
 export const PROJECTS_PATH = VFS_NODES.projects.path;
 
+/** Caminho canônico do arquivo morto. */
+export const ARCHIVE_PATH = VFS_NODES.archive.path;
+
 /** Mapa caminho -> chave de nó, para resolução rápida. */
 const PATH_TO_KEY = new Map(
     Object.entries(VFS_NODES).map(([key, node]) => [node.path, key]),

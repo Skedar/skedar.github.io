@@ -9,6 +9,8 @@
       "category": "web",
       "technologies": ["Wordpress", "Blog", "DIY", "Tech", "Culinária"],
       "terminalFile": "skedarcorp.sh",
+      "imageUrl": "",
+      "imageAlt": "",
       "liveUrl": "https://skedarcorp.com",
       "repoUrl": "",
       "lastUpdated": "2026-08-24T00:00:00Z"
@@ -22,6 +24,8 @@
       "category": "web",
       "technologies": ["HTML5", "Markdown", "CV", "JS", "CSS"],
       "terminalFile": "luisrizzi-cv.sh",
+      "imageUrl": "",
+      "imageAlt": "",
       "liveUrl": "https://skedar.com.br",
       "repoUrl": "",
       "lastUpdated": "2026-08-24T00:00:00Z"
@@ -35,6 +39,8 @@
       "category": "web",
       "technologies": ["HTML5", "Markdown", "CV", "JS", "CSS"],
       "terminalFile": "dps.sh",
+      "imageUrl": "",
+      "imageAlt": "",
       "liveUrl": "https://deadpiratestudios.com",
       "repoUrl": "",
       "lastUpdated": "2023-04-27T08:30:23Z"
@@ -48,6 +54,8 @@
       "category": "web",
       "technologies": ["HTML5", "Markdown", "Gamedev", "JS", "CSS"],
       "terminalFile": "gamedesignerspace.sh",
+      "imageUrl": "",
+      "imageAlt": "",
       "liveUrl": "https://gamedesigner.space",
       "repoUrl": "",
       "lastUpdated": "2026-08-20T10:33:23Z"
@@ -61,6 +69,8 @@
       "category": "web",
       "technologies": ["HTML5", "PHP", "JS", "CSS"],
       "terminalFile": "rawrpage.sh",
+      "imageUrl": "",
+      "imageAlt": "",
       "liveUrl": "https://rawr.page",
       "repoUrl": "",
       "lastUpdated": "2025-10-25T08:30:23Z"
@@ -74,6 +84,8 @@
       "category": "web",
       "technologies": ["HTML5", "PHP", "JS", "CSS"],
       "terminalFile": "diversaoeducativa.sh",
+      "imageUrl": "",
+      "imageAlt": "",
       "liveUrl": "https://diversaoeducativa.com.br",
       "repoUrl": "",
       "lastUpdated": "2025-10-25T08:30:23Z"
@@ -87,6 +99,8 @@
       "category": "web",
       "technologies": ["HTML5", "PHP", "JS", "CSS"],
       "terminalFile": "turmadosaber.sh",
+      "imageUrl": "",
+      "imageAlt": "",
       "liveUrl": "https://turmadosaber.com.br",
       "repoUrl": "",
       "lastUpdated": "2025-10-25T08:30:23Z"
@@ -100,6 +114,8 @@
       "category": "web",
       "technologies": ["HTML5", "PHP", "JS", "CSS"],
       "terminalFile": "viralforge.sh",
+      "imageUrl": "",
+      "imageAlt": "",
       "liveUrl": "https://viralforge.com.br",
       "repoUrl": "",
       "lastUpdated": "2025-10-25T08:30:23Z"
@@ -113,6 +129,8 @@
       "category": "web",
       "technologies": ["HTML5", "PHP", "JS", "CSS"],
       "terminalFile": "necromantis.sh",
+      "imageUrl": "",
+      "imageAlt": "",
       "liveUrl": "https://necromantis.com.br",
       "repoUrl": "",
       "lastUpdated": "2025-10-25T08:30:23Z"
@@ -126,6 +144,8 @@
       "category": "web",
       "technologies": ["HTML5", "PHP", "JS", "CSS"],
       "terminalFile": "nmts.sh",
+      "imageUrl": "",
+      "imageAlt": "",
       "liveUrl": "https://nmts.com.br",
       "repoUrl": "",
       "lastUpdated": "2025-10-25T08:30:23Z"
@@ -139,6 +159,8 @@
       "category": "web",
       "technologies": ["GitHub Pages", "Curadoria", "Pesquisa"],
       "terminalFile": "cyberpunk-archive.sh",
+      "imageUrl": "",
+      "imageAlt": "",
       "liveUrl": "https://skedar.github.io/projects/cyberpunk-archive/",
       "repoUrl": "",
       "lastUpdated": "2026-08-24T00:10:00Z"
