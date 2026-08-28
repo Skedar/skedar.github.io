@@ -1,12 +1,12 @@
 #!/usr/bin/env node
-// Build content/posts/index.json from frontmatter of all .md posts
+// Build content/portfolio/index.json from frontmatter of all .md portfolio items
 const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
-const POSTS_DIR = path.join(ROOT, 'content', 'posts');
-const INDEX_FILE = path.join(POSTS_DIR, 'index.json');
-const DEFAULT_IMAGE = 'assets/images/blog-post-img.jpg';
+const PORTFOLIO_DIR = path.join(ROOT, 'content', 'portfolio');
+const INDEX_FILE = path.join(PORTFOLIO_DIR, 'index.json');
+const DEFAULT_IMAGE = 'assets/images/portfolio-img.jpg';
 
 function parseFrontmatter(text) {
   // Expect frontmatter delimited by --- at start
@@ -48,8 +48,8 @@ function isMarkdownFile(filename) {
 }
 
 function findCoverForSlug(slug) {
-  // Priority: content/posts/<slug>/<slug>.webp|.jpg|.jpeg
-  const folder = path.join(POSTS_DIR, slug);
+  // Priority: content/portfolio/<slug>/<slug>.webp|.jpg|.jpeg
+  const folder = path.join(PORTFOLIO_DIR, slug);
   const candidates = [
     path.join(folder, `${slug}.webp`),
     path.join(folder, `${slug}.jpg`),
@@ -65,30 +65,42 @@ function findCoverForSlug(slug) {
   return DEFAULT_IMAGE;
 }
 
+function normalizeCategory(meta) {
+  let categories = [];
+  if (Array.isArray(meta.categories) && meta.categories.length > 0) {
+    if (meta.categories[0].startsWith('category-')) {
+      categories = meta.categories;
+    } else {
+      const catName = meta.categories[0];
+      const catClass = 'category-' + catName.normalize('NFD').replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').toLowerCase();
+      categories = [catClass, catName];
+    }
+  }
+  return categories;
+}
+
 function buildIndex() {
-  const dirents = fs.readdirSync(POSTS_DIR, { withFileTypes: true });
-  const posts = [];
+  const dirents = fs.readdirSync(PORTFOLIO_DIR, { withFileTypes: true });
+  const items = [];
 
   // 1) Top-level .md files (no folder) use default cover
   for (const d of dirents) {
     if (d.isFile() && isMarkdownFile(d.name)) {
       const slug = path.basename(d.name, path.extname(d.name));
-      const full = path.join(POSTS_DIR, d.name);
+      const full = path.join(PORTFOLIO_DIR, d.name);
       const content = safeRead(full);
       if (!content) continue;
       const meta = parseFrontmatter(content);
       meta.slug = meta.slug || slug;
-      if (meta.categories && !Array.isArray(meta.categories)) meta.categories = [String(meta.categories)];
-      if (meta.tags && !Array.isArray(meta.tags)) meta.tags = [String(meta.tags)];
-      posts.push({
+      const categories = normalizeCategory(meta);
+      items.push({
         slug: meta.slug,
         title: meta.title || slug,
         date: meta.date || '',
-        categories: Array.isArray(meta.categories) ? meta.categories : [],
+        categories,
         image: meta.image || DEFAULT_IMAGE,
         excerpt: meta.excerpt || '',
-        author: meta.author || 'admin',
-        tags: Array.isArray(meta.tags) ? meta.tags : []
+        client: meta.client || ''
       });
     }
   }
@@ -97,35 +109,30 @@ function buildIndex() {
   for (const d of dirents) {
     if (d.isDirectory()) {
       const slug = d.name;
-      const mdPath = path.join(POSTS_DIR, slug, `${slug}.md`);
-      if (!fs.existsSync(mdPath)) continue;
+      const mdPath = path.join(PORTFOLIO_DIR, slug, `${slug}.md`);
       const content = safeRead(mdPath);
       if (!content) continue;
       const meta = parseFrontmatter(content);
       meta.slug = meta.slug || slug;
-      if (meta.categories && !Array.isArray(meta.categories)) meta.categories = [String(meta.categories)];
-      if (meta.tags && !Array.isArray(meta.tags)) meta.tags = [String(meta.tags)];
-      const image = meta.image || findCoverForSlug(slug);
-      posts.push({
+      const categories = normalizeCategory(meta);
+      items.push({
         slug: meta.slug,
         title: meta.title || slug,
         date: meta.date || '',
-        categories: Array.isArray(meta.categories) ? meta.categories : [],
-        image,
+        categories,
+        image: findCoverForSlug(slug),
         excerpt: meta.excerpt || '',
-        author: meta.author || 'admin',
-        tags: Array.isArray(meta.tags) ? meta.tags : []
+        client: meta.client || ''
       });
     }
   }
-  // Sort newest first by date string (ISO-like expected)
-  posts.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
-  const out = { posts };
-  const json = JSON.stringify(out, null, '\t') + '\n';
-  fs.writeFileSync(INDEX_FILE, json, 'utf8');
-  console.log(`Wrote ${posts.length} posts to ${path.relative(ROOT, INDEX_FILE)}`);
+
+  // Sort by date, most recent first
+  items.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+  // Write index file
+  fs.writeFileSync(INDEX_FILE, JSON.stringify({ items }, null, 2));
+  console.log(`Portfolio index built successfully: ${INDEX_FILE}`);
 }
 
 buildIndex();
-
-
