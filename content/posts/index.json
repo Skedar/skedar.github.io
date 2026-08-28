@@ -1,15 +1,27 @@
 {
 	"posts": [
 		{
-			"slug": "hello-world",
-			"title": "Bem-vindo ao Blog",
-			"date": "2025-10-08",
+			"slug": "projects",
+			"title": "Skedar Github Pages",
+			"date": "2026-08-28",
 			"categories": [
-				"Geral"
+				"Github"
 			],
 			"image": "/assets/images/col-1.jpg",
 			"excerpt": "",
-			"author": "admin",
+			"author": "Luis Rizzi",
+			"tags": []
+		},
+		{
+			"slug": "automatic-github-actions",
+			"title": "Como automatizei este Site",
+			"date": "2025-10-09",
+			"categories": [
+				"Github"
+			],
+			"image": "/assets/images/col-1.jpg",
+			"excerpt": "",
+			"author": "Luis Rizzi",
 			"tags": []
 		}
 	]
