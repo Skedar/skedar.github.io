@@ -1,0 +1,44 @@
+name: Validate archive deployment
+on:
+  pull_request:
+    paths:
+      - 'projects/cyberpunk-archive/**'
+      - '.github/workflows/validate-archive.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build-archive:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Verify deployed HTML asset references
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from html.parser import HTMLParser
+          from urllib.parse import urlsplit, unquote
+          root = Path('projects/cyberpunk-archive').resolve()
+          class Assets(HTMLParser):
+              def handle_starttag(self, tag, attrs):
+                  attrs = dict(attrs)
+                  value = attrs.get('src') if tag == 'script' else attrs.get('href') if tag == 'link' else None
+                  if not value: return
+                  url = urlsplit(value)
+                  if url.scheme or url.netloc: return
+                  path = unquote(url.path)
+                  prefix = '/projects/cyberpunk-archive/'
+                  if path.startswith(prefix): path = path[len(prefix):]
+                  target = (root / path).resolve()
+                  assert target.is_relative_to(root), f'Unsafe asset path: {value}'
+                  assert target.is_file() and target.stat().st_size > 0, f'Missing asset: {value}'
+          html = (root / 'index.html').read_text()
+          assert '<script' in html and 'assets/' in html
+          Assets().feed(html)
+          print('Public archive HTML and referenced assets verified')
+          PY
